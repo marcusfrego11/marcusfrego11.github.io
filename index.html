@@ -1,11 +1,330 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-    <title>Website</title>
-</head>
+<title>Website</title>
 <body>
     <h1>Hello World</h1>
     <p>This is my website</p>
 </body>
-</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Breakout Game</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #1a1a1a;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #ffffff;
+            overflow: hidden;
+        }
+        .game-container {
+            text-align: center;
+            position: relative;
+        }
+        .scoreboard {
+            display: flex;
+            justify-content: space-between;
+            width: 400px;
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        canvas {
+            background-color: #000000;
+            border: 4px solid #333333;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: block;
+        }
+        .menu {
+            position: absolute;
+            top: 45px;
+            left: 0;
+            width: 400px;
+            height: 400px;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 4px solid transparent;
+        }
+        .menu h1 {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+        }
+        .menu button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            font-family: inherit;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .menu button:hover {
+            background-color: #45a049;
+        }
+        .hidden {
+            display: none !important;
+        }
+        .controls-hint {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #888888;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="game-container">
+        <div class="scoreboard">
+            <div>Score: <span id="score">0</span></div>
+            <div>High Score: <span id="high-score">0</span></div>
+        </div>
+        
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+        <!-- Start / Game Over Screen Overlay -->
+        <div id="gameMenu" class="menu">
+            <h1 id="menuTitle">BREAKOUT</h1>
+            <button id="startBtn">PLAY</button>
+        </div>
+        
+        <div class="controls-hint">Use Arrow Keys or A/D to move paddle<br>&copy;2026 marcusfrego11. No rights reserved.</div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('score');
+        const highScoreEl = document.getElementById('high-score');
+        const gameMenu = document.getElementById('gameMenu');
+        const menuTitle = document.getElementById('menuTitle');
+        const startBtn = document.getElementById('startBtn');
+
+        // Layout Parameters
+        const paddleHeight = 12;
+        const paddleWidth = 75;
+        const ballRadius = 6;
+        
+        const brickRowCount = 5;
+        const brickColumnCount = 6;
+        const brickWidth = 54;
+        const brickHeight = 16;
+        const brickPadding = 6;
+        const brickOffsetTop = 40;
+        const brickOffsetLeft = 23;
+
+        // Game State Variables
+        let paddleX;
+        let ballX;
+        let ballY;
+        let dx;
+        let dy;
+        let score = 0;
+        let highScore = localStorage.getItem('breakoutHighScore') || 0;
+        let gameRunning = false;
+        let bricks = [];
+        
+        // Input tracking flags
+        let leftPressed = false;
+        let rightPressed = false;
+
+        highScoreEl.textContent = highScore;
+
+        // Retro Web Audio sound engine maintained directly from source code
+        function playTone(freq, duration, type = 'square') {
+            try {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContextClass) return;
+                
+                const audioCtx = new AudioContextClass();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                
+                oscillator.type = type;
+                oscillator.frequency.value = freq;
+                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                
+                oscillator.start();
+                oscillator.stop(audioCtx.currentTime + duration);
+            } catch (e) {
+                // Ignore audio errors
+            }
+        }
+
+        function startGame() {
+            // Setup Initial Object States
+            paddleX = (canvas.width - paddleWidth) / 2;
+            ballX = canvas.width / 2;
+            ballY = canvas.height - 30;
+            dx = 3 * (Math.random() > 0.5 ? 1 : -1);
+            dy = -4;
+            score = 0;
+            scoreEl.textContent = score;
+
+            // Generate Brick Array Grid
+            bricks = [];
+            for (let c = 0; c < brickColumnCount; c++) {
+                bricks[c] = [];
+                for (let r = 0; r < brickRowCount; r++) {
+                    bricks[c][r] = { x: 0, y: 0, status: 1 };
+                }
+            }
+
+            gameMenu.classList.add('hidden');
+            
+            if (!gameRunning) {
+                gameRunning = true;
+                requestAnimationFrame(gameLoop);
+            }
+        }
+
+        function collisionDetection() {
+            for (let c = 0; c < brickColumnCount; c++) {
+                for (let r = 0; r < brickRowCount; r++) {
+                    let b = bricks[c][r];
+                    if (b.status === 1) {
+                        // Check if ball bounding circle overlaps structural brick matrix coordinates
+                        if (ballX > b.x && ballX < b.x + brickWidth && ballY > b.y && ballY < b.y + brickHeight) {
+                            dy = -dy;
+                            b.status = 0;
+                            score++;
+                            scoreEl.textContent = score;
+                            playTone(523.25, 0.08, 'sine'); // Clean score sound
+
+                            if (score > highScore) {
+                                highScore = score;
+                                highScoreEl.textContent = highScore;
+                                localStorage.setItem('breakoutHighScore', highScore);
+                            }
+
+                            // Win Condition Check
+                            if (score === brickRowCount * brickColumnCount) {
+                                gameWon();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function gameLoop() {
+            if (!gameRunning) return;
+
+            // Compute User Paddle Transitions
+            if (rightPressed && paddleX < canvas.width - paddleWidth) {
+                paddleX += 7;
+            } else if (leftPressed && paddleX > 0) {
+                paddleX -= 7;
+            }
+
+            // Left/Right Wall bounce checks
+            if (ballX + dx > canvas.width - ballRadius || ballX + dx < ballRadius) {
+                dx = -dx;
+                playTone(250, 0.05, 'triangle');
+            }
+            // Top Wall boundary reflection
+            if (ballY + dy < ballRadius) {
+                dy = -dy;
+                playTone(250, 0.05, 'triangle');
+            } 
+            // Bottom space handling (Intersection with platform or out of bounds)
+            else if (ballY + dy > canvas.height - ballRadius - paddleHeight) {
+                if (ballX > paddleX && ballX < paddleX + paddleWidth) {
+                    // Angular deflection based on where the ball lands on the paddle
+                    let hitPoint = (ballX - (paddleX + paddleWidth / 2)) / (paddleWidth / 2);
+                    dx = hitPoint * 4;
+                    dy = -Math.abs(dy); 
+                    playTone(350, 0.05, 'square');
+                } else if (ballY + dy > canvas.height - ballRadius) {
+                    gameOver();
+                    return;
+                }
+            }
+
+            ballX += dx;
+            ballY += dy;
+
+            collisionDetection();
+            draw();
+
+            requestAnimationFrame(gameLoop);
+        }
+
+        function draw() {
+            // Draw background canvas space
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Render Bricks Matrix matching Snake color tiers
+            for (let c = 0; c < brickColumnCount; c++) {
+                for (let r = 0; r < brickRowCount; r++) {
+                    if (bricks[c][r].status === 1) {
+                        let brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
+                        let brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
+                        bricks[c][r].x = brickX;
+                        bricks[c][r].y = brickY;
+                        
+                        // Theme styling mapping green colors from core style sheet
+                        ctx.fillStyle = r % 2 === 0 ? '#81C784' : '#4CAF50';
+ctx.fillRect(brickX, brickY, brickWidth, brickHeight);
+}
+}
+}
+// Draw user controlled paddle
+ctx.fillStyle = '#4CAF50';
+ctx.fillRect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
+// Draw active bounding circular physics ball matching old food accent color
+ctx.beginPath();
+ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
+ctx.fillStyle = '#FF5722';
+ctx.fill();
+ctx.closePath();
+}
+function gameOver() {
+gameRunning = false;
+playTone(150, 0.4, 'sawtooth'); // Defeat tone
+menuTitle.textContent = "GAME OVER";
+startBtn.textContent = "RETRY";
+gameMenu.classList.remove('hidden');
+}
+function gameWon() {
+gameRunning = false;
+playTone(600, 0.5, 'sine'); // Victory fanfare sound
+menuTitle.textContent = "YOU WIN!";
+startBtn.textContent = "PLAY AGAIN";
+gameMenu.classList.remove('hidden');
+}
+// Secure explicit single click delegation binding bypasses browser blocking quirks
+startBtn.addEventListener('click', startGame);
+// Map Keyboard Events to Input State Flag updates safely
+window.addEventListener('keydown', e => {
+const key = e.key.toLowerCase();
+if (key === 'arrowright' || key === 'd') rightPressed = true;
+if (key === 'arrowleft' || key === 'a') leftPressed = true;
+});
+window.addEventListener('keyup', e => {
+const key = e.key.toLowerCase();
+if (key === 'arrowright' || key === 'd') rightPressed = false;
+if (key === 'arrowleft' || key === 'a') leftPressed = false;
+});

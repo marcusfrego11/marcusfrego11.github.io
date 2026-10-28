@@ -4,10 +4,11 @@
 <title>Website</title>
 <body>
     <h1>Hello World</h1>
+    <p>Below is a snake game for you to enjoy</p>
 </body>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro Breakout Game</title>
+    <title>Retro Snake Game</title>
     <style>
         * {
             box-sizing: border-box;
@@ -100,11 +101,11 @@
 
         <!-- Start / Game Over Screen Overlay -->
         <div id="gameMenu" class="menu">
-            <h1 id="menuTitle">BREAKOUT</h1>
-            <button id="startBtn">PLAY</button>
+            <h1 id="menuTitle">SNAKE GAME</h1>
+            <button id="startBtn" onclick="startGame()">PLAY</button>
         </div>
         
-        <div class="controls-hint">Use Arrow Keys or A/D to move paddle<br>&copy;2026 marcusfrego11. No rights reserved.</div>
+        <div class="controls-hint">Use Arrow Keys or WASD to navigate<br>&copy;2026 marcusfrego11. No rights reserved.</div>
     </div>
 
     <script>
@@ -116,43 +117,26 @@
         const menuTitle = document.getElementById('menuTitle');
         const startBtn = document.getElementById('startBtn');
 
-        // Layout Parameters
-        const paddleHeight = 12;
-        const paddleWidth = 75;
-        const ballRadius = 6;
-        
-        const brickRowCount = 5;
-        const brickColumnCount = 6;
-        const brickWidth = 54;
-        const brickHeight = 16;
-        const brickPadding = 6;
-        const brickOffsetTop = 40;
-        const brickOffsetLeft = 23;
+        // Grid Configuration
+        const gridSize = 20; 
+        const tileCount = canvas.width / gridSize; // 20x20 grid
 
         // Game State Variables
-        let paddleX;
-        let ballX;
-        let ballY;
-        let dx;
-        let dy;
+        let snake = [];
+        let food = { x: 0, y: 0 };
+        let dx = gridSize; // Horizontal velocity
+        let dy = 0;        // Vertical velocity
         let score = 0;
-        let highScore = localStorage.getItem('breakoutHighScore') || 0;
-        let gameRunning = false;
-        let bricks = [];
-        
-        // Input tracking flags
-        let leftPressed = false;
-        let rightPressed = false;
+        let highScore = localStorage.getItem('snakeHighScore') || 0;
+        let gameInterval = null;
+        let nextDirection = { x: gridSize, y: 0 }; // Prevent 180-degree self-collision bugs
 
         highScoreEl.textContent = highScore;
 
-        // Retro Web Audio sound engine maintained directly from source code
+        // Web Audio API helper for retro synth sound effects
         function playTone(freq, duration, type = 'square') {
             try {
-                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-                if (!AudioContextClass) return;
-                
-                const audioCtx = new AudioContextClass();
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
                 const oscillator = audioCtx.createOscillator();
                 const gainNode = audioCtx.createGain();
                 
@@ -167,163 +151,142 @@
                 oscillator.start();
                 oscillator.stop(audioCtx.currentTime + duration);
             } catch (e) {
-                // Ignore audio errors
+                // Ignore audio restriction errors
             }
         }
 
         function startGame() {
-            // Setup Initial Object States
-            paddleX = (canvas.width - paddleWidth) / 2;
-            ballX = canvas.width / 2;
-            ballY = canvas.height - 30;
-            dx = 3 * (Math.random() > 0.5 ? 1 : -1);
-            dy = -4;
+            // Reset game variables
+            snake = [
+                { x: gridSize * 5, y: gridSize * 10 },
+                { x: gridSize * 4, y: gridSize * 10 },
+                { x: gridSize * 3, y: gridSize * 10 }
+            ];
+            dx = gridSize;
+            dy = 0;
+            nextDirection = { x: gridSize, y: 0 };
             score = 0;
             scoreEl.textContent = score;
-
-            // Generate Brick Array Grid
-            bricks = [];
-            for (let c = 0; c < brickColumnCount; c++) {
-                bricks[c] = [];
-                for (let r = 0; r < brickRowCount; r++) {
-                    bricks[c][r] = { x: 0, y: 0, status: 1 };
-                }
-            }
-
+            
+            generateFood();
             gameMenu.classList.add('hidden');
             
-            if (!gameRunning) {
-                gameRunning = true;
-                requestAnimationFrame(gameLoop);
-            }
+            // Loop runs every 100ms (10 frames per second)
+            if (gameInterval) clearInterval(gameInterval);
+            gameInterval = setInterval(update, 100);
         }
 
-        function collisionDetection() {
-            for (let c = 0; c < brickColumnCount; c++) {
-                for (let r = 0; r < brickRowCount; r++) {
-                    let b = bricks[c][r];
-                    if (b.status === 1) {
-                        // Check if ball bounding circle overlaps structural brick matrix coordinates
-                        if (ballX > b.x && ballX < b.x + brickWidth && ballY > b.y && ballY < b.y + brickHeight) {
-                            dy = -dy;
-                            b.status = 0;
-                            score++;
-                            scoreEl.textContent = score;
-                            playTone(523.25, 0.08, 'sine'); // Clean score sound
+        function generateFood() {
+            // Position food perfectly inside grid spaces
+            food.x = Math.floor(Math.random() * tileCount) * gridSize;
+            food.y = Math.floor(Math.random() * tileCount) * gridSize;
 
-                            if (score > highScore) {
-                                highScore = score;
-                                highScoreEl.textContent = highScore;
-                                localStorage.setItem('breakoutHighScore', highScore);
-                            }
-
-                            // Win Condition Check
-                            if (score === brickRowCount * brickColumnCount) {
-                                gameWon();
-                            }
-                        }
-                    }
+            // Ensure food doesn't spawn inside the snake's body
+            for (let part of snake) {
+                if (part.x === food.x && part.y === food.y) {
+                    generateFood();
+                    break;
                 }
             }
         }
 
-        function gameLoop() {
-            if (!gameRunning) return;
+        function update() {
+            // Commit direction change locked during the current frame frame
+            dx = nextDirection.x;
+            dy = nextDirection.y;
 
-            // Compute User Paddle Transitions
-            if (rightPressed && paddleX < canvas.width - paddleWidth) {
-                paddleX += 7;
-            } else if (leftPressed && paddleX > 0) {
-                paddleX -= 7;
+            // Calculate next step for snake head
+            const head = { x: snake[0].x + dx, y: snake[0].y + dy };
+
+            // Wall Collision Check
+            if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height) {
+                gameOver();
+                return;
             }
 
-            // Left/Right Wall bounce checks
-            if (ballX + dx > canvas.width - ballRadius || ballX + dx < ballRadius) {
-                dx = -dx;
-                playTone(250, 0.05, 'triangle');
-            }
-            // Top Wall boundary reflection
-            if (ballY + dy < ballRadius) {
-                dy = -dy;
-                playTone(250, 0.05, 'triangle');
-            } 
-            // Bottom space handling (Intersection with platform or out of bounds)
-            else if (ballY + dy > canvas.height - ballRadius - paddleHeight) {
-                if (ballX > paddleX && ballX < paddleX + paddleWidth) {
-                    // Angular deflection based on where the ball lands on the paddle
-                    let hitPoint = (ballX - (paddleX + paddleWidth / 2)) / (paddleWidth / 2);
-                    dx = hitPoint * 4;
-                    dy = -Math.abs(dy); 
-                    playTone(350, 0.05, 'square');
-                } else if (ballY + dy > canvas.height - ballRadius) {
+            // Self Collision Check (skip index 0)
+            for (let i = 0; i < snake.length; i++) {
+                if (head.x === snake[i].x && head.y === snake[i].y) {
                     gameOver();
                     return;
                 }
             }
 
-            ballX += dx;
-            ballY += dy;
+            // Insert new head at the beginning of the snake array
+            snake.unshift(head);
 
-            collisionDetection();
+            // Food Check
+            if (head.x === food.x && head.y === food.y) {
+                score++;
+                scoreEl.textContent = score;
+                playTone(523.25, 0.1, 'sine'); // Blip sound
+                if (score > highScore) {
+                    highScore = score;
+                    highScoreEl.textContent = highScore;
+                    localStorage.setItem('snakeHighScore', highScore);
+                }
+                generateFood();
+            } else {
+                // If no food eaten, remove the tail end to maintain moving length
+                snake.pop();
+            }
+
             draw();
-
-            requestAnimationFrame(gameLoop);
         }
 
         function draw() {
-            // Draw background canvas space
+            // Clear entire board canvas
             ctx.fillStyle = '#000000';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Render Bricks Matrix matching Snake color tiers
-            for (let c = 0; c < brickColumnCount; c++) {
-                for (let r = 0; r < brickRowCount; r++) {
-                    if (bricks[c][r].status === 1) {
-                        let brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
-                        let brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
-                        bricks[c][r].x = brickX;
-                        bricks[c][r].y = brickY;
-                        
-                        // Theme styling mapping green colors from core style sheet
-                        ctx.fillStyle = r % 2 === 0 ? '#81C784' : '#4CAF50';
-ctx.fillRect(brickX, brickY, brickWidth, brickHeight);
-}
-}
-}
-// Draw user controlled paddle
-ctx.fillStyle = '#4CAF50';
-ctx.fillRect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
-// Draw active bounding circular physics ball matching old food accent color
-ctx.beginPath();
-ctx.arc(ballX, ballY, ballRadius, 0, Math.PI * 2);
-ctx.fillStyle = '#FF5722';
-ctx.fill();
-ctx.closePath();
-}
-function gameOver() {
-gameRunning = false;
-playTone(150, 0.4, 'sawtooth'); // Defeat tone
-menuTitle.textContent = "GAME OVER";
-startBtn.textContent = "RETRY";
-gameMenu.classList.remove('hidden');
-}
-function gameWon() {
-gameRunning = false;
-playTone(600, 0.5, 'sine'); // Victory fanfare sound
-menuTitle.textContent = "YOU WIN!";
-startBtn.textContent = "PLAY AGAIN";
-gameMenu.classList.remove('hidden');
-}
-// Secure explicit single click delegation binding bypasses browser blocking quirks
-startBtn.addEventListener('click', startGame);
-// Map Keyboard Events to Input State Flag updates safely
-window.addEventListener('keydown', e => {
-const key = e.key.toLowerCase();
-if (key === 'arrowright' || key === 'd') rightPressed = true;
-if (key === 'arrowleft' || key === 'a') leftPressed = true;
-});
-window.addEventListener('keyup', e => {
-const key = e.key.toLowerCase();
+            // Draw Snake
+            snake.forEach((part, index) => {
+                // Main head color vs body color accent
+                ctx.fillStyle = index === 0 ? '#4CAF50' : '#81C784';
+                ctx.fillRect(part.x, part.y, gridSize - 2, gridSize - 2); // 2px margin for grid visibility
+            });
+
+            // Draw Food
+            ctx.fillStyle = '#FF5722';
+            ctx.fillRect(food.x, food.y, gridSize - 2, gridSize - 2);
+        }
+
+        function gameOver() {
+            clearInterval(gameInterval);
+            playTone(150, 0.4, 'sawtooth'); // Defeat sound effect
+            
+            menuTitle.textContent = "GAME OVER";
+            startBtn.textContent = "RETRY";
+            gameMenu.classList.remove('hidden');
+        }
+
+        // Handle Arrow keys and WASD inputs safely 
+        window.addEventListener('keydown', e => {
+            const key = e.key.toLowerCase();
+            
+            // Check current direction state to prevent running backward into yourself
+            const goingUp = dy === -gridSize;
+            const goingDown = dy === gridSize;
+            const goingRight = dx === gridSize;
+            const goingLeft = dx === -gridSize;
+
+            if ((key === 'arrowup' || key === 'w') && !goingDown) {
+                nextDirection = { x: 0, y: -gridSize };
+            }
+            if ((key === 'arrowdown' || key === 's') && !goingUp) {
+                nextDirection = { x: 0, y: gridSize };
+            }
+            if ((key === 'arrowleft' || key === 'a') && !goingRight) {
+                nextDirection = { x: -gridSize, y: 0 };
+            }
+            if ((key === 'arrowright' || key === 'd') && !goingLeft) {
+                nextDirection = { x: gridSize, y: 0 };
+            }
+        });
+    </script>
+</body>
+</html>
+
 if (key === 'arrowright' || key === 'd') rightPressed = false;
 if (key === 'arrowleft' || key === 'a') leftPressed = false;
 });

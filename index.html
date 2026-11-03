@@ -1,287 +1,1169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Website</title>
-<body>
-    <h1>Hello World</h1>
-    <p>Below is a snake game for you to enjoy</p>
-</body>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro Snake Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#111725">
+    <title>Marcus Fregonese - The Website</title>
     <style>
+        :root {
+            color-scheme: dark;
+            --page: #111315;
+            --panel: #191c20;
+            --panel-raised: #20242a;
+            --line: #30363f;
+            --text: #f0f4fc;
+            --muted: #a5b1c6;
+            --accent: #407dff;
+            --accent-dark: #172746;
+            font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+            background: var(--page);
+            color: var(--text);
+            font-synthesis: none;
+        }
+
         * {
             box-sizing: border-box;
+        }
+
+        body {
+            min-width: 320px;
+            min-height: 100vh;
             margin: 0;
+            background:
+                radial-gradient(ellipse at 70% 0, rgba(64, 125, 255, 0.035), transparent 34rem),
+                var(--page);
+        }
+
+        button {
+            font: inherit;
+        }
+
+        .layout {
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            position: fixed;
+            inset: 0 auto 0 0;
+            z-index: 5;
+            display: flex;
+            width: 258px;
+            flex-direction: column;
+            padding: 82px 20px 24px;
+            border-right: 1px solid var(--line);
+            background: rgba(17, 19, 22, 0.97);
+            transition: transform 220ms ease;
+        }
+
+        .sidebar-toggle {
+            position: fixed;
+            top: 18px;
+            left: 18px;
+            z-index: 7;
+            display: grid;
+            width: 42px;
+            height: 42px;
+            place-items: center;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: var(--panel);
+            color: var(--text);
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .sidebar-backdrop {
+            display: none;
+        }
+
+        .sidebar-collapsed .sidebar {
+            transform: translateX(-100%);
+        }
+
+        .identity {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0 8px 58px;
+        }
+
+        .monogram {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            place-items: center;
+            border-radius: 13px;
+            background: var(--accent);
+            color: #ffffff;
+            font-size: 1.15rem;
+            font-weight: 800;
+        }
+
+        .identity-name {
+            color: var(--text);
+            font-size: 0.96rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+        }
+
+        .identity-caption {
+            margin-top: 3px;
+            color: var(--muted);
+            font-size: 0.76rem;
+        }
+
+        .nav-heading {
+            margin: 0 12px 12px;
+            color: #8998b2;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .tab-list {
+            display: grid;
+            gap: 7px;
+        }
+
+        .tab-button {
+            display: flex;
+            width: 100%;
+            min-height: 48px;
+            align-items: center;
+            gap: 13px;
+            padding: 0 13px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            background: transparent;
+            color: #b8c3d6;
+            cursor: pointer;
+            text-align: left;
+            transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+        }
+
+        .tab-button:hover {
+            background: #1e2229;
+            color: var(--text);
+        }
+
+        .tab-button[aria-selected="true"] {
+            border-color: #345596;
+            background: var(--accent-dark);
+            color: var(--accent);
+        }
+
+        .tab-icon {
+            display: grid;
+            width: 23px;
+            place-items: center;
+            font-size: 1rem;
+        }
+
+        .tab-icon svg {
+            display: block;
+            width: 19px;
+            height: 19px;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            padding: 17px 9px 0;
+            border-top: 1px solid var(--line);
+            color: #8d9ab0;
+            font-size: 0.76rem;
+            line-height: 1.6;
+        }
+
+        .main {
+            width: min(100% - 258px, 1680px);
+            margin-left: 258px;
+            padding: 62px clamp(32px, 7vw, 88px) 76px;
+            transition: width 220ms ease, margin-left 220ms ease;
+        }
+
+        .sidebar-collapsed .main {
+            width: min(100%, 1680px);
+            margin-left: 0;
+        }
+
+        .home-intro {
+            max-width: 760px;
+            margin-bottom: 48px;
+        }
+
+        .eyebrow {
+            margin: 0 0 17px;
+            color: var(--accent);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.17em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(2.7rem, 6vw, 5rem);
+            font-weight: 650;
+            letter-spacing: -0.065em;
+            line-height: 1.02;
+        }
+
+        .home-copy {
+            max-width: 590px;
+            margin: 21px 0 0;
+            color: var(--muted);
+            font-size: 1.04rem;
+            line-height: 1.75;
+        }
+
+        .home-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 26px;
+        }
+
+        .home-link {
+            padding: 10px 14px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--panel);
+            color: var(--text);
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: border-color 150ms ease, color 150ms ease;
+        }
+
+        .home-link:hover {
+            border-color: #6592ff;
+            color: var(--accent);
+        }
+
+        .tab-panel[hidden] {
+            display: none;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .panel-header h2 {
+            margin: 0;
+            font-size: 1.55rem;
+            letter-spacing: -0.035em;
+        }
+
+        .panel-header p {
+            margin: 7px 0 0;
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .subsection-title {
+            margin: 30px 0 14px;
+            color: #dce7fb;
+            font-size: 1.05rem;
+            font-weight: 650;
+        }
+
+        .subsection-spaced {
+            margin-top: 40px;
+        }
+
+        .count {
+            flex: 0 0 auto;
+            padding: 7px 10px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            color: #afbdd5;
+            font-size: 0.73rem;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .card {
+            min-height: 205px;
+            padding: 22px;
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: linear-gradient(145deg, rgba(34, 38, 45, 0.94), rgba(24, 27, 32, 0.97));
+        }
+
+        .card-mark {
+            display: grid;
+            width: 38px;
+            height: 38px;
+            margin-bottom: 28px;
+            place-items: center;
+            border: 1px solid #35435e;
+            border-radius: 10px;
+            background: #202a3b;
+            color: var(--accent);
+            font-size: 1.02rem;
+        }
+
+        .card-mark svg {
+            display: block;
+            width: 22px;
+            height: 22px;
+        }
+
+        .card h3 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+            font-weight: 650;
+        }
+
+        .card p {
+            max-width: 390px;
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.85rem;
+            line-height: 1.65;
+        }
+
+        .card-placeholder {
+            border-style: dashed;
+            background: rgba(25, 29, 35, 0.72);
+        }
+
+        .card-placeholder .card-mark {
+            border-color: #384151;
+            background: #252a32;
+            color: #b8c3d6;
+        }
+
+        .instrument-card {
+            min-height: 0;
+            overflow: hidden;
             padding: 0;
         }
-        body {
-            background-color: #1a1a1a;
-            font-family: 'Courier New', Courier, monospace;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            color: #ffffff;
+
+        .instrument-photo {
+            display: grid;
+            min-height: 190px;
+            aspect-ratio: 16 / 9;
+            place-items: center;
+            border-bottom: 1px solid var(--line);
+            background:
+                linear-gradient(135deg, rgba(64, 125, 255, 0.08), transparent 55%),
+                #171a20;
+            color: #8995aa;
+            font-size: 0.8rem;
+        }
+
+        .instrument-details {
+            padding: 20px 22px 22px;
+        }
+
+        .instrument-details h4 {
+            margin: 0 0 8px;
+            font-size: 1rem;
+            font-weight: 650;
+        }
+
+        .instrument-details p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.85rem;
+            line-height: 1.65;
+        }
+
+        .instrument-details .instrument-description {
+            max-width: none;
+            margin-top: 12px;
+            line-height: 1.75;
+        }
+
+        .gear-grid {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .gear-grid .instrument-card {
+            display: grid;
+            min-height: 330px;
+            grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+        }
+
+        .gear-grid .instrument-photo {
+            height: 100%;
+            min-height: 330px;
+            aspect-ratio: auto;
+            border-right: 1px solid var(--line);
+            border-bottom: 0;
+        }
+
+        .gear-grid .instrument-card:nth-child(even) .instrument-photo {
+            grid-column: 2;
+            grid-row: 1;
+            border-right: 0;
+            border-left: 1px solid var(--line);
+        }
+
+        .gear-grid .instrument-card:nth-child(even) .instrument-details {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .gear-grid .instrument-details {
+            align-self: center;
+            padding: 34px clamp(28px, 5vw, 64px);
+        }
+
+        .gear-grid .instrument-details h4 {
+            margin-bottom: 12px;
+            font-size: 1.35rem;
+            letter-spacing: -0.025em;
+        }
+
+        .gear-grid .instrument-details .instrument-description {
+            max-width: 720px;
+            margin-top: 17px;
+            font-size: 0.97rem;
+            line-height: 1.85;
+        }
+
+        .modification-section {
+            margin-top: 26px;
+            padding-top: 20px;
+            border-top: 1px solid var(--line);
+        }
+
+        .modification-section h5 {
+            margin: 0 0 13px;
+            color: #dce7fb;
+            font-size: 0.9rem;
+            font-weight: 650;
+        }
+
+        .modification-section p + p {
+            margin-top: 12px;
+        }
+
+        .showcase-grid {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .showcase-card {
+            display: grid;
+            min-height: 340px;
+            grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+            padding: 0;
             overflow: hidden;
         }
-        .game-container {
-            text-align: center;
-            position: relative;
+
+        .showcase-photo {
+            display: grid;
+            min-height: 340px;
+            place-items: center;
+            border-right: 1px solid var(--line);
+            background:
+                linear-gradient(135deg, rgba(64, 125, 255, 0.08), transparent 55%),
+                #171a20;
+            color: #8995aa;
+            font-size: 0.8rem;
         }
-        .scoreboard {
-            display: flex;
-            justify-content: space-between;
-            width: 400px;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+
+        .showcase-details {
+            align-self: center;
+            padding: 34px clamp(28px, 5vw, 64px);
         }
-        canvas {
-            background-color: #000000;
-            border: 4px solid #333333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            display: block;
+
+        .showcase-card:nth-child(even) .showcase-photo {
+            grid-column: 2;
+            grid-row: 1;
+            border-right: 0;
+            border-left: 1px solid var(--line);
         }
-        .menu {
-            position: absolute;
-            top: 45px;
-            left: 0;
-            width: 400px;
-            height: 400px;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 4px solid transparent;
+
+        .showcase-card:nth-child(even) .showcase-details {
+            grid-column: 1;
+            grid-row: 1;
         }
-        .menu h1 {
-            font-size: 2.5rem;
-            color: #4CAF50;
+
+        .showcase-details h4 {
+            margin: 0 0 12px;
+            font-size: 1.3rem;
+            font-weight: 650;
+            letter-spacing: -0.025em;
+        }
+
+        .showcase-details p {
+            max-width: 720px;
+            color: var(--muted);
+            font-size: 0.97rem;
+            line-height: 1.85;
+        }
+
+        .showcase-details .card-mark {
             margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
         }
-        .menu button {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            font-size: 1.1rem;
-            font-family: inherit;
-            cursor: pointer;
-            border-radius: 4px;
-            transition: background 0.2s;
+
+        .footer {
+            margin-top: 66px;
+            padding-top: 18px;
+            border-top: 1px solid var(--line);
+            color: #8290a8;
+            font-size: 0.75rem;
         }
-        .menu button:hover {
-            background-color: #45a049;
+
+        button:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 3px;
         }
-        .hidden {
-            display: none !important;
+
+        @media (max-width: 760px) {
+            .sidebar {
+                width: min(300px, 86vw);
+                padding: 82px 20px 24px;
+                border-right: 1px solid var(--line);
+                border-bottom: 0;
+                box-shadow: 16px 0 45px rgba(0, 0, 0, 0.4);
+            }
+
+            .sidebar-backdrop.visible {
+                position: fixed;
+                inset: 0;
+                z-index: 4;
+                display: block;
+                border: 0;
+                background: rgba(0, 0, 0, 0.55);
+            }
+
+            .identity {
+                margin: 0 8px 40px;
+            }
+
+            .nav-heading {
+                display: none;
+            }
+
+            .tab-list {
+                display: grid;
+                gap: 7px;
+            }
+
+            .tab-button {
+                width: 100%;
+                min-height: 48px;
+                gap: 13px;
+                padding: 0 13px;
+                font-size: 0.9rem;
+            }
+
+            .tab-icon {
+                width: 23px;
+            }
+
+            .main {
+                width: 100%;
+                margin-left: 0;
+                padding: 82px 22px 50px;
+            }
+
+            .home-intro {
+                margin-bottom: 39px;
+            }
         }
-        .controls-hint {
-            margin-top: 15px;
-            font-size: 0.85rem;
-            color: #888888;
+
+        @media (max-width: 900px) {
+            .gear-grid .instrument-card {
+                min-height: 0;
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .gear-grid .instrument-photo {
+                height: auto;
+                min-height: 0;
+                aspect-ratio: 16 / 9;
+                width: 100%;
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .gear-grid .instrument-card:nth-child(even) .instrument-photo {
+                grid-column: 1;
+                grid-row: auto;
+                border-left: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .gear-grid .instrument-card:nth-child(even) .instrument-details {
+                grid-column: 1;
+                grid-row: auto;
+            }
+
+            .showcase-card {
+                min-height: 0;
+                grid-template-columns: minmax(0, 1fr);
+            }
+
+            .showcase-photo {
+                min-height: 0;
+                aspect-ratio: 16 / 9;
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .showcase-card:nth-child(even) .showcase-photo {
+                grid-column: 1;
+                grid-row: auto;
+                border-left: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .showcase-card:nth-child(even) .showcase-details {
+                grid-column: 1;
+                grid-row: auto;
+            }
+        }
+
+        @media (max-width: 520px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                min-height: 180px;
+            }
+
+            .panel-header {
+                align-items: start;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="layout">
+        <button id="sidebarToggle" class="sidebar-toggle" type="button" aria-label="Collapse navigation" aria-expanded="true" aria-controls="sidebar">☰</button>
+        <aside class="sidebar" aria-label="Portfolio navigation">
+            <div class="identity">
+                <div>
+                    <div class="identity-name">Marcus Fregonese</div>
+                    <div class="identity-caption">Musician | Engineer | Enthusiast</div>
+                </div>
+            </div>
+            <p class="nav-heading">Explore</p>
+            <div class="tab-list" role="tablist" aria-label="Portfolio sections" aria-orientation="vertical">
+                <button class="tab-button" id="tab-home" type="button" role="tab" aria-selected="true" aria-controls="panel-home" tabindex="0">
+                    <span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></svg></span>Home
+                </button>
+                <button class="tab-button" id="tab-repairs" type="button" role="tab" aria-selected="false" aria-controls="panel-repairs" tabindex="-1">
+                    <span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="2.8"/><path d="M12 1.5v2.8M12 19.7v2.8M1.5 12h2.8M19.7 12h2.8M4.6 4.6l2 2M17.4 17.4l2 2M19.4 4.6l-2 2M6.6 17.4l-2 2"/></svg></span>Projects & Repairs
+                </button>
+                <button class="tab-button" id="tab-gear" type="button" role="tab" aria-selected="false" aria-controls="panel-gear" tabindex="-1">
+                    <span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>Music Gear
+                </button>
+                <button class="tab-button" id="tab-retro" type="button" role="tab" aria-selected="false" aria-controls="panel-retro" tabindex="-1">
+                    <span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8h11a4 4 0 0 1 3.8 5.2l-1.1 3.5a2 2 0 0 1-3.2 1l-2.7-2.1h-4.6L7 17.7a2 2 0 0 1-3.2-1l-1.1-3.5A4 4 0 0 1 6.5 8Z"/><path d="M7 10.5v4M5 12.5h4M16.5 11.5h.01M18.5 14h.01"/></svg></span>Retro Gaming
+                </button>
+                <button class="tab-button" id="tab-computers" type="button" role="tab" aria-selected="false" aria-controls="panel-computers" tabindex="-1">
+                    <span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4M7 8h10"/></svg></span>Tech & More
+                </button>
+            </div>
+            <p class="sidebar-bottom">2026 Marcus Fregonese.</p>
+        </aside>
+        <button id="sidebarBackdrop" class="sidebar-backdrop" type="button" aria-label="Close navigation"></button>
 
-    <div class="game-container">
-        <div class="scoreboard">
-            <div>Score: <span id="score">0</span></div>
-            <div>High Score: <span id="high-score">0</span></div>
-        </div>
-        
-        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <main class="main">
+            <section class="tab-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0">
+                <header class="home-intro">
+                    <p class="eyebrow">My personal site</p>
+                    <h1>Hi, I'm Marcus.</h1>
+                    <p class="home-copy">I'm a musician, engineer, and enthusiast of all things retro. You can explore my projects and repairs, music gear, retro games, old computers, and more on this site. Click the buttons below or use the navigation on the left to see more.</p>
+                    <div class="home-links" aria-label="Explore the site">
+                        <button class="home-link" type="button" data-tab-target="tab-repairs">Browse Projects & Repairs →</button>
+                        <button class="home-link" type="button" data-tab-target="tab-gear">Explore Music Gear →</button>
+                        <button class="home-link" type="button" data-tab-target="tab-retro">Browse Retro Gaming →</button>
+                        <button class="home-link" type="button" data-tab-target="tab-computers">Tech & More →</button>
+                    </div>
+                </header>
+                <div class="panel-header">
+                    <div>
+                        <h2>Explore</h2>
+                        <p>Choose a section to see more.</p>
+                    </div>
+                </div>
+                <div class="card-grid">
+                    <article class="card">
+                        <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="7.5"/><circle cx="12" cy="12" r="2.8"/><path d="M12 1.5v2.8M12 19.7v2.8M1.5 12h2.8M19.7 12h2.8M4.6 4.6l2 2M17.4 17.4l2 2M19.4 4.6l-2 2M6.6 17.4l-2 2"/></svg></span>
+                        <h3>Projects & Repairs</h3>
+                        <p>See the projects I've made and the repairs I've taken on.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></span>
+                        <h3>Music Gear</h3>
+                        <p>Instruments and equipment from my music setup. Mainly guitars and amps, but also a collection of pedals and other gear.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 8h11a4 4 0 0 1 3.8 5.2l-1.1 3.5a2 2 0 0 1-3.2 1l-2.7-2.1h-4.6L7 17.7a2 2 0 0 1-3.2-1l-1.1-3.5A4 4 0 0 1 6.5 8Z"/><path d="M7 10.5v4M5 12.5h4M16.5 11.5h.01M18.5 14h.01"/></svg></span>
+                        <h3>Retro Gaming</h3>
+                        <p>Games and gaming hardware from many generations of retro gaming.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="1.5"/><path d="M8 21h8M12 17v4M7 8h10"/></svg></span>
+                        <h3>Tech & More</h3>
+                        <p>Retro computers, electronics, and other interesting tech in my collection.</p>
+                    </article>
+                </div>
+            </section>
 
-        <!-- Start / Game Over Screen Overlay -->
-        <div id="gameMenu" class="menu">
-            <h1 id="menuTitle">SNAKE GAME</h1>
-            <button id="startBtn" onclick="startGame()">PLAY</button>
-        </div>
-        
-        <div class="controls-hint">Use Arrow Keys or WASD to navigate<br>&copy;2026 marcusfrego11. No rights reserved.</div>
+            <section class="tab-panel" id="panel-repairs" role="tabpanel" aria-labelledby="tab-repairs" tabindex="0" hidden>
+                <div class="panel-header">
+                    <div>
+                        <h2>Projects & Repairs</h2>
+                        <p>A closer look at the projects I've made and the repairs I've taken on.</p>
+                    </div>
+                </div>
+                <h3 class="subsection-title">Projects</h3>
+                <div class="card-grid showcase-grid">
+                    <article class="card showcase-card">
+                        <div class="showcase-photo" role="img" aria-label="Photo space for a project">Project photo goes here</div>
+                        <div class="showcase-details">
+                            <span class="card-mark" aria-hidden="true">+</span>
+                            <h4>Project</h4>
+                            <p>Documentation of project</p>
+                        </div>
+                    </article>
+                    <article class="card showcase-card">
+                        <div class="showcase-photo" role="img" aria-label="Photo space for another project">Project photo goes here</div>
+                        <div class="showcase-details">
+                            <span class="card-mark" aria-hidden="true">↗</span>
+                            <h4>More projects</h4>
+                            <p>Other projects</p>
+                        </div>
+                    </article>
+                </div>
+                <h3 class="subsection-title subsection-spaced">Repairs</h3>
+                <div class="card-grid showcase-grid">
+                    <article class="card showcase-card">
+                        <div class="showcase-photo" role="img" aria-label="Photo space for a repair">Repair photo goes here</div>
+                        <div class="showcase-details">
+                            <span class="card-mark" aria-hidden="true">⚒</span>
+                            <h4>Repair</h4>
+                            <p>Documentation of repair</p>
+                        </div>
+                    </article>
+                    <article class="card showcase-card">
+                        <div class="showcase-photo" role="img" aria-label="Photo space for another repair">Repair photo goes here</div>
+                        <div class="showcase-details">
+                            <span class="card-mark" aria-hidden="true">✓</span>
+                            <h4>More repairs</h4>
+                            <p>Other repairs</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="tab-panel" id="panel-gear" role="tabpanel" aria-labelledby="tab-gear" tabindex="0" hidden>
+                <div class="panel-header">
+                    <div>
+                        <h2>Music Gear</h2>
+                        <p>A look at my music gear, including my instruments, amps, and effects pedals.</p>
+                    </div>
+                </div>
+                <h3 class="subsection-title">Instruments</h3>
+                <div class="card-grid gear-grid">
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for 2021 Epiphone Les Paul Classic Honeyburst">Photo goes here</div>
+                        <div class="instrument-details">
+                            <h4>Epiphone Les Paul Classic (2021)</h4>
+                            <p>Honeyburst</p>
+                            <p class="instrument-description">Info about guitar</p>
+                            <section class="modification-section" aria-labelledby="les-paul-modifications">
+                                <h5 id="les-paul-modifications">Modifications & Specifications</h5>
+                                <p>More info</p>
+                            </section>
+                        </div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for 2007 Fender Lite Ash Telecaster Natural">Photo goes here</div>
+                        <div class="instrument-details">
+                            <h4>Fender Lite Ash Telecaster (2007)</h4>
+                            <p>Natural</p>
+                            <p class="instrument-description">Info about the Telecaster</p>
+                            <section class="modification-section">
+                                <h5>Modifications &amp; Setup</h5>
+                                <p>More info</p>
+                            </section>
+                        </div>
+                    </article>
+                </div>
+                <h3 class="subsection-title subsection-spaced">Amps</h3>
+                <div class="card-grid gear-grid">
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Marshall MG30FX amplifier">Photo goes here</div>
+                        <div class="instrument-details">
+                            <h4>Marshall MG30FX</h4>
+                            <p class="instrument-description">Info about the MG30FX</p>
+                            <section class="modification-section">
+                                <h5>Modifications &amp; Setup</h5>
+                                <p>More info</p>
+                            </section>
+                        </div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Marshall JCM800 Studio Classic amplifier">Photo goes here</div>
+                        <div class="instrument-details">
+                            <h4>Marshall JCM800 Studio Classic</h4>
+                            <p class="instrument-description">Info about the JCM800 Studio Classic</p>
+                            <section class="modification-section">
+                                <h5>Modifications &amp; Setup</h5>
+                                <p>More info</p>
+                            </section>
+                        </div>
+                    </article>
+                </div>
+                <h3 class="subsection-title subsection-spaced">Pedals</h3>
+                <div class="card-grid gear-grid">
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Dunlop Cry Baby Wah pedal">Photo goes here</div>
+                        <div class="instrument-details">
+                            <h4>Dunlop Cry Baby Wah</h4>
+                            <p class="instrument-description">Info about the Cry Baby Wah</p>
+                            <section class="modification-section">
+                                <h5>Modifications &amp; Setup</h5>
+                                <p>More info</p>
+                            </section>
+                        </div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Ibanez TS-9 Tube Screamer">Photo goes here</div>
+                        <div class="instrument-details">
+                            <h4>Ibanez TS-9 Tube Screamer (1996)</h4>
+                            <p class="instrument-description">Info about the 1996 Tube Screamer</p>
+                            <section class="modification-section">
+                                <h5>Modifications &amp; Setup</h5>
+                                <p>More info</p>
+                            </section>
+                        </div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Wampler Ratsbane pedal">Photo goes here</div>
+                        <div class="instrument-details">
+                            <h4>Wampler Ratsbane</h4>
+                            <p class="instrument-description">Info about the Ratsbane</p>
+                            <section class="modification-section">
+                                <h5>Modifications &amp; Setup</h5>
+                                <p>More info</p>
+                            </section>
+                        </div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Boss DS-2 Turbo Distortion pedal">Photo goes here</div>
+                        <div class="instrument-details">
+                            <h4>Boss DS-2 Turbo Distortion</h4>
+                            <p class="instrument-description">Info about the DS-2 Turbo Distortion</p>
+                            <section class="modification-section">
+                                <h5>Modifications &amp; Setup</h5>
+                                <p>More info</p>
+                            </section>
+                        </div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Boss BF-2 Flanger pedal">Photo goes here</div>
+                        <div class="instrument-details">
+                            <h4>Boss BF-2 Flanger</h4>
+                            <p class="instrument-description">Info about the BF-2 Flanger</p>
+                            <section class="modification-section">
+                                <h5>Modifications &amp; Setup</h5>
+                                <p>More info</p>
+                            </section>
+                        </div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Boss DD-3 Digital Delay pedal">Photo goes here</div>
+                        <div class="instrument-details">
+                            <h4>Boss DD-3 Digital Delay</h4>
+                            <p class="instrument-description">Info about the DD-3 Digital Delay</p>
+                            <section class="modification-section">
+                                <h5>Modifications &amp; Setup</h5>
+                                <p>More info</p>
+                            </section>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <section class="tab-panel" id="panel-retro" role="tabpanel" aria-labelledby="tab-retro" tabindex="0" hidden>
+                <div class="panel-header">
+                    <div>
+                        <h2>Retro Game Collection</h2>
+                        <p>My ever-growing collection of retro consoles, handhelds, and plenty of games.</p>
+                    </div>
+                </div>
+                <h3 class="subsection-title subsection-spaced">Consoles</h3>
+                <div class="card-grid">
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Nintendo Entertainment System">Photo goes here</div>
+                        <div class="instrument-details"><h4>Nintendo Entertainment System (1986)</h4></div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Super Nintendo Entertainment System">Photo goes here</div>
+                        <div class="instrument-details"><h4>Super Nintendo Entertainment System (1991)</h4></div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Sony PlayStation">Photo goes here</div>
+                        <div class="instrument-details"><h4>Sony PlayStation (1995)</h4></div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Nintendo 64">Photo goes here</div>
+                        <div class="instrument-details"><h4>Nintendo 64 (1996)</h4></div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Sony PlayStation 2">Photo goes here</div>
+                        <div class="instrument-details"><h4>Sony PlayStation 2 (2000)</h4></div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Nintendo GameCube">Photo goes here</div>
+                        <div class="instrument-details"><h4>Nintendo GameCube (2001)</h4></div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Sony PlayStation 3 Slim">Photo goes here</div>
+                        <div class="instrument-details"><h4>Sony PlayStation 3 Slim (2009)</h4></div>
+                    </article>
+                </div>
+                <h3 class="subsection-title subsection-spaced">Handhelds</h3>
+                <div class="card-grid">
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Sega Game Gear">Photo goes here</div>
+                        <div class="instrument-details"><h4>Sega Game Gear (1991)</h4></div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Nintendo Game Boy Color">Photo goes here</div>
+                        <div class="instrument-details"><h4>Nintendo Game Boy Color (1998)</h4></div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Nintendo Game Boy Advance">Photo goes here</div>
+                        <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001)</h4></div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Nintendo Game Boy Advance">Photo goes here</div>
+                        <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001)</h4></div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Sony PSP 1000">Photo goes here</div>
+                        <div class="instrument-details"><h4>Sony PSP 1000 (2005)</h4></div>
+                    </article>
+                    <article class="card instrument-card">
+                        <div class="instrument-photo" role="img" aria-label="Photo space for Sony PSP 3000">Photo goes here</div>
+                        <div class="instrument-details"><h4>Sony PSP 3000 (2008)</h4></div>
+                    </article>
+                </div>
+                <h3 class="subsection-title subsection-spaced">Games</h3>
+                <h4 class="subsection-title">Console Games</h4>
+                <h4 class="subsection-title">Nintendo Entertainment System (1986)</h4>
+                <div class="card-grid">
+                    <article class="card card-placeholder">
+                        <span class="card-mark" aria-hidden="true">☆</span>
+                        <h3>NES game</h3>
+                        <p>Game from Nintendo Entertainment System collection.</p>
+                    </article>
+                </div>
+                <h4 class="subsection-title subsection-spaced">Super Nintendo Entertainment System (1991)</h4>
+                <div class="card-grid">
+                    <article class="card card-placeholder">
+                        <span class="card-mark" aria-hidden="true">☆</span>
+                        <h3>SNES game</h3>
+                        <p>Game from Super Nintendo collection.</p>
+                    </article>
+                </div>
+                <h4 class="subsection-title subsection-spaced">Sony PlayStation (1995)</h4>
+                <div class="card-grid">
+                    <article class="card card-placeholder">
+                        <span class="card-mark" aria-hidden="true">☆</span>
+                        <h3>PlayStation game</h3>
+                        <p>Game from original PlayStation collection.</p>
+                    </article>
+                </div>
+                <h4 class="subsection-title subsection-spaced">Nintendo 64 (1996)</h4>
+                <div class="card-grid">
+                    <article class="card card-placeholder">
+                        <span class="card-mark" aria-hidden="true">☆</span>
+                        <h3>N64 game</h3>
+                        <p>Game from Nintendo 64 collection.</p>
+                    </article>
+                </div>
+                <h4 class="subsection-title subsection-spaced">Sony PlayStation 2 (2000)</h4>
+                <div class="card-grid">
+                    <article class="card card-placeholder">
+                        <span class="card-mark" aria-hidden="true">☆</span>
+                        <h3>PlayStation 2 game</h3>
+                        <p>Game from PlayStation 2 collection.</p>
+                    </article>
+                </div>
+                <h4 class="subsection-title subsection-spaced">Nintendo GameCube (2001)</h4>
+                <div class="card-grid">
+                    <article class="card card-placeholder">
+                        <span class="card-mark" aria-hidden="true">☆</span>
+                        <h3>GameCube game</h3>
+                        <p>Game from Nintendo GameCube collection.</p>
+                    </article>
+                </div>
+                <h4 class="subsection-title subsection-spaced">Sony PlayStation 3 Slim (2009)</h4>
+                <div class="card-grid">
+                    <article class="card card-placeholder">
+                        <span class="card-mark" aria-hidden="true">☆</span>
+                        <h3>PlayStation 3 game</h3>
+                        <p>Game from PlayStation 3 collection.</p>
+                    </article>
+                </div>
+                <h4 class="subsection-title subsection-spaced">Handheld Games</h4>
+                <h4 class="subsection-title subsection-spaced">Sega Game Gear (1991)</h4>
+                <div class="card-grid">
+                    <article class="card card-placeholder">
+                        <span class="card-mark" aria-hidden="true">☆</span>
+                        <h3>Game Gear game</h3>
+                        <p>Game from Sega Game Gear collection.</p>
+                    </article>
+                </div>
+                <h4 class="subsection-title subsection-spaced">Nintendo Game Boy Color (1998)</h4>
+                <div class="card-grid">
+                    <article class="card card-placeholder">
+                        <span class="card-mark" aria-hidden="true">☆</span>
+                        <h3>Game Boy Color game</h3>
+                        <p>Game from Nintendo Game Boy Color collection.</p>
+                    </article>
+                </div>
+                <h4 class="subsection-title subsection-spaced">Nintendo Game Boy Advance (2001)</h4>
+                <div class="card-grid">
+                    <article class="card card-placeholder">
+                        <span class="card-mark" aria-hidden="true">☆</span>
+                        <h3>Game Boy Advance game</h3>
+                        <p>Game from Nintendo Game Boy Advance collection.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="tab-panel" id="panel-computers" role="tabpanel" aria-labelledby="tab-computers" tabindex="0" hidden>
+                <div class="panel-header">
+                    <div>
+                        <h2>Tech & More</h2>
+                        <p>Retro computers, electronics, and other interesting tech I have accumulated over time.</p>
+                    </div>
+                </div>
+                <h3 class="subsection-title">Computers</h3>
+                <div class="card-grid showcase-grid">
+                    <article class="card showcase-card">
+                        <div class="showcase-photo" role="img" aria-label="Photo space for a computer">Computer photo goes here</div>
+                        <div class="showcase-details">
+                            <span class="card-mark" aria-hidden="true">⌘</span>
+                            <h4>Computer</h4>
+                            <p>Info about computer</p>
+                        </div>
+                    </article>
+                    <article class="card showcase-card">
+                        <div class="showcase-photo" role="img" aria-label="Photo space for a computer accessory">Accessory photo goes here</div>
+                        <div class="showcase-details">
+                            <span class="card-mark" aria-hidden="true">▤</span>
+                            <h4>Computer accessory</h4>
+                            <p>Hardware separate from the computer itself</p>
+                        </div>
+                    </article>
+                </div>
+                <h3 class="subsection-title subsection-spaced">Other Devices</h3>
+                <div class="card-grid showcase-grid">
+                    <article class="card showcase-card">
+                        <div class="showcase-photo" role="img" aria-label="Photo space for another device">Device photo goes here</div>
+                        <div class="showcase-details">
+                            <span class="card-mark" aria-hidden="true">◇</span>
+                            <h4>Other device</h4>
+                            <p>Info about device</p>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
     </div>
 
     <script>
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-        const scoreEl = document.getElementById('score');
-        const highScoreEl = document.getElementById('high-score');
-        const gameMenu = document.getElementById('gameMenu');
-        const menuTitle = document.getElementById('menuTitle');
-        const startBtn = document.getElementById('startBtn');
+        const tabs = Array.from(document.querySelectorAll('[role="tab"]'));
+        const layout = document.querySelector('.layout');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+        const mobileNavigation = window.matchMedia('(max-width: 760px)');
 
-        // Grid Configuration
-        const gridSize = 20; 
-        const tileCount = canvas.width / gridSize; // 20x20 grid
-
-        // Game State Variables
-        let snake = [];
-        let food = { x: 0, y: 0 };
-        let dx = gridSize; // Horizontal velocity
-        let dy = 0;        // Vertical velocity
-        let score = 0;
-        let highScore = localStorage.getItem('snakeHighScore') || 0;
-        let gameInterval = null;
-        let nextDirection = { x: gridSize, y: 0 }; // Prevent 180-degree self-collision bugs
-
-        highScoreEl.textContent = highScore;
-
-        // Web Audio API helper for retro synth sound effects
-        function playTone(freq, duration, type = 'square') {
-            try {
-                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-                const oscillator = audioCtx.createOscillator();
-                const gainNode = audioCtx.createGain();
-                
-                oscillator.type = type;
-                oscillator.frequency.value = freq;
-                gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
-                gainNode.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
-                
-                oscillator.connect(gainNode);
-                gainNode.connect(audioCtx.destination);
-                
-                oscillator.start();
-                oscillator.stop(audioCtx.currentTime + duration);
-            } catch (e) {
-                // Ignore audio restriction errors
-            }
+        function setSidebarCollapsed(collapsed) {
+            layout.classList.toggle('sidebar-collapsed', collapsed);
+            sidebarToggle.setAttribute('aria-expanded', String(!collapsed));
+            sidebarToggle.setAttribute('aria-label', collapsed ? 'Expand navigation' : 'Collapse navigation');
+            sidebarBackdrop.classList.toggle('visible', !collapsed && mobileNavigation.matches);
         }
 
-        function startGame() {
-            // Reset game variables
-            snake = [
-                { x: gridSize * 5, y: gridSize * 10 },
-                { x: gridSize * 4, y: gridSize * 10 },
-                { x: gridSize * 3, y: gridSize * 10 }
-            ];
-            dx = gridSize;
-            dy = 0;
-            nextDirection = { x: gridSize, y: 0 };
-            score = 0;
-            scoreEl.textContent = score;
-            
-            generateFood();
-            gameMenu.classList.add('hidden');
-            
-            // Loop runs every 100ms (10 frames per second)
-            if (gameInterval) clearInterval(gameInterval);
-            gameInterval = setInterval(update, 100);
+        if (mobileNavigation.matches) {
+            setSidebarCollapsed(true);
         }
 
-        function generateFood() {
-            // Position food perfectly inside grid spaces
-            food.x = Math.floor(Math.random() * tileCount) * gridSize;
-            food.y = Math.floor(Math.random() * tileCount) * gridSize;
+        sidebarToggle.addEventListener('click', () => {
+            setSidebarCollapsed(!layout.classList.contains('sidebar-collapsed'));
+        });
 
-            // Ensure food doesn't spawn inside the snake's body
-            for (let part of snake) {
-                if (part.x === food.x && part.y === food.y) {
-                    generateFood();
-                    break;
-                }
-            }
-        }
+        sidebarBackdrop.addEventListener('click', () => setSidebarCollapsed(true));
 
-        function update() {
-            // Commit direction change locked during the current frame frame
-            dx = nextDirection.x;
-            dy = nextDirection.y;
+        mobileNavigation.addEventListener('change', event => {
+            setSidebarCollapsed(event.matches);
+        });
 
-            // Calculate next step for snake head
-            const head = { x: snake[0].x + dx, y: snake[0].y + dy };
-
-            // Wall Collision Check
-            if (head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height) {
-                gameOver();
-                return;
-            }
-
-            // Self Collision Check (skip index 0)
-            for (let i = 0; i < snake.length; i++) {
-                if (head.x === snake[i].x && head.y === snake[i].y) {
-                    gameOver();
-                    return;
-                }
-            }
-
-            // Insert new head at the beginning of the snake array
-            snake.unshift(head);
-
-            // Food Check
-            if (head.x === food.x && head.y === food.y) {
-                score++;
-                scoreEl.textContent = score;
-                playTone(523.25, 0.1, 'sine'); // Blip sound
-                if (score > highScore) {
-                    highScore = score;
-                    highScoreEl.textContent = highScore;
-                    localStorage.setItem('snakeHighScore', highScore);
-                }
-                generateFood();
-            } else {
-                // If no food eaten, remove the tail end to maintain moving length
-                snake.pop();
-            }
-
-            draw();
-        }
-
-        function draw() {
-            // Clear entire board canvas
-            ctx.fillStyle = '#000000';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Draw Snake
-            snake.forEach((part, index) => {
-                // Main head color vs body color accent
-                ctx.fillStyle = index === 0 ? '#4CAF50' : '#81C784';
-                ctx.fillRect(part.x, part.y, gridSize - 2, gridSize - 2); // 2px margin for grid visibility
+        function activateTab(tab, moveFocus = false) {
+            tabs.forEach(item => {
+                const selected = item === tab;
+                item.setAttribute('aria-selected', String(selected));
+                item.tabIndex = selected ? 0 : -1;
+                document.getElementById(item.getAttribute('aria-controls')).hidden = !selected;
             });
 
-            // Draw Food
-            ctx.fillStyle = '#FF5722';
-            ctx.fillRect(food.x, food.y, gridSize - 2, gridSize - 2);
+            if (moveFocus) tab.focus();
         }
 
-        function gameOver() {
-            clearInterval(gameInterval);
-            playTone(150, 0.4, 'sawtooth'); // Defeat sound effect
-            
-            menuTitle.textContent = "GAME OVER";
-            startBtn.textContent = "RETRY";
-            gameMenu.classList.remove('hidden');
-        }
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                activateTab(tab);
+                if (mobileNavigation.matches) setSidebarCollapsed(true);
+            });
+            tab.addEventListener('keydown', event => {
+                let nextIndex;
+                if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+                    nextIndex = (index + 1) % tabs.length;
+                } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+                    nextIndex = (index - 1 + tabs.length) % tabs.length;
+                } else if (event.key === 'Home') {
+                    nextIndex = 0;
+                } else if (event.key === 'End') {
+                    nextIndex = tabs.length - 1;
+                } else {
+                    return;
+                }
 
-        // Handle Arrow keys and WASD inputs safely 
-        window.addEventListener('keydown', e => {
-            const key = e.key.toLowerCase();
-            
-            // Check current direction state to prevent running backward into yourself
-            const goingUp = dy === -gridSize;
-            const goingDown = dy === gridSize;
-            const goingRight = dx === gridSize;
-            const goingLeft = dx === -gridSize;
+                event.preventDefault();
+                activateTab(tabs[nextIndex], true);
+            });
+        });
 
-            if ((key === 'arrowup' || key === 'w') && !goingDown) {
-                nextDirection = { x: 0, y: -gridSize };
-            }
-            if ((key === 'arrowdown' || key === 's') && !goingUp) {
-                nextDirection = { x: 0, y: gridSize };
-            }
-            if ((key === 'arrowleft' || key === 'a') && !goingRight) {
-                nextDirection = { x: -gridSize, y: 0 };
-            }
-            if ((key === 'arrowright' || key === 'd') && !goingLeft) {
-                nextDirection = { x: gridSize, y: 0 };
-            }
+        document.querySelectorAll('[data-tab-target]').forEach(button => {
+            button.addEventListener('click', () => {
+                const target = document.getElementById(button.dataset.tabTarget);
+                activateTab(target, true);
+            });
         });
     </script>
 </body>

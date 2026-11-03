@@ -787,18 +787,11 @@
         }
 
         .sidebar-toggle::before {
-            display: grid;
-            width: 16px;
-            height: 16px;
-            place-items: center;
-            border: 1px solid #404040;
-            background: #000080;
-            color: #ffffff;
-            content: "M";
-            font-family: "Pixelated MS Sans Serif", sans-serif;
-            font-size: 12px;
-            font-weight: 700;
-            line-height: 1;
+            display: block;
+            width: 24px;
+            height: 30px;
+            background: url("https://win98icons.alexmeub.com/icons/png/windows-0.png") center / contain no-repeat;
+            content: "";
         }
 
         .sidebar-toggle[aria-expanded="true"] {
@@ -887,6 +880,13 @@
             color: inherit;
         }
 
+        .tab-icon img {
+            display: block;
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
         .tab-arrow,
         .tab-arrow svg {
             display: block;
@@ -923,7 +923,7 @@
         .taskbar {
             position: fixed;
             inset: auto 0 0;
-            z-index: 7;
+            z-index: 9;
             display: flex;
             height: 38px;
             align-items: center;
@@ -944,12 +944,23 @@
             overflow: hidden;
             padding: 3px 8px;
             border: 2px solid;
-            border-color: #404040 #ffffff #ffffff #404040;
+            border-color: #ffffff #404040 #404040 #ffffff;
             background: #c0c0c0;
             color: #111111;
             font-size: 12px;
             text-overflow: ellipsis;
             white-space: nowrap;
+            box-shadow: 1px 1px 0 #404040, inset 1px 1px #ffffff;
+        }
+
+        button.taskbar-window {
+            cursor: pointer;
+            font: inherit;
+            text-align: left;
+        }
+
+        button.taskbar-window[aria-pressed="true"] {
+            border-color: #404040 #ffffff #ffffff #404040;
             box-shadow: inset 1px 1px #808080;
         }
 
@@ -966,6 +977,13 @@
             width: 16px;
             height: 16px;
             shape-rendering: crispEdges;
+        }
+
+        .taskbar-icon img {
+            display: block;
+            width: 16px;
+            height: 16px;
+            object-fit: contain;
         }
 
         .taskbar-label {
@@ -995,45 +1013,137 @@
             border-color: #ffffff #404040 #404040 #ffffff;
             background: linear-gradient(145deg, #d4d0c8, #c0c0c0 68%);
             box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.35), inset 1px 1px #ffffff;
-            transition: width 180ms ease, margin-left 180ms ease;
+            transition: width 180ms ease, margin-left 180ms ease, opacity 180ms ease, transform 180ms ease;
         }
 
-        .main::before {
+        .main.window-minimizing,
+        .main.window-opening {
+            opacity: 0;
+            transform: scale(0.96);
+        }
+
+        .window-titlebar {
             position: absolute;
             inset: 5px 6px auto;
             display: flex;
-            height: 20px;
+            height: 30px;
             align-items: center;
             overflow: hidden;
-            padding: 2px 29px 2px 7px;
+            padding: 0 6px 0 7px;
             background: linear-gradient(90deg, #000080, #1084d0 68%, #000080);
             color: #ffffff;
-            content: attr(data-title);
-            font-size: 13px;
-            font-weight: 700;
-            line-height: 16px;
-            white-space: nowrap;
         }
 
-        .main::after {
-            position: absolute;
-            top: 7px;
-            right: 9px;
-            z-index: 1;
+        .window-title {
+            min-width: 0;
+            overflow: hidden;
+            font-size: 13px;
+            font-weight: 700;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .window-controls {
+            display: flex;
+            flex: 0 0 auto;
+            gap: 4px;
+            margin-left: auto;
+        }
+
+        .window-control {
             display: grid;
-            width: 16px;
-            height: 16px;
+            width: 22px;
+            height: 22px;
+            padding: 1px;
             place-items: center;
             border: 2px solid;
             border-color: #ffffff #404040 #404040 #ffffff;
             background: #c0c0c0;
             color: #111111;
-            content: "×";
-            font-family: Tahoma, sans-serif;
-            font-size: 15px;
-            font-weight: 700;
-            line-height: 1;
+            cursor: pointer;
             box-shadow: inset 1px 1px #dfdfdf;
+        }
+
+        .window-control:active {
+            border-color: #404040 #ffffff #ffffff #404040;
+            box-shadow: inset 1px 1px #808080;
+        }
+
+        .window-control svg {
+            display: block;
+            width: 12px;
+            height: 12px;
+            shape-rendering: crispEdges;
+        }
+
+        .help-dialog {
+            width: min(360px, calc(100vw - 32px));
+            padding: 0;
+            border: 2px solid;
+            border-color: #ffffff #404040 #404040 #ffffff;
+            background: #c0c0c0;
+            color: #111111;
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
+            font-family: "Pixelated MS Sans Serif", "MS Sans Serif", sans-serif;
+            font-size: 13px;
+        }
+
+        .help-dialog::backdrop {
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .help-dialog-header {
+            display: flex;
+            min-height: 24px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 3px 3px 0;
+            padding: 3px 5px;
+            background: linear-gradient(90deg, #000080, #1084d0 68%, #000080);
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .help-dialog-close {
+            display: grid;
+            width: 18px;
+            height: 18px;
+            flex: 0 0 auto;
+            place-items: center;
+            padding: 1px;
+            border: 2px solid;
+            border-color: #ffffff #404040 #404040 #ffffff;
+            background: #c0c0c0;
+            color: #111111;
+            cursor: pointer;
+        }
+
+        .help-dialog-close svg {
+            width: 10px;
+            height: 10px;
+            shape-rendering: crispEdges;
+        }
+
+        .help-dialog-content {
+            padding: 18px 16px;
+            line-height: 1.6;
+        }
+
+        .help-dialog-content p {
+            margin: 0;
+        }
+
+        .help-dialog-content p + p {
+            margin-top: 10px;
+        }
+
+        .help-dialog-modified {
+            margin-top: 14px;
+            padding-top: 8px;
+            border-top: 1px solid #808080;
+            color: #404040;
+            font-size: 11px;
         }
 
         .sidebar-collapsed .main {
@@ -1103,6 +1213,44 @@
             min-height: 180px;
             padding: 16px;
             background: #dfdfdf;
+        }
+
+        .home-card {
+            display: block;
+            width: 100%;
+            min-height: 196px;
+            color: #111111;
+            cursor: pointer;
+            font: inherit;
+            text-align: left;
+            transition: background-color 120ms ease, transform 120ms ease;
+        }
+
+        .home-card:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        .home-card:active {
+            transform: translateY(0);
+        }
+
+        .home-card .card-mark {
+            margin-bottom: 20px;
+        }
+
+        .home-card-title {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .home-card-copy {
+            display: block;
+            max-width: 390px;
+            color: #303030;
+            font-size: 0.85rem;
+            line-height: 1.65;
         }
 
         .card-mark {
@@ -1179,18 +1327,18 @@
                 padding: 48px 14px 40px;
             }
 
-            .main::before {
+            .window-titlebar {
                 inset: 5px 5px auto;
             }
         }
 
         @media (max-width: 520px) {
             .taskbar-window {
-                display: none;
+                width: min(160px, calc(100vw - 172px));
             }
 
             .sidebar-toggle {
-                width: 78px;
+                width: 80px;
             }
 
             .home-links {
@@ -1215,10 +1363,9 @@
                     <div class="identity-caption">Musician | Engineer | Enthusiast</div>
                 </div>
             </div>
-            <p class="nav-heading">Programs</p>
             <div class="tab-list" role="tablist" aria-label="Portfolio sections" aria-orientation="vertical">
                 <button class="tab-button" id="tab-home" type="button" role="tab" aria-selected="true" aria-controls="panel-home" tabindex="0" accesskey="h">
-                    <span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" shape-rendering="crispEdges"><rect x="3" y="7" width="18" height="14" fill="#404040"/><rect x="4" y="8" width="16" height="11" fill="#ffff80"/><rect x="4" y="6" width="8" height="3" fill="#c08000"/><rect x="5" y="9" width="14" height="1" fill="#ffffff"/><rect x="5" y="20" width="16" height="1" fill="#808080"/></svg></span><span class="tab-label"><u>H</u>ome</span><span class="tab-arrow" aria-hidden="true"><svg viewBox="0 0 8 12" shape-rendering="crispEdges"><rect x="0" y="5" width="3" height="2" fill="currentColor"/><rect x="2" y="3" width="2" height="2" fill="currentColor"/><rect x="2" y="7" width="2" height="2" fill="currentColor"/><rect x="4" y="1" width="2" height="2" fill="currentColor"/><rect x="4" y="9" width="2" height="2" fill="currentColor"/><rect x="6" y="3" width="2" height="6" fill="currentColor"/></svg></span>
+                    <span class="tab-icon" aria-hidden="true"><img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Windows_95_FOLDER.png?utm_source=commons.wikimedia.org&amp;utm_campaign=index&amp;utm_content=original" alt=""></span><span class="tab-label"><u>H</u>ome</span><span class="tab-arrow" aria-hidden="true"><svg viewBox="0 0 8 12" shape-rendering="crispEdges"><rect x="0" y="5" width="3" height="2" fill="currentColor"/><rect x="2" y="3" width="2" height="2" fill="currentColor"/><rect x="2" y="7" width="2" height="2" fill="currentColor"/><rect x="4" y="1" width="2" height="2" fill="currentColor"/><rect x="4" y="9" width="2" height="2" fill="currentColor"/><rect x="6" y="3" width="2" height="6" fill="currentColor"/></svg></span>
                 </button>
                 <button class="tab-button" id="tab-repairs" type="button" role="tab" aria-selected="false" aria-controls="panel-repairs" tabindex="-1" accesskey="p">
                     <span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" shape-rendering="crispEdges"><rect x="3" y="8" width="18" height="13" fill="#404040"/><rect x="4" y="10" width="16" height="10" fill="#c08000"/><rect x="8" y="5" width="8" height="5" fill="#404040"/><rect x="10" y="7" width="4" height="3" fill="#c0c0c0"/><rect x="5" y="11" width="14" height="2" fill="#ffff00"/><rect x="11" y="14" width="2" height="3" fill="#404040"/></svg></span><span class="tab-label"><u>P</u>rojects & Repairs</span><span class="tab-arrow" aria-hidden="true"><svg viewBox="0 0 8 12" shape-rendering="crispEdges"><rect x="0" y="5" width="3" height="2" fill="currentColor"/><rect x="2" y="3" width="2" height="2" fill="currentColor"/><rect x="2" y="7" width="2" height="2" fill="currentColor"/><rect x="4" y="1" width="2" height="2" fill="currentColor"/><rect x="4" y="9" width="2" height="2" fill="currentColor"/><rect x="6" y="3" width="2" height="6" fill="currentColor"/></svg></span>
@@ -1238,14 +1385,25 @@
         <button id="sidebarBackdrop" class="sidebar-backdrop" type="button" aria-label="Close navigation"></button>
 
         <div class="taskbar" aria-label="Windows taskbar">
-            <span id="taskbarWindow" class="taskbar-window">
-                <span id="taskbarIcon" class="taskbar-icon" aria-hidden="true"><svg viewBox="0 0 24 24" shape-rendering="crispEdges"><rect x="3" y="7" width="18" height="14" fill="#404040"/><rect x="4" y="8" width="16" height="11" fill="#ffff80"/><rect x="4" y="6" width="8" height="3" fill="#c08000"/><rect x="5" y="9" width="14" height="1" fill="#ffffff"/><rect x="5" y="20" width="16" height="1" fill="#808080"/></svg></span>
+            <button id="taskbarWindow" class="taskbar-window" type="button" aria-label="Minimize Home window" aria-pressed="true">
+                <span id="taskbarIcon" class="taskbar-icon" aria-hidden="true"><img src="https://win98icons.alexmeub.com/icons/png/homepage-0.png" alt=""></span>
                 <span id="taskbarLabel" class="taskbar-label">Home</span>
-            </span>
+            </button>
             <time id="taskbarClock" class="taskbar-clock"></time>
         </div>
 
-        <main class="main" data-title="Home">
+        <main class="main">
+            <div class="window-titlebar">
+                <span id="windowTitle" class="window-title">Home</span>
+                <div class="window-controls" aria-label="Window controls">
+                    <button id="helpButton" class="window-control" type="button" aria-label="Website help" aria-haspopup="dialog">
+                        <svg viewBox="0 0 8 9" aria-hidden="true"><path fill="currentColor" d="M2 0h4v1H2zM1 1h2v1H1zM5 1h2v1H5zM1 2h2v1H1zM5 2h2v1H5zM4 3h2v1H4zM3 4h2v2H3zM3 7h2v2H3z"/></svg>
+                    </button>
+                    <button id="closeWindowButton" class="window-control" type="button" aria-label="Close window">
+                        <svg viewBox="0 0 8 7" aria-hidden="true"><path fill="currentColor" d="M0 0h2v1H0zM6 0h2v1H6zM1 1h2v1H1zM5 1h2v1H5zM2 2h4v1H2zM3 3h2v1H3zM2 4h4v1H2zM1 5h2v1H1zM5 5h2v1H5zM0 6h2v1H0zM6 6h2v1H6z"/></svg>
+                    </button>
+                </div>
+            </div>
             <section class="tab-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0">
                 <header class="home-intro">
                     <h1><span class="welcome-prefix">Welcome to </span><span class="welcome-site-name">My Website</span></h1>
@@ -1264,26 +1422,26 @@
                     </div>
                 </div>
                 <div class="card-grid">
-                    <article class="card">
+                    <button class="card home-card" type="button" data-tab-target="tab-repairs">
                         <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" shape-rendering="crispEdges"><rect x="3" y="8" width="18" height="13" fill="#404040"/><rect x="4" y="10" width="16" height="10" fill="#c08000"/><rect x="8" y="5" width="8" height="5" fill="#404040"/><rect x="10" y="7" width="4" height="3" fill="#c0c0c0"/><rect x="5" y="11" width="14" height="2" fill="#ffff00"/><rect x="11" y="14" width="2" height="3" fill="#404040"/></svg></span>
-                        <h3>Projects & Repairs</h3>
-                        <p></p>
-                    </article>
-                    <article class="card">
+                        <span class="home-card-title">Projects & Repairs</span>
+                        <span class="home-card-copy">Explore the projects I've built and the repairs I've completed.</span>
+                    </button>
+                    <button class="card home-card" type="button" data-tab-target="tab-gear">
                         <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" shape-rendering="crispEdges"><rect x="14" y="2" width="3" height="14" fill="#000080"/><rect x="17" y="2" width="4" height="2" fill="#000080"/><rect x="19" y="4" width="3" height="2" fill="#000080"/><rect x="20" y="6" width="2" height="2" fill="#000080"/><rect x="5" y="14" width="10" height="6" fill="#000080"/><rect x="6" y="15" width="7" height="4" fill="#c00000"/></svg></span>
-                        <h3>Music Gear</h3>
-                        <p></p>
-                    </article>
-                    <article class="card">
+                        <span class="home-card-title">Music Gear</span>
+                        <span class="home-card-copy">Take a look at the instruments and equipment I play and use.</span>
+                    </button>
+                    <button class="card home-card" type="button" data-tab-target="tab-retro">
                         <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" shape-rendering="crispEdges"><rect x="5" y="2" width="14" height="20" fill="#404040"/><rect x="6" y="3" width="12" height="18" fill="#c0c0c0"/><rect x="7" y="4" width="10" height="9" fill="#404040"/><rect x="8" y="5" width="8" height="7" fill="#808080"/><rect x="9" y="6" width="6" height="5" fill="#008000"/><rect x="10" y="7" width="4" height="3" fill="#a0c040"/><rect x="8" y="14" width="2" height="6" fill="#404040"/><rect x="6" y="16" width="6" height="2" fill="#404040"/><rect x="9" y="15" width="1" height="4" fill="#000080"/><rect x="7" y="16" width="4" height="1" fill="#000080"/><rect x="14" y="15" width="2" height="2" fill="#c00000"/><rect x="16" y="17" width="2" height="2" fill="#c00000"/><rect x="12" y="19" width="1" height="1" fill="#404040"/><rect x="14" y="19" width="1" height="1" fill="#404040"/></svg></span>
-                        <h3>Retro Gaming</h3>
-                        <p></p>
-                    </article>
-                    <article class="card">
+                        <span class="home-card-title">Retro Gaming</span>
+                        <span class="home-card-copy">Browse consoles, handhelds, games, and other retro favorites.</span>
+                    </button>
+                    <button class="card home-card" type="button" data-tab-target="tab-computers">
                         <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" shape-rendering="crispEdges"><rect x="2" y="3" width="16" height="13" fill="#404040"/><rect x="3" y="4" width="14" height="10" fill="#c0c0c0"/><rect x="5" y="6" width="10" height="6" fill="#000080"/><rect x="6" y="7" width="8" height="4" fill="#1084d0"/><rect x="9" y="16" width="3" height="4" fill="#808080"/><rect x="6" y="20" width="9" height="2" fill="#404040"/><rect x="19" y="6" width="3" height="15" fill="#808080"/><rect x="20" y="8" width="1" height="3" fill="#008000"/></svg></span>
-                        <h3>Tech & More</h3>
-                        <p></p>
-                    </article>
+                        <span class="home-card-title">Tech & More</span>
+                        <span class="home-card-copy">Discover the computers, electronics, and technology I collect.</span>
+                    </button>
                 </div>
             </section>
 
@@ -1563,6 +1721,20 @@
                 </div>
             </section>
         </main>
+
+        <dialog id="helpDialog" class="help-dialog" aria-labelledby="helpDialogTitle">
+            <div class="help-dialog-header">
+                <span id="helpDialogTitle">About this website</span>
+                <button id="closeHelpButton" class="help-dialog-close" type="button" aria-label="Close help window">
+                    <svg viewBox="0 0 8 7" aria-hidden="true"><path fill="currentColor" d="M0 0h2v1H0zM6 0h2v1H6zM1 1h2v1H1zM5 1h2v1H5zM2 2h4v1H2zM3 3h2v1H3zM2 4h4v1H2zM1 5h2v1H1zM5 5h2v1H5zM0 6h2v1H0zM6 6h2v1H6z"/></svg>
+                </button>
+            </div>
+            <div class="help-dialog-content">
+                <p>Welcome to my personal website. Use the Start menu or the homepage buttons to explore my projects and repairs, music gear, retro gaming, and technology.</p>
+                <p>Choose a section to open it in this window. The taskbar button restores the window if you close it.</p>
+                <p id="helpLastModified" class="help-dialog-modified">Date Last Modified: Loading…</p>
+            </div>
+        </dialog>
     </div>
 
     <script>
@@ -1573,8 +1745,30 @@
         const taskbarIcon = document.getElementById('taskbarIcon');
         const taskbarLabel = document.getElementById('taskbarLabel');
         const taskbarClock = document.getElementById('taskbarClock');
+        const windowTitle = document.getElementById('windowTitle');
         const mainWindow = document.querySelector('.main');
+        const closeWindowButton = document.getElementById('closeWindowButton');
+        const helpButton = document.getElementById('helpButton');
+        const helpDialog = document.getElementById('helpDialog');
+        const closeHelpButton = document.getElementById('closeHelpButton');
+        const helpLastModified = document.getElementById('helpLastModified');
         const mobileNavigation = window.matchMedia('(max-width: 760px)');
+        const sectionIcons = {
+            'tab-home': 'https://win98icons.alexmeub.com/icons/png/homepage-0.png',
+            'tab-repairs': 'https://win98icons.alexmeub.com/icons/png/notepad-1.png',
+            'tab-gear': 'https://win98icons.alexmeub.com/icons/png/keyboard_musical_midi.png',
+            'tab-retro': 'https://win98icons.alexmeub.com/icons/png/joystick-2.png',
+            'tab-computers': 'https://win98icons.alexmeub.com/icons/png/computer_2-2.png'
+        };
+
+        document.querySelectorAll('.tab-button, .home-card').forEach(item => {
+            const sectionId = item.matches('.tab-button') ? item.id : item.dataset.tabTarget;
+            const iconContainer = item.querySelector('.tab-icon, .card-mark');
+            const icon = document.createElement('img');
+            icon.src = sectionIcons[sectionId];
+            icon.alt = '';
+            iconContainer.replaceChildren(icon);
+        });
 
         function setSidebarCollapsed(collapsed) {
             layout.classList.toggle('sidebar-collapsed', collapsed);
@@ -1601,15 +1795,101 @@
 
         sidebarBackdrop.addEventListener('click', () => setSidebarCollapsed(true));
 
+        let finishWindowMinimize;
+
+        function setWindowMinimized(minimized) {
+            if (finishWindowMinimize) {
+                mainWindow.removeEventListener('transitionend', finishWindowMinimize);
+                finishWindowMinimize = null;
+            }
+
+            taskbarWindow.setAttribute('aria-pressed', String(!minimized));
+            const action = minimized ? 'Restore' : 'Minimize';
+            taskbarWindow.setAttribute('aria-label', `${action} ${taskbarLabel.textContent} window`);
+
+            if (minimized) {
+                if (mainWindow.hidden) return;
+
+                mainWindow.classList.remove('window-opening');
+                mainWindow.classList.add('window-minimizing');
+                finishWindowMinimize = event => {
+                    if (event.target !== mainWindow || event.propertyName !== 'opacity') return;
+                    mainWindow.hidden = true;
+                    mainWindow.classList.remove('window-minimizing');
+                    mainWindow.removeEventListener('transitionend', finishWindowMinimize);
+                    finishWindowMinimize = null;
+                };
+                mainWindow.addEventListener('transitionend', finishWindowMinimize);
+                return;
+            }
+
+            const wasHidden = mainWindow.hidden;
+            mainWindow.hidden = false;
+            mainWindow.classList.remove('window-minimizing');
+            if (wasHidden) {
+                mainWindow.classList.add('window-opening');
+                void mainWindow.offsetWidth;
+                requestAnimationFrame(() => mainWindow.classList.remove('window-opening'));
+            }
+        }
+
+        closeWindowButton.addEventListener('click', () => setWindowMinimized(true));
+
+        taskbarWindow.addEventListener('click', () => {
+            setWindowMinimized(!mainWindow.hidden && !mainWindow.classList.contains('window-minimizing'));
+        });
+
+        let latestCommitDateRequest;
+
+        async function updateLastModifiedDate() {
+            if (!latestCommitDateRequest) {
+                latestCommitDateRequest = fetch('https://api.github.com/repos/marcusfrego11/marcusfrego11.github.io/commits?per_page=1', {
+                    headers: { Accept: 'application/vnd.github+json' }
+                }).then(response => {
+                    if (!response.ok) {
+                        throw new Error(`GitHub returned HTTP ${response.status}`);
+                    }
+                    return response.json();
+                }).then(commits => {
+                    const commitDate = commits[0]?.commit?.committer?.date;
+                    if (!commitDate || Number.isNaN(Date.parse(commitDate))) {
+                        throw new Error('GitHub response did not include a valid commit date');
+                    }
+                    return new Intl.DateTimeFormat([], {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    }).format(new Date(commitDate));
+                });
+            }
+
+            try {
+                const date = await latestCommitDateRequest;
+                helpLastModified.textContent = `Date Last Modified: ${date}`;
+            } catch (error) {
+                console.error('Unable to load the latest GitHub commit date.', error);
+                helpLastModified.textContent = 'Date Last Modified: Unable to load';
+                latestCommitDateRequest = null;
+            }
+        }
+
+        helpButton.addEventListener('click', () => {
+            helpDialog.showModal();
+            updateLastModifiedDate();
+        });
+        closeHelpButton.addEventListener('click', () => helpDialog.close());
+
         mobileNavigation.addEventListener('change', event => {
             setSidebarCollapsed(event.matches);
         });
 
         function activateTab(tab, moveFocus = false) {
             const pageName = tab.querySelector('.tab-label').textContent.trim();
+            setWindowMinimized(false);
             taskbarLabel.textContent = pageName;
-            taskbarIcon.replaceChildren(tab.querySelector('.tab-icon svg').cloneNode(true));
-            mainWindow.dataset.title = pageName;
+            taskbarWindow.setAttribute('aria-label', `Minimize ${pageName} window`);
+            taskbarIcon.replaceChildren(tab.querySelector('.tab-icon img, .tab-icon svg').cloneNode(true));
+            windowTitle.textContent = pageName;
 
             tabs.forEach(item => {
                 const selected = item === tab;

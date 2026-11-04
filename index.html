@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#008080">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#c0c0c0">
     <title>Marcus Fregonese - The Website</title>
     <style>
         :root {
@@ -16,6 +16,7 @@
             --muted: #a5b1c6;
             --accent: #407dff;
             --accent-dark: #172746;
+            --overlay-dim: rgba(0, 0, 0, 0.35);
             font-family: "Segoe UI", "Helvetica Neue", sans-serif;
             background: var(--page);
             color: var(--text);
@@ -559,7 +560,7 @@
                 z-index: 4;
                 display: block;
                 border: 0;
-                background: rgba(0, 0, 0, 0.55);
+                background: var(--overlay-dim);
             }
 
             .identity {
@@ -709,6 +710,16 @@
             background: #008080;
             color: #111111;
             font-size: 13px;
+        }
+
+        :root[data-wallpaper="bliss"],
+        body[data-wallpaper="bliss"] {
+            background: url("https://wallpapers.com/images/hd/windows-98-yaa4sbkls0sleaqm.jpg") center / cover fixed no-repeat;
+        }
+
+        :root[data-wallpaper="clouds"],
+        body[data-wallpaper="clouds"] {
+            background: url("https://static.wikitide.net/windowswallpaperwiki/2/24/Clouds_%28Windows_95%29.png") center / cover fixed no-repeat;
         }
 
         .layout {
@@ -934,15 +945,74 @@
             font-size: 11px;
         }
 
+        .wallpaper-picker {
+            margin-top: 12px;
+        }
+
+        .wallpaper-heading {
+            margin: 0 0 6px;
+            color: #404040;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .wallpaper-options {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 4px;
+        }
+
+        .wallpaper-button {
+            display: flex;
+            min-width: 0;
+            min-height: 34px;
+            align-items: center;
+            gap: 4px;
+            padding: 3px;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
+            background: #c0c0c0;
+            color: #111111;
+            cursor: pointer;
+            font-size: 10px;
+            text-align: left;
+        }
+
+        .wallpaper-button[aria-pressed="true"] {
+            border-color: #404040 #ffffff #ffffff #404040;
+            box-shadow: inset 1px 1px #808080;
+        }
+
+        .wallpaper-preview {
+            width: 20px;
+            height: 22px;
+            flex: 0 0 auto;
+            border: 1px solid #404040;
+            background-position: center;
+            background-size: cover;
+        }
+
+        .wallpaper-preview-classic {
+            background: #008080;
+        }
+
+        .wallpaper-preview-bliss {
+            background-image: url("https://wallpapers.com/images/hd/windows-98-yaa4sbkls0sleaqm.jpg");
+        }
+
+        .wallpaper-preview-clouds {
+            background-image: url("https://static.wikitide.net/windowswallpaperwiki/2/24/Clouds_%28Windows_95%29.png");
+        }
+
         .taskbar {
             position: fixed;
             inset: auto 0 0;
             z-index: 9;
             display: flex;
-            height: 38px;
+            height: calc(38px + env(safe-area-inset-bottom, 0px));
             align-items: center;
             gap: 6px;
-            padding: 3px 4px;
+            padding: 3px 4px calc(3px + env(safe-area-inset-bottom, 0px));
             border-top: 2px solid #ffffff;
             background: #c0c0c0;
             box-shadow: 0 -2px 3px rgba(0, 0, 0, 0.18);
@@ -1132,12 +1202,12 @@
         }
 
         .help-dialog::backdrop {
-            background: rgba(0, 0, 0, 0.35);
+            background: var(--overlay-dim);
             transition: background-color 180ms ease;
         }
 
         .photo-dialog::backdrop {
-            background: rgba(0, 0, 0, 0.35);
+            background: var(--overlay-dim);
             transition: background-color 180ms ease;
         }
 
@@ -1434,9 +1504,12 @@
             color: #111111;
         }
 
-        .photo.photo-gallery-trigger {
+        .photo-gallery-trigger {
             position: relative;
             overflow: hidden;
+        }
+
+        .photo.photo-gallery-trigger {
             width: 100%;
             padding: 0;
             appearance: none;
@@ -1457,6 +1530,17 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
+        }
+
+        @media (max-width: 900px) {
+            .photo-gallery-trigger img {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: 50% 70%;
+            }
         }
 
         .photo-gallery-hint {
@@ -1583,6 +1667,23 @@
                     <span class="tab-icon" aria-hidden="true"></span><span class="tab-label"><u>G</u>uides</span><span class="tab-arrow" aria-hidden="true"><svg viewBox="0 0 8 12" shape-rendering="crispEdges"><rect x="0" y="5" width="3" height="2" fill="currentColor"/><rect x="2" y="3" width="2" height="2" fill="currentColor"/><rect x="2" y="7" width="2" height="2" fill="currentColor"/><rect x="4" y="1" width="2" height="2" fill="currentColor"/><rect x="4" y="9" width="2" height="2" fill="currentColor"/><rect x="6" y="3" width="2" height="6" fill="currentColor"/></svg></span>
                 </button>
             </div>
+            <section class="wallpaper-picker" aria-labelledby="wallpaperHeading">
+                <h2 id="wallpaperHeading" class="wallpaper-heading">Wallpaper</h2>
+                <div class="wallpaper-options">
+                    <button class="wallpaper-button" type="button" data-wallpaper="classic" aria-pressed="true">
+                        <span class="wallpaper-preview wallpaper-preview-classic" aria-hidden="true"></span>
+                        <span>Classic</span>
+                    </button>
+                    <button class="wallpaper-button" type="button" data-wallpaper="bliss" aria-pressed="false">
+                        <span class="wallpaper-preview wallpaper-preview-bliss" aria-hidden="true"></span>
+                        <span>Bliss</span>
+                    </button>
+                    <button class="wallpaper-button" type="button" data-wallpaper="clouds" aria-pressed="false">
+                        <span class="wallpaper-preview wallpaper-preview-clouds" aria-hidden="true"></span>
+                        <span>Clouds</span>
+                    </button>
+                </div>
+            </section>
             <p class="sidebar-bottom">2026 Marcus Fregonese.</p>
         </aside>
         <button id="sidebarBackdrop" class="sidebar-backdrop" type="button" aria-label="Close navigation"></button>
@@ -1780,6 +1881,7 @@
                         <div class="photo" role="img" aria-label="View photos of Marshall MG30FX amplifier">Photo goes here</div>
                         <div class="instrument-details">
                             <h4>Marshall MG30FX</h4>
+                            <h5>Acquired: ???</h5>
                             <p class="instrument-description">Info about the MG30FX</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
@@ -1838,6 +1940,7 @@
                         <div class="photo" role="img" aria-label="View photos of Wampler Ratsbane pedal">Photo goes here</div>
                         <div class="instrument-details">
                             <h4>Wampler Ratsbane (2021)</h4>
+                            <h5>Acquired: 06/2026</h5>
                             <p class="instrument-description">Info about the Ratsbane</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
@@ -1849,6 +1952,7 @@
                         <div class="photo" role="img" aria-label="View photos of Boss DS-2 Turbo Distortion pedal">Photo goes here</div>
                         <div class="instrument-details">
                             <h4>Boss DS-2 Turbo Distortion (2024)</h4>
+                            <h5>Acquired: 08/2025</h5>
                             <p class="instrument-description">Info about the DS-2 Turbo Distortion</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
@@ -2072,6 +2176,7 @@
         const layout = document.querySelector('.layout');
         const sidebarToggle = document.getElementById('sidebarToggle');
         const sidebarBackdrop = document.getElementById('sidebarBackdrop');
+        const wallpaperButtons = Array.from(document.querySelectorAll('.wallpaper-button'));
         const taskbarIcon = document.getElementById('taskbarIcon');
         const taskbarLabel = document.getElementById('taskbarLabel');
         const taskbarClock = document.getElementById('taskbarClock');
@@ -2094,45 +2199,45 @@
         const mobileNavigation = window.matchMedia('(max-width: 760px)');
         const photoGalleries = {
             tmb100: [
-                { src: 'assets/images/tmb100-before.jpg', caption: 'Ibanez TMB100 before repair' },
-                { src: 'assets/images/tmb100-wiring.jpg', caption: 'Ibanez TMB100 custom J Bass style wiring' }
+                { src: 'assets/images/tmb100-before.jpg', caption: 'Ibanez TMB100 before repair. Its dual-concentric knob shafts are broken off and the neck is missing tuners.' },
+                { src: 'assets/images/tmb100-wiring.jpg', caption: 'Ibanez TMB100 custom J Bass style wiring. This layout ditches the active-preamp for a more traditional wiring with Alpha potentiometers.' }
             ],
             rumble350: [
-                { src: 'assets/images/rumble350-full.jpg', caption: 'Full view of repaired amp' },
+                { src: 'assets/images/rumble350-full.jpg', caption: 'Full view of functioning amp. Oxidized jacks are a fairly common for amps of its age and use.' },
             ],
             jBass: [
-                { src: 'assets/images/j-bass-before.jpg', caption: 'Squire J Bass before repair' },
+                { src: 'assets/images/j-bass-before.jpg', caption: 'Squire J Bass before repair. Its oversized, mis-matching, and cross-threaded screws are not a pretty sight.' },
             ],
             lesPaul: [
-                { src: 'assets/images/les-paul-full.jpg', caption: 'Full view of guitar' },
-                { src: 'assets/images/les-paul-neck.jpg', caption: 'Mahogany SlimTaper neck and Alnico Classic Pro pickup' },
-                { src: 'assets/images/les-paul-controls.jpg', caption: 'Control knobs inspired by Alex Lifeson\'s "Honey" Les Paul' }
+                { src: 'assets/images/les-paul-full.jpg', caption: 'Full view of guitar.' },
+                { src: 'assets/images/les-paul-neck.jpg', caption: 'Its mahogany SlimTaper neck is great-feeling and its Alnico Classic Pro pickup holds up amazingly for an Epiphone.' },
+                { src: 'assets/images/les-paul-controls.jpg', caption: 'Split-style control knobs inspired by Alex Lifeson\'s "Honey" Les Paul' }
             ],
             telecaster: [
-                { src: 'assets/images/telecaster-full.jpg', caption: 'Full view of guitar' },
-                { src: 'assets/images/telecaster-bridge.jpg', caption: 'Seymour Duncan Alnico II Pro pickup in the bridge' },
-                { src: 'assets/images/telecaster-neck.jpg', caption: 'Pearl neck inlays in maple fretboard and natural ash finish on the body' }
+                { src: 'assets/images/telecaster-full.jpg', caption: 'Full view of guitar.' },
+                { src: 'assets/images/telecaster-bridge.jpg', caption: 'Traditional "ashtray" style bridge with a Seymour Duncan Alnico II Pro pickup.' },
+                { src: 'assets/images/telecaster-neck.jpg', caption: 'Pearl neck inlays in its maple fretboard and the natural finish on its ash body look even better in person.' }
             ],
             jcm800: [
-                { src: 'assets/images/marshall-jcm800.jpg', caption: 'View of JCM800 amplifier' }
+                { src: 'assets/images/marshall-jcm800.jpg', caption: 'Front view of Marshall JCM800. Its current settings are my go-to for many different rock tones.' }
             ],
             cryBaby: [
-                { src: 'assets/images/cry-baby-full.jpg', caption: 'Full view of pedal' },
-                { src: 'assets/images/cry-baby-label.jpg', caption: 'Pedal\'s bottom label' }
+                { src: 'assets/images/cry-baby-full.jpg', caption: 'Full view of pedal. While it has certainly seen better days, it still functions perfectly and much better than it did stock with modifications.' },
+                { src: 'assets/images/cry-baby-label.jpg', caption: 'Pedal\'s bottom label. Late 80s units share this label design, though not all show this level of use.' }
             ],
             bf2: [
-                { src: 'assets/images/bf2-full.jpeg', caption: 'Full view of pedal' },
-                { src: 'assets/images/bf2-label.jpg', caption: 'Pedal\'s bottom label' }
+                { src: 'assets/images/bf2-full.jpeg', caption: 'Full view of pedal. It is in good condition for an early MIJ model.' },
+                { src: 'assets/images/bf2-label.jpg', caption: 'Pedal\'s bottom label. The green label confirms its area of manufacture as Japan.' }
             ],
             dd3: [
-                { src: 'assets/images/dd3-full.jpg', caption: 'Full view of pedal' },
-                { src: 'assets/images/dd3-label.jpg', caption: 'Pedal\'s bottom label' }
+                { src: 'assets/images/dd3-full.jpg', caption: 'Full view of pedal.' },
+                { src: 'assets/images/dd3-label.jpg', caption: 'Pedal\'s bottom label. This black label represents the first few models made in Taiwan as opposed to Japan. ' }
             ],
             d825ht: [
-                { src: 'assets/images/d825ht-sample.jpg', caption: 'Gameplay sample of MegaMan X4'}
+                { src: 'assets/images/d825ht-sample.jpg', caption: 'Video sample using gameplay of MegaMan X4 for Windows.'}
             ],
             eos30d: [
-                { src: 'assets/images/eos30d-accessories.jpg', caption: 'Camera accessories'}
+                { src: 'assets/images/eos30d-accessories.jpg', caption: 'Camera accessories. '}
             ]
         };
         document.querySelectorAll('.photo[role="img"], .showcase-photo[role="img"]').forEach((placeholder, index) => {
@@ -2183,6 +2288,21 @@
         }
 
         setSidebarCollapsed(mobileNavigation.matches);
+
+        wallpaperButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const wallpaper = button.dataset.wallpaper;
+                if (!['classic', 'bliss', 'clouds'].includes(wallpaper)) {
+                    throw new Error(`Unknown wallpaper: ${wallpaper}`);
+                }
+
+                document.body.dataset.wallpaper = wallpaper;
+                document.documentElement.dataset.wallpaper = wallpaper;
+                wallpaperButtons.forEach(item => {
+                    item.setAttribute('aria-pressed', String(item === button));
+                });
+            });
+        });
 
         function updateTaskbarClock() {
             taskbarClock.textContent = new Intl.DateTimeFormat([], {
@@ -2294,19 +2414,33 @@
         function minimizeDialog(dialog) {
             if (!dialog.open || dialog.classList.contains('window-minimizing')) return;
 
+            dialog.classList.remove('window-opening');
+            void dialog.offsetWidth;
+            let minimizeTimer;
             const finishMinimize = event => {
-                if (event.target !== dialog || event.propertyName !== 'opacity') return;
+                if (event && (event.target !== dialog || event.propertyName !== 'opacity')) return;
                 dialog.removeEventListener('transitionend', finishMinimize);
+                window.clearTimeout(minimizeTimer);
                 dialog.close();
             };
             dialog.addEventListener('transitionend', finishMinimize);
             dialog.classList.add('window-minimizing');
+            minimizeTimer = window.setTimeout(() => finishMinimize(), 250);
         }
 
         [helpDialog, photoDialog].forEach(dialog => {
             dialog.addEventListener('close', () => {
                 dialog.classList.remove('window-opening', 'window-minimizing');
             });
+        });
+        document.addEventListener('keydown', event => {
+            if (event.key !== 'Escape') return;
+
+            const openDialog = [photoDialog, helpDialog].find(dialog => dialog.open);
+            if (!openDialog) return;
+
+            event.preventDefault();
+            minimizeDialog(openDialog);
         });
         helpDialog.addEventListener('cancel', event => {
             event.preventDefault();

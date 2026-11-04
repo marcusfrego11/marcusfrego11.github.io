@@ -791,7 +791,7 @@
 
         .sidebar-toggle {
             position: fixed;
-            inset: auto auto 4px 4px;
+            inset: auto auto calc(env(safe-area-inset-bottom, 0px) + 3px) 4px;
             z-index: 10;
             display: flex;
             width: 78px;

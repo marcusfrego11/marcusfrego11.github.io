@@ -1088,11 +1088,43 @@
             font-size: 13px;
         }
 
+        .photo-dialog {
+            width: min(1000px, calc(100vw - 32px));
+            max-width: none;
+            max-height: calc(100vh - 32px);
+            margin: auto;
+            padding: 0;
+            border: 2px solid;
+            border-color: #ffffff #404040 #404040 #ffffff;
+            background: #c0c0c0;
+            color: #111111;
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
+            font-family: "Pixelated MS Sans Serif", "MS Sans Serif", sans-serif;
+            font-size: 13px;
+        }
+
         .help-dialog::backdrop {
             background: rgba(0, 0, 0, 0.35);
         }
 
+        .photo-dialog::backdrop {
+            background: rgba(0, 0, 0, 0.35);
+        }
+
         .help-dialog-header {
+            display: flex;
+            min-height: 24px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 3px 3px 0;
+            padding: 3px 5px;
+            background: linear-gradient(90deg, #000080, #1084d0 68%, #000080);
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .photo-dialog-header {
             display: flex;
             min-height: 24px;
             align-items: center;
@@ -1119,10 +1151,104 @@
             cursor: pointer;
         }
 
+        .photo-dialog-close {
+            display: grid;
+            width: 18px;
+            height: 18px;
+            flex: 0 0 auto;
+            place-items: center;
+            padding: 1px;
+            border: 2px solid;
+            border-color: #ffffff #404040 #404040 #ffffff;
+            background: #c0c0c0;
+            color: #111111;
+            cursor: pointer;
+        }
+
         .help-dialog-close svg {
             width: 10px;
             height: 10px;
             shape-rendering: crispEdges;
+        }
+
+        .photo-dialog-content {
+            padding: 8px;
+        }
+
+        .photo-dialog-stage {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 8px;
+            padding: 8px;
+            background: #404040;
+        }
+
+        .photo-dialog-image {
+            display: block;
+            grid-column: 2;
+            width: 100%;
+            max-height: min(72vh, 760px);
+            object-fit: contain;
+        }
+
+        .photo-dialog-nav {
+            min-height: 28px;
+            padding: 3px 8px;
+            border: 2px solid;
+            border-color: #ffffff #404040 #404040 #ffffff;
+            background: #c0c0c0;
+            color: #111111;
+            cursor: pointer;
+            font: inherit;
+        }
+
+        .photo-dialog-nav:disabled {
+            color: #808080;
+            cursor: default;
+        }
+
+        .photo-dialog-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 8px 3px 0;
+        }
+
+        .photo-dialog-caption {
+            min-width: 0;
+            overflow-wrap: anywhere;
+        }
+
+        .photo-dialog-count {
+            flex: 0 0 auto;
+            color: #404040;
+        }
+
+        @media (max-width: 520px) {
+            .photo-dialog {
+                width: calc(100vw - 16px);
+                max-height: calc(100vh - 16px);
+            }
+
+            .photo-dialog-content {
+                padding: 5px;
+            }
+
+            .photo-dialog-stage {
+                gap: 4px;
+                padding: 4px;
+            }
+
+            .photo-dialog-nav {
+                padding: 3px 5px;
+                font-size: 11px;
+            }
+
+            .photo-dialog-image {
+                max-height: 65vh;
+            }
         }
 
         .help-dialog-content {
@@ -1143,7 +1269,7 @@
             padding-top: 8px;
             border-top: 1px solid #808080;
             color: #404040;
-            font-size: 11px;
+            font-size: 12px;
         }
 
         .sidebar-collapsed .main {
@@ -1269,6 +1395,33 @@
         .showcase-photo {
             background: #a0a0a0;
             color: #111111;
+        }
+
+        .instrument-photo.photo-gallery-trigger {
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+            cursor: zoom-in;
+            font: inherit;
+        }
+
+        .photo-gallery-trigger img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .photo-gallery-hint {
+            position: absolute;
+            inset: auto 8px 8px;
+            width: max-content;
+            max-width: calc(100% - 16px);
+            padding: 4px 6px;
+            background: rgba(0, 0, 0, 0.72);
+            color: #ffffff;
+            font-size: 11px;
+            text-align: left;
         }
 
         .instrument-details,
@@ -1406,7 +1559,7 @@
             </div>
             <section class="tab-panel" id="panel-home" role="tabpanel" aria-labelledby="tab-home" tabindex="0">
                 <header class="home-intro">
-                    <h1><span class="welcome-prefix">Welcome to </span><span class="welcome-site-name">My Website</span></h1>
+                    <h1><span class="welcome-prefix">Welcome to the </span><span class="welcome-site-name">Website</span></h1>
                     <p class="home-copy">Hi, I'm Marcus. I'm a musician, engineer, and enthusiast of all things retro. You can explore my projects and repairs, music gear, retro games, old computers, and much more of my interests on this site. Click the buttons below or use the sidebar on the left for navigation.</p>
                     <div class="home-links" aria-label="Explore the site">
                         <button class="home-link" type="button" data-tab-target="tab-repairs">Browse Projects & Repairs →</button>
@@ -1498,7 +1651,10 @@
                 <h3 class="subsection-title">Instruments</h3>
                 <div class="card-grid gear-grid">
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for 2021 Epiphone Les Paul Classic Honeyburst">Photo goes here</div>
+                        <button class="instrument-photo photo-gallery-trigger" type="button" aria-label="View photos of Epiphone Les Paul Classic (2021)" data-gallery-id="lesPaul" data-gallery-title="Epiphone Les Paul Classic (2021)">
+                            <img src="assets/images/les-paul-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 3 photos</span>
+                        </button>
                         <div class="instrument-details">
                             <h4>Epiphone Les Paul Classic (2021)</h4>
                             <p>Honeyburst</p>
@@ -1510,7 +1666,10 @@
                         </div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for 2007 Fender Lite Ash Telecaster Natural">Photo goes here</div>
+                        <button class="instrument-photo photo-gallery-trigger" type="button" aria-label="View photos of Fender Lite Ash Telecaster (2007)" data-gallery-id="telecaster" data-gallery-title="Fender Lite Ash Telecaster (2007)">
+                            <img src="assets/images/telecaster-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 3 photos</span>
+                        </button>
                         <div class="instrument-details">
                             <h4>Fender Lite Ash Telecaster (2007)</h4>
                             <p>Natural</p>
@@ -1536,7 +1695,10 @@
                         </div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Marshall JCM800 Studio Classic amplifier">Photo goes here</div>
+                        <button class="instrument-photo photo-gallery-trigger" type="button" aria-label="View photos of Marshall JCM800 Studio Classic" data-gallery-id="jcm800" data-gallery-title="Marshall JCM800 Studio Classic">
+                            <img src="assets/images/marshall-jcm800.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View photo</span>
+                        </button>
                         <div class="instrument-details">
                             <h4>Marshall JCM800 Studio Classic</h4>
                             <p class="instrument-description">Info about the JCM800 Studio Classic</p>
@@ -1550,7 +1712,10 @@
                 <h3 class="subsection-title subsection-spaced">Pedals</h3>
                 <div class="card-grid gear-grid">
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Dunlop Cry Baby Wah pedal">Photo goes here</div>
+                        <button class="instrument-photo photo-gallery-trigger" type="button" aria-label="View photos of Dunlop Cry Baby Wah" data-gallery-id="cryBaby" data-gallery-title="Dunlop Cry Baby Wah">
+                            <img src="assets/images/cry-baby-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
+                        </button>
                         <div class="instrument-details">
                             <h4>Dunlop Cry Baby Wah</h4>
                             <p class="instrument-description">Info about the Cry Baby Wah</p>
@@ -1735,6 +1900,26 @@
                 <p id="helpLastModified" class="help-dialog-modified">Date Last Modified: Loading…</p>
             </div>
         </dialog>
+
+        <dialog id="photoDialog" class="photo-dialog" aria-labelledby="photoDialogTitle">
+            <div class="photo-dialog-header">
+                <span id="photoDialogTitle">Photo viewer</span>
+                <button id="closePhotoDialog" class="photo-dialog-close" type="button" aria-label="Close photo viewer">
+                    <svg viewBox="0 0 8 7" aria-hidden="true"><path fill="currentColor" d="M0 0h2v1H0zM6 0h2v1H6zM1 1h2v1H1zM5 1h2v1H5zM2 2h4v1H2zM3 3h2v1H3zM2 4h4v1H2zM1 5h2v1H1zM5 5h2v1H5zM0 6h2v1H0zM6 6h2v1H6z"/></svg>
+                </button>
+            </div>
+            <div class="photo-dialog-content">
+                <div class="photo-dialog-stage">
+                    <button id="previousPhoto" class="photo-dialog-nav" type="button" aria-label="Previous photo">Previous</button>
+                    <img id="photoDialogImage" class="photo-dialog-image" src="" alt="">
+                    <button id="nextPhoto" class="photo-dialog-nav" type="button" aria-label="Next photo">Next</button>
+                </div>
+                <div class="photo-dialog-footer" aria-live="polite">
+                    <span id="photoDialogCaption" class="photo-dialog-caption"></span>
+                    <span id="photoDialogCount" class="photo-dialog-count"></span>
+                </div>
+            </div>
+        </dialog>
     </div>
 
     <script>
@@ -1752,7 +1937,37 @@
         const helpDialog = document.getElementById('helpDialog');
         const closeHelpButton = document.getElementById('closeHelpButton');
         const helpLastModified = document.getElementById('helpLastModified');
+        const photoDialog = document.getElementById('photoDialog');
+        const photoDialogTitle = document.getElementById('photoDialogTitle');
+        const photoDialogImage = document.getElementById('photoDialogImage');
+        const photoDialogCaption = document.getElementById('photoDialogCaption');
+        const photoDialogCount = document.getElementById('photoDialogCount');
+        const previousPhotoButton = document.getElementById('previousPhoto');
+        const nextPhotoButton = document.getElementById('nextPhoto');
+        const closePhotoDialogButton = document.getElementById('closePhotoDialog');
         const mobileNavigation = window.matchMedia('(max-width: 760px)');
+        const photoGalleries = {
+            lesPaul: [
+                { src: 'assets/images/les-paul-full.jpg', caption: 'Full view' },
+                { src: 'assets/images/les-paul-neck.jpg', caption: 'Neck detail' },
+                { src: 'assets/images/les-paul-controls.jpg', caption: 'Control knobs detail' }
+            ],
+            telecaster: [
+                { src: 'assets/images/telecaster-full.jpg', caption: 'Full view' },
+                { src: 'assets/images/telecaster-bridge.jpg', caption: 'Bridge detail' },
+                { src: 'assets/images/telecaster-neck.jpg', caption: 'Neck detail' }
+            ],
+            jcm800: [
+                { src: 'assets/images/marshall-jcm800.jpg', caption: 'Full view' }
+            ],
+            cryBaby: [
+                { src: 'assets/images/cry-baby-full.jpg', caption: 'Full view' },
+                { src: 'assets/images/cry-baby-label.jpg', caption: 'Label detail' }
+            ]
+        };
+        let currentPhotoGallery = [];
+        let currentPhotoIndex = 0;
+        let currentPhotoGalleryTitle = '';
         const sectionIcons = {
             'tab-home': 'https://win98icons.alexmeub.com/icons/png/homepage-0.png',
             'tab-repairs': 'https://win98icons.alexmeub.com/icons/png/notepad-1.png',
@@ -1878,6 +2093,59 @@
             updateLastModifiedDate();
         });
         closeHelpButton.addEventListener('click', () => helpDialog.close());
+
+        function renderPhotoGalleryImage() {
+            const photo = currentPhotoGallery[currentPhotoIndex];
+            photoDialogImage.src = photo.src;
+            photoDialogImage.alt = `${currentPhotoGalleryTitle}: ${photo.caption}`;
+            photoDialogCaption.textContent = photo.caption;
+            photoDialogCount.textContent = `${currentPhotoIndex + 1} of ${currentPhotoGallery.length}`;
+            previousPhotoButton.disabled = currentPhotoIndex === 0;
+            nextPhotoButton.disabled = currentPhotoIndex === currentPhotoGallery.length - 1;
+        }
+
+        document.querySelectorAll('.photo-gallery-trigger').forEach(button => {
+            button.addEventListener('click', () => {
+                const gallery = photoGalleries[button.dataset.galleryId];
+                if (!gallery) {
+                    console.error(`No photo gallery is configured for "${button.dataset.galleryId}".`);
+                    return;
+                }
+
+                currentPhotoGallery = gallery;
+                currentPhotoIndex = 0;
+                currentPhotoGalleryTitle = button.dataset.galleryTitle;
+                photoDialogTitle.textContent = currentPhotoGalleryTitle;
+                renderPhotoGalleryImage();
+                photoDialog.showModal();
+            });
+        });
+
+        previousPhotoButton.addEventListener('click', () => {
+            if (currentPhotoIndex === 0) return;
+            currentPhotoIndex -= 1;
+            renderPhotoGalleryImage();
+        });
+        nextPhotoButton.addEventListener('click', () => {
+            if (currentPhotoIndex >= currentPhotoGallery.length - 1) return;
+            currentPhotoIndex += 1;
+            renderPhotoGalleryImage();
+        });
+        closePhotoDialogButton.addEventListener('click', () => photoDialog.close());
+        photoDialog.addEventListener('click', event => {
+            if (event.target === photoDialog) photoDialog.close();
+        });
+        photoDialog.addEventListener('keydown', event => {
+            if (event.key === 'ArrowLeft' && currentPhotoIndex > 0) {
+                event.preventDefault();
+                currentPhotoIndex -= 1;
+                renderPhotoGalleryImage();
+            } else if (event.key === 'ArrowRight' && currentPhotoIndex < currentPhotoGallery.length - 1) {
+                event.preventDefault();
+                currentPhotoIndex += 1;
+                renderPhotoGalleryImage();
+            }
+        });
 
         mobileNavigation.addEventListener('change', event => {
             setSidebarCollapsed(event.matches);

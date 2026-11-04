@@ -163,8 +163,8 @@
 
         .tab-icon svg {
             display: block;
-            width: 19px;
-            height: 19px;
+            width: 20px;
+            height: 20px;
         }
 
         .sidebar-bottom {
@@ -468,6 +468,20 @@
             grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
             padding: 0;
             overflow: hidden;
+        }
+
+        .guide-list {
+            margin-bottom: 30px;
+        }
+
+        .guide-card {
+            min-height: 0;
+        }
+
+        .guide-card h4 {
+            margin: 0 0 10px;
+            font-size: 1.3rem;
+            font-weight: 650;
         }
 
         .showcase-photo {
@@ -1062,17 +1076,21 @@
             color: #111111;
             cursor: pointer;
             box-shadow: inset 1px 1px #dfdfdf;
+            transition: border-color 80ms ease, box-shadow 80ms ease;
         }
 
-        .window-control:active {
+        .window-control:active,
+        .help-dialog-close:active,
+        .photo-dialog-close:active,
+        .photo-dialog-nav:active {
             border-color: #404040 #ffffff #ffffff #404040;
             box-shadow: inset 1px 1px #808080;
         }
 
         .window-control svg {
             display: block;
-            width: 12px;
-            height: 12px;
+            width: 16px;
+            height: 16px;
             shape-rendering: crispEdges;
         }
 
@@ -1086,6 +1104,7 @@
             box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
             font-family: "Pixelated MS Sans Serif", "MS Sans Serif", sans-serif;
             font-size: 13px;
+            transition: opacity 180ms ease, transform 180ms ease;
         }
 
         .photo-dialog {
@@ -1101,14 +1120,32 @@
             box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
             font-family: "Pixelated MS Sans Serif", "MS Sans Serif", sans-serif;
             font-size: 13px;
+            transition: opacity 180ms ease, transform 180ms ease;
+        }
+
+        .help-dialog.window-minimizing,
+        .help-dialog.window-opening,
+        .photo-dialog.window-minimizing,
+        .photo-dialog.window-opening {
+            opacity: 0;
+            transform: scale(0.96);
         }
 
         .help-dialog::backdrop {
             background: rgba(0, 0, 0, 0.35);
+            transition: background-color 180ms ease;
         }
 
         .photo-dialog::backdrop {
             background: rgba(0, 0, 0, 0.35);
+            transition: background-color 180ms ease;
+        }
+
+        .help-dialog.window-opening::backdrop,
+        .help-dialog.window-minimizing::backdrop,
+        .photo-dialog.window-opening::backdrop,
+        .photo-dialog.window-minimizing::backdrop {
+            background: transparent;
         }
 
         .help-dialog-header {
@@ -1137,10 +1174,12 @@
             font-weight: 700;
         }
 
-        .help-dialog-close {
+        .help-dialog-close,
+        .photo-dialog-close,
+        .photo-dialog-nav {
             display: grid;
-            width: 18px;
-            height: 18px;
+            width: 22px;
+            height: 22px;
             flex: 0 0 auto;
             place-items: center;
             padding: 1px;
@@ -1149,25 +1188,13 @@
             background: #c0c0c0;
             color: #111111;
             cursor: pointer;
-        }
-
-        .photo-dialog-close {
-            display: grid;
-            width: 18px;
-            height: 18px;
-            flex: 0 0 auto;
-            place-items: center;
-            padding: 1px;
-            border: 2px solid;
-            border-color: #ffffff #404040 #404040 #ffffff;
-            background: #c0c0c0;
-            color: #111111;
-            cursor: pointer;
+            box-shadow: inset 1px 1px #dfdfdf;
+            transition: border-color 80ms ease, box-shadow 80ms ease;
         }
 
         .help-dialog-close svg {
-            width: 10px;
-            height: 10px;
+            width: 16px;
+            height: 16px;
             shape-rendering: crispEdges;
         }
 
@@ -1177,11 +1204,15 @@
 
         .photo-dialog-stage {
             display: grid;
-            grid-template-columns: auto minmax(0, 1fr) auto;
+            grid-template-columns: 22px minmax(0, 1fr) 22px;
             align-items: center;
-            gap: 8px;
+            gap: 4px;
             padding: 8px;
             background: #404040;
+        }
+
+        .photo-dialog-stage [hidden] {
+            display: none;
         }
 
         .photo-dialog-image {
@@ -1192,20 +1223,31 @@
             object-fit: contain;
         }
 
-        .photo-dialog-nav {
-            min-height: 28px;
-            padding: 3px 8px;
-            border: 2px solid;
-            border-color: #ffffff #404040 #404040 #ffffff;
-            background: #c0c0c0;
+        .photo-dialog-empty {
+            display: grid;
+            grid-column: 2;
+            width: 100%;
+            min-height: min(65vh, 500px);
+            place-items: center;
+            background: #a0a0a0;
             color: #111111;
-            cursor: pointer;
-            font: inherit;
         }
 
-        .photo-dialog-nav:disabled {
-            color: #808080;
-            cursor: default;
+        .photo-dialog-nav::before {
+            display: block;
+            width: 8px;
+            height: 12px;
+            background: currentColor;
+            clip-path: polygon(0 0, 2px 0, 2px 2px, 4px 2px, 4px 4px, 6px 4px, 6px 5px, 8px 6px, 6px 7px, 6px 8px, 4px 8px, 4px 10px, 2px 10px, 2px 12px, 0 12px);
+            content: "";
+        }
+
+        .photo-dialog-nav:hover {
+            color: #000080;
+        }
+
+        .photo-dialog-nav-previous::before {
+            transform: scaleX(-1);
         }
 
         .photo-dialog-footer {
@@ -1239,11 +1281,6 @@
             .photo-dialog-stage {
                 gap: 4px;
                 padding: 4px;
-            }
-
-            .photo-dialog-nav {
-                padding: 3px 5px;
-                font-size: 11px;
             }
 
             .photo-dialog-image {
@@ -1400,7 +1437,17 @@
         .instrument-photo.photo-gallery-trigger {
             position: relative;
             overflow: hidden;
+            width: 100%;
             padding: 0;
+            appearance: none;
+            cursor: zoom-in;
+            font: inherit;
+        }
+
+        .showcase-photo.photo-gallery-trigger {
+            width: 100%;
+            padding: 0;
+            appearance: none;
             cursor: zoom-in;
             font: inherit;
         }
@@ -1532,6 +1579,9 @@
                 <button class="tab-button" id="tab-computers" type="button" role="tab" aria-selected="false" aria-controls="panel-computers" tabindex="-1" accesskey="t">
                     <span class="tab-icon" aria-hidden="true"><svg viewBox="0 0 24 24" shape-rendering="crispEdges"><rect x="2" y="3" width="16" height="13" fill="#404040"/><rect x="3" y="4" width="14" height="10" fill="#c0c0c0"/><rect x="5" y="6" width="10" height="6" fill="#000080"/><rect x="6" y="7" width="8" height="4" fill="#1084d0"/><rect x="9" y="16" width="3" height="4" fill="#808080"/><rect x="6" y="20" width="9" height="2" fill="#404040"/><rect x="19" y="6" width="3" height="15" fill="#808080"/><rect x="20" y="8" width="1" height="3" fill="#008000"/></svg></span><span class="tab-label"><u>T</u>ech & More</span><span class="tab-arrow" aria-hidden="true"><svg viewBox="0 0 8 12" shape-rendering="crispEdges"><rect x="0" y="5" width="3" height="2" fill="currentColor"/><rect x="2" y="3" width="2" height="2" fill="currentColor"/><rect x="2" y="7" width="2" height="2" fill="currentColor"/><rect x="4" y="1" width="2" height="2" fill="currentColor"/><rect x="4" y="9" width="2" height="2" fill="currentColor"/><rect x="6" y="3" width="2" height="6" fill="currentColor"/></svg></span>
                 </button>
+                <button class="tab-button" id="tab-guides" type="button" role="tab" aria-selected="false" aria-controls="panel-guides" tabindex="-1" accesskey="g">
+                    <span class="tab-icon" aria-hidden="true"></span><span class="tab-label"><u>G</u>uides</span><span class="tab-arrow" aria-hidden="true"><svg viewBox="0 0 8 12" shape-rendering="crispEdges"><rect x="0" y="5" width="3" height="2" fill="currentColor"/><rect x="2" y="3" width="2" height="2" fill="currentColor"/><rect x="2" y="7" width="2" height="2" fill="currentColor"/><rect x="4" y="1" width="2" height="2" fill="currentColor"/><rect x="4" y="9" width="2" height="2" fill="currentColor"/><rect x="6" y="3" width="2" height="6" fill="currentColor"/></svg></span>
+                </button>
             </div>
             <p class="sidebar-bottom">2026 Marcus Fregonese.</p>
         </aside>
@@ -1566,6 +1616,7 @@
                         <button class="home-link" type="button" data-tab-target="tab-gear">Explore Music Gear →</button>
                         <button class="home-link" type="button" data-tab-target="tab-retro">Browse Retro Gaming →</button>
                         <button class="home-link" type="button" data-tab-target="tab-computers">Tech & More →</button>
+                        <button class="home-link" type="button" data-tab-target="tab-guides">Guides →</button>
                     </div>
                 </header>
                 <div class="panel-header">
@@ -1594,6 +1645,11 @@
                         <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" shape-rendering="crispEdges"><rect x="2" y="3" width="16" height="13" fill="#404040"/><rect x="3" y="4" width="14" height="10" fill="#c0c0c0"/><rect x="5" y="6" width="10" height="6" fill="#000080"/><rect x="6" y="7" width="8" height="4" fill="#1084d0"/><rect x="9" y="16" width="3" height="4" fill="#808080"/><rect x="6" y="20" width="9" height="2" fill="#404040"/><rect x="19" y="6" width="3" height="15" fill="#808080"/><rect x="20" y="8" width="1" height="3" fill="#008000"/></svg></span>
                         <span class="home-card-title">Tech & More</span>
                         <span class="home-card-copy">Discover the computers, electronics, and technology I collect.</span>
+                    </button>
+                    <button class="card home-card" type="button" data-tab-target="tab-guides">
+                        <span class="card-mark" aria-hidden="true"></span>
+                        <span class="home-card-title">Guides</span>
+                        <span class="home-card-copy">Browse guides for modifying instruments and equipment.</span>
                     </button>
                 </div>
             </section>
@@ -1657,11 +1713,13 @@
                         </button>
                         <div class="instrument-details">
                             <h4>Epiphone Les Paul Classic (2021)</h4>
-                            <p>Honeyburst</p>
-                            <p class="instrument-description">Info about guitar</p>
+                            <h3>Honeyburst</h3>
+                            <h5>Acquired: ???</h5>
+                            <p class="instrument-description">My very first guitar. Despite its abuse (note the nickel-sized chip in the body), it remains a favourite guitar of mine. It is a versatile instrument that has served me well playing in Jazz Band as well as providing authentic tones for the 70s-90s rock I often find myself playing.</p>
                             <section class="modification-section" aria-labelledby="les-paul-modifications">
                                 <h5 id="les-paul-modifications">Modifications & Specifications</h5>
-                                <p>More info</p>
+                                <p>12/2025: Upgraded stock quick-connector wiring harness to a ToneShaper wiring kit with push-pull coil split pots. </p>
+                                <p>08/2026: Switched knobs to goldtops for the rhythm controls and two-tone knobs for the treble controls, mirroring that of Alex Lifeson's "Honey" Les Paul. While solely aesthetic, it is one of my favorite visual touches of the guitar.</p>
                             </section>
                         </div>
                     </article>
@@ -1672,11 +1730,12 @@
                         </button>
                         <div class="instrument-details">
                             <h4>Fender Lite Ash Telecaster (2007)</h4>
-                            <p>Natural</p>
-                            <p class="instrument-description">Info about the Telecaster</p>
+                            <h3>Natural</h3>
+                            <h5>Acquired: 06/2026</h5>
+                            <p class="instrument-description">My latest guitar.</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
-                                <p>More info</p>
+                                <p>No modifications have been made to this guitar (yet).</p>
                             </section>
                         </div>
                     </article>
@@ -1701,10 +1760,11 @@
                         </button>
                         <div class="instrument-details">
                             <h4>Marshall JCM800 Studio Classic</h4>
-                            <p class="instrument-description">Info about the JCM800 Studio Classic</p>
+                            <h5>Acquired: 04/2026</h5>
+                            <p class="instrument-description">The classic 80s Marshall monster in a small but mighty package. Despite having only 20 watts and a 10-inch speaker, this thing gets LOUD. Modern features such as an effects loop and digital interface output make this a highly versatile and powerful amplifier.</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
-                                <p>More info</p>
+                                <p>No modifications have been made to this amp (yet). One I have in mind is a Hot Mod V2, a plug-in module that can be used to increase gain and sustain in many tube amps. I may also upgrade its speaker to a more premium 10-inch speaker or modify its housing to fit a 12-inch.</p>
                             </section>
                         </div>
                     </article>
@@ -1717,11 +1777,14 @@
                             <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="instrument-details">
-                            <h4>Dunlop Cry Baby Wah</h4>
+                            <h4>Dunlop GCB-95 Cry Baby Wah (1988)</h4>
+                            <h5>Acquired: 05/2026</h5>
                             <p class="instrument-description">Info about the Cry Baby Wah</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
-                                <p>More info</p>
+                                <p>By far my most overhauled pedal. While it began life as a late-80s unit, it took less than an hour in my possesion to recieve significant modifications.</p>
+                                <p>05/2026: Upgraded its inductor to a Jim Dunlop Red Fasel and changed capacitor and resistor values to mirror vintage Vox units.</p>
+                                <p>09/2026: Removed stock rubber stoppers for greater physical sweep of the pedal and a more smooth motion.</p>
                             </section>
                         </div>
                     </article>
@@ -1729,7 +1792,8 @@
                         <div class="instrument-photo" role="img" aria-label="Photo space for Ibanez TS-9 Tube Screamer">Photo goes here</div>
                         <div class="instrument-details">
                             <h4>Ibanez TS-9 Tube Screamer (1996)</h4>
-                            <p class="instrument-description">Info about the 1996 Tube Screamer</p>
+                            <p class="instrument-description">Info about the Tube Screamer</p>
+                            <h5>Acquired: 04/2026</h5>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
                                 <p>More info</p>
@@ -1739,29 +1803,29 @@
                     <article class="card instrument-card">
                         <div class="instrument-photo" role="img" aria-label="Photo space for Wampler Ratsbane pedal">Photo goes here</div>
                         <div class="instrument-details">
-                            <h4>Wampler Ratsbane</h4>
+                            <h4>Wampler Ratsbane (2021)</h4>
                             <p class="instrument-description">Info about the Ratsbane</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
-                                <p>More info</p>
+                                <p>No modifications have been made to this pedal (yet).</p>
                             </section>
                         </div>
                     </article>
                     <article class="card instrument-card">
                         <div class="instrument-photo" role="img" aria-label="Photo space for Boss DS-2 Turbo Distortion pedal">Photo goes here</div>
                         <div class="instrument-details">
-                            <h4>Boss DS-2 Turbo Distortion</h4>
+                            <h4>Boss DS-2 Turbo Distortion (2024)</h4>
                             <p class="instrument-description">Info about the DS-2 Turbo Distortion</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
-                                <p>More info</p>
+                                <p>No modifications have been made to this pedal (yet).</p>
                             </section>
                         </div>
                     </article>
                     <article class="card instrument-card">
                         <div class="instrument-photo" role="img" aria-label="Photo space for Boss BF-2 Flanger pedal">Photo goes here</div>
                         <div class="instrument-details">
-                            <h4>Boss BF-2 Flanger</h4>
+                            <h4>Boss BF-2 Flanger (1986)</h4>
                             <p class="instrument-description">Info about the BF-2 Flanger</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
@@ -1772,7 +1836,7 @@
                     <article class="card instrument-card">
                         <div class="instrument-photo" role="img" aria-label="Photo space for Boss DD-3 Digital Delay pedal">Photo goes here</div>
                         <div class="instrument-details">
-                            <h4>Boss DD-3 Digital Delay</h4>
+                            <h4>Boss DD-3 Digital Delay (2000)</h4>
                             <p class="instrument-description">Info about the DD-3 Digital Delay</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
@@ -1885,6 +1949,24 @@
                     </article>
                 </div>
             </section>
+
+            <section class="tab-panel" id="panel-guides" role="tabpanel" aria-labelledby="tab-guides" tabindex="0" hidden>
+                <div class="panel-header">
+                    <div>
+                        <h2>Guides</h2>
+                        <p>Notes and walkthroughs for modifying instruments, equipment, and hardware.</p>
+                    </div>
+                </div>
+                <nav class="home-links guide-list" aria-label="Jump to a guide">
+                    <button class="home-link" type="button" data-guide-target="guide-cry-baby-mod">Dunlop Cry Baby Mod</button>
+                </nav>
+                <article class="card guide-card" id="guide-cry-baby-mod">
+                    <div>
+                        <h4>Dunlop Cry Baby Mod</h4>
+                        <p>Mod description.</p>
+                    </div>
+                </article>
+            </section>
         </main>
 
         <dialog id="helpDialog" class="help-dialog" aria-labelledby="helpDialogTitle">
@@ -1910,9 +1992,10 @@
             </div>
             <div class="photo-dialog-content">
                 <div class="photo-dialog-stage">
-                    <button id="previousPhoto" class="photo-dialog-nav" type="button" aria-label="Previous photo">Previous</button>
+                    <button id="previousPhoto" class="photo-dialog-nav photo-dialog-nav-previous" type="button" aria-label="Previous photo"></button>
                     <img id="photoDialogImage" class="photo-dialog-image" src="" alt="">
-                    <button id="nextPhoto" class="photo-dialog-nav" type="button" aria-label="Next photo">Next</button>
+                    <div id="photoDialogEmpty" class="photo-dialog-empty" hidden>No photos have been added yet.</div>
+                    <button id="nextPhoto" class="photo-dialog-nav" type="button" aria-label="Next photo"></button>
                 </div>
                 <div class="photo-dialog-footer" aria-live="polite">
                     <span id="photoDialogCaption" class="photo-dialog-caption"></span>
@@ -1940,6 +2023,7 @@
         const photoDialog = document.getElementById('photoDialog');
         const photoDialogTitle = document.getElementById('photoDialogTitle');
         const photoDialogImage = document.getElementById('photoDialogImage');
+        const photoDialogEmpty = document.getElementById('photoDialogEmpty');
         const photoDialogCaption = document.getElementById('photoDialogCaption');
         const photoDialogCount = document.getElementById('photoDialogCount');
         const previousPhotoButton = document.getElementById('previousPhoto');
@@ -1948,23 +2032,42 @@
         const mobileNavigation = window.matchMedia('(max-width: 760px)');
         const photoGalleries = {
             lesPaul: [
-                { src: 'assets/images/les-paul-full.jpg', caption: 'Full view' },
-                { src: 'assets/images/les-paul-neck.jpg', caption: 'Neck detail' },
-                { src: 'assets/images/les-paul-controls.jpg', caption: 'Control knobs detail' }
+                { src: 'assets/images/les-paul-full.jpg', caption: 'Full view of guitar' },
+                { src: 'assets/images/les-paul-neck.jpg', caption: 'Mahogany SlimTaper neck and Alnico Classic Pro pickup' },
+                { src: 'assets/images/les-paul-controls.jpg', caption: 'Control knobs inspired by Alex Lifeson\'s "Honey" Les Paul' }
             ],
             telecaster: [
-                { src: 'assets/images/telecaster-full.jpg', caption: 'Full view' },
-                { src: 'assets/images/telecaster-bridge.jpg', caption: 'Bridge detail' },
-                { src: 'assets/images/telecaster-neck.jpg', caption: 'Neck detail' }
+                { src: 'assets/images/telecaster-full.jpg', caption: 'Full view of guitar' },
+                { src: 'assets/images/telecaster-bridge.jpg', caption: 'Seymour Duncan Alnico II Pro pickup in the bridge' },
+                { src: 'assets/images/telecaster-neck.jpg', caption: 'Pearl neck inlays in maple fretboard and natural ash finish on the body' }
             ],
             jcm800: [
-                { src: 'assets/images/marshall-jcm800.jpg', caption: 'Full view' }
+                { src: 'assets/images/marshall-jcm800.jpg', caption: 'View of JCM800 amplifier' }
             ],
             cryBaby: [
-                { src: 'assets/images/cry-baby-full.jpg', caption: 'Full view' },
-                { src: 'assets/images/cry-baby-label.jpg', caption: 'Label detail' }
+                { src: 'assets/images/cry-baby-full.jpg', caption: 'Full view of pedal' },
+                { src: 'assets/images/cry-baby-label.jpg', caption: 'Pedal\'s bottom label' }
             ]
         };
+        document.querySelectorAll('.instrument-photo[role="img"], .showcase-photo[role="img"]').forEach((placeholder, index) => {
+            const card = placeholder.closest('.instrument-card, .showcase-card');
+            const title = card.querySelector('h4')?.textContent.trim();
+            if (!title) {
+                throw new Error('Photo placeholder must belong to a card with a title.');
+            }
+
+            const galleryId = `placeholder-${index + 1}`;
+            photoGalleries[galleryId] = [];
+
+            const button = document.createElement('button');
+            button.type = 'button';
+            button.className = `${placeholder.className} photo-gallery-trigger photo-gallery-empty`;
+            button.setAttribute('aria-label', `View photos of ${title}`);
+            button.dataset.galleryId = galleryId;
+            button.dataset.galleryTitle = title;
+            button.append(...placeholder.childNodes);
+            placeholder.replaceWith(button);
+        });
         let currentPhotoGallery = [];
         let currentPhotoIndex = 0;
         let currentPhotoGalleryTitle = '';
@@ -1973,7 +2076,8 @@
             'tab-repairs': 'https://win98icons.alexmeub.com/icons/png/notepad-1.png',
             'tab-gear': 'https://win98icons.alexmeub.com/icons/png/keyboard_musical_midi.png',
             'tab-retro': 'https://win98icons.alexmeub.com/icons/png/joystick-2.png',
-            'tab-computers': 'https://win98icons.alexmeub.com/icons/png/computer_2-2.png'
+            'tab-computers': 'https://win98icons.alexmeub.com/icons/png/computer_2-2.png',
+            'tab-guides': 'https://win98icons.alexmeub.com/icons/png/help_sheet-0.png'
         };
 
         document.querySelectorAll('.tab-button, .home-card').forEach(item => {
@@ -2089,19 +2193,66 @@
         }
 
         helpButton.addEventListener('click', () => {
-            helpDialog.showModal();
+            showDialogWithAnimation(helpDialog);
             updateLastModifiedDate();
         });
-        closeHelpButton.addEventListener('click', () => helpDialog.close());
+
+        function showDialogWithAnimation(dialog) {
+            dialog.classList.remove('window-minimizing');
+            dialog.classList.add('window-opening');
+            dialog.showModal();
+            void dialog.offsetWidth;
+            requestAnimationFrame(() => dialog.classList.remove('window-opening'));
+        }
+
+        function minimizeDialog(dialog) {
+            if (!dialog.open || dialog.classList.contains('window-minimizing')) return;
+
+            const finishMinimize = event => {
+                if (event.target !== dialog || event.propertyName !== 'opacity') return;
+                dialog.removeEventListener('transitionend', finishMinimize);
+                dialog.close();
+            };
+            dialog.addEventListener('transitionend', finishMinimize);
+            dialog.classList.add('window-minimizing');
+        }
+
+        [helpDialog, photoDialog].forEach(dialog => {
+            dialog.addEventListener('close', () => {
+                dialog.classList.remove('window-opening', 'window-minimizing');
+            });
+        });
+        helpDialog.addEventListener('cancel', event => {
+            event.preventDefault();
+            minimizeDialog(helpDialog);
+        });
+        photoDialog.addEventListener('cancel', event => {
+            event.preventDefault();
+            minimizeDialog(photoDialog);
+        });
+        closeHelpButton.addEventListener('click', () => minimizeDialog(helpDialog));
 
         function renderPhotoGalleryImage() {
+            const hasPhotos = currentPhotoGallery.length > 0;
+            photoDialogImage.hidden = !hasPhotos;
+            photoDialogEmpty.hidden = hasPhotos;
+            previousPhotoButton.hidden = !hasPhotos;
+            nextPhotoButton.hidden = !hasPhotos;
+
+            if (!hasPhotos) {
+                photoDialogImage.removeAttribute('src');
+                photoDialogImage.alt = '';
+                photoDialogEmpty.textContent = `No photos have been added for ${currentPhotoGalleryTitle} yet.`;
+                photoDialogCaption.textContent = 'No photos added yet';
+                photoDialogCount.textContent = '';
+                return;
+            }
+
             const photo = currentPhotoGallery[currentPhotoIndex];
             photoDialogImage.src = photo.src;
             photoDialogImage.alt = `${currentPhotoGalleryTitle}: ${photo.caption}`;
             photoDialogCaption.textContent = photo.caption;
             photoDialogCount.textContent = `${currentPhotoIndex + 1} of ${currentPhotoGallery.length}`;
-            previousPhotoButton.disabled = currentPhotoIndex === 0;
-            nextPhotoButton.disabled = currentPhotoIndex === currentPhotoGallery.length - 1;
         }
 
         document.querySelectorAll('.photo-gallery-trigger').forEach(button => {
@@ -2117,32 +2268,33 @@
                 currentPhotoGalleryTitle = button.dataset.galleryTitle;
                 photoDialogTitle.textContent = currentPhotoGalleryTitle;
                 renderPhotoGalleryImage();
-                photoDialog.showModal();
+                showDialogWithAnimation(photoDialog);
             });
         });
 
         previousPhotoButton.addEventListener('click', () => {
-            if (currentPhotoIndex === 0) return;
-            currentPhotoIndex -= 1;
+            if (currentPhotoGallery.length === 0) return;
+            currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotoGallery.length) % currentPhotoGallery.length;
             renderPhotoGalleryImage();
         });
         nextPhotoButton.addEventListener('click', () => {
-            if (currentPhotoIndex >= currentPhotoGallery.length - 1) return;
-            currentPhotoIndex += 1;
+            if (currentPhotoGallery.length === 0) return;
+            currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotoGallery.length;
             renderPhotoGalleryImage();
         });
-        closePhotoDialogButton.addEventListener('click', () => photoDialog.close());
+        closePhotoDialogButton.addEventListener('click', () => minimizeDialog(photoDialog));
         photoDialog.addEventListener('click', event => {
-            if (event.target === photoDialog) photoDialog.close();
+            if (event.target === photoDialog) minimizeDialog(photoDialog);
         });
         photoDialog.addEventListener('keydown', event => {
-            if (event.key === 'ArrowLeft' && currentPhotoIndex > 0) {
+            if (currentPhotoGallery.length === 0) return;
+            if (event.key === 'ArrowLeft') {
                 event.preventDefault();
-                currentPhotoIndex -= 1;
+                currentPhotoIndex = (currentPhotoIndex - 1 + currentPhotoGallery.length) % currentPhotoGallery.length;
                 renderPhotoGalleryImage();
-            } else if (event.key === 'ArrowRight' && currentPhotoIndex < currentPhotoGallery.length - 1) {
+            } else if (event.key === 'ArrowRight') {
                 event.preventDefault();
-                currentPhotoIndex += 1;
+                currentPhotoIndex = (currentPhotoIndex + 1) % currentPhotoGallery.length;
                 renderPhotoGalleryImage();
             }
         });
@@ -2197,6 +2349,15 @@
             button.addEventListener('click', () => {
                 const target = document.getElementById(button.dataset.tabTarget);
                 activateTab(target, true);
+            });
+        });
+
+        document.querySelectorAll('[data-guide-target]').forEach(button => {
+            button.addEventListener('click', () => {
+                document.getElementById(button.dataset.guideTarget).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
             });
         });
     </script>

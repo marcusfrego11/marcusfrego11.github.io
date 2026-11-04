@@ -357,7 +357,7 @@
             padding: 0;
         }
 
-        .instrument-photo {
+        .photo {
             display: grid;
             min-height: 190px;
             aspect-ratio: 16 / 9;
@@ -403,7 +403,7 @@
             grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
         }
 
-        .gear-grid .instrument-photo {
+        .gear-grid .photo {
             height: 100%;
             min-height: 330px;
             aspect-ratio: auto;
@@ -411,7 +411,7 @@
             border-bottom: 0;
         }
 
-        .gear-grid .instrument-card:nth-child(even) .instrument-photo {
+        .gear-grid .instrument-card:nth-child(even) .photo {
             grid-column: 2;
             grid-row: 1;
             border-right: 0;
@@ -458,7 +458,7 @@
             margin-top: 12px;
         }
 
-        .showcase-grid {
+        .gear-grid {
             grid-template-columns: minmax(0, 1fr);
         }
 
@@ -604,7 +604,7 @@
                 grid-template-columns: minmax(0, 1fr);
             }
 
-            .gear-grid .instrument-photo {
+            .gear-grid .photo {
                 height: auto;
                 min-height: 0;
                 aspect-ratio: 16 / 9;
@@ -613,7 +613,7 @@
                 border-bottom: 1px solid var(--line);
             }
 
-            .gear-grid .instrument-card:nth-child(even) .instrument-photo {
+            .gear-grid .instrument-card:nth-child(even) .photo {
                 grid-column: 1;
                 grid-row: auto;
                 border-left: 0;
@@ -1352,7 +1352,7 @@
 
         .home-link,
         .card,
-        .instrument-photo,
+        .photo,
         .showcase-photo {
             border: 2px solid;
             border-color: #ffffff #808080 #808080 #ffffff;
@@ -1428,13 +1428,13 @@
             padding: 0;
         }
 
-        .instrument-photo,
+        .photo,
         .showcase-photo {
             background: #a0a0a0;
             color: #111111;
         }
 
-        .instrument-photo.photo-gallery-trigger {
+        .photo.photo-gallery-trigger {
             position: relative;
             overflow: hidden;
             width: 100%;
@@ -1662,16 +1662,20 @@
                     </div>
                 </div>
                 <h3 class="subsection-title">Projects</h3>
-                <div class="card-grid showcase-grid">
+                <div class="card-grid gear-grid">
                     <article class="card showcase-card">
-                        <div class="showcase-photo" role="img" aria-label="Photo space for a project">Project photo goes here</div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Ibanez TMB100" data-gallery-id="tmb100" data-gallery-title="Ibanez TMB100">
+                            <img src="assets/images/tmb100-wiring.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
                         <div class="showcase-details">
-                            <h4>Project</h4>
+                            <h4>Ibanez TMB100</h4>
+                            <h5>Completed: 08/26</h5>
                             <p>Documentation of project</p>
                         </div>
                     </article>
                     <article class="card showcase-card">
-                        <div class="showcase-photo" role="img" aria-label="Photo space for another project">Project photo goes here</div>
+                        <div class="showcase-photo" role="img" aria-label="View photos of another project">Project photo goes here</div>
                         <div class="showcase-details">
                             <h4>More projects</h4>
                             <p>Other projects</p>
@@ -1679,12 +1683,42 @@
                     </article>
                 </div>
                 <h3 class="subsection-title subsection-spaced">Repairs</h3>
-                <div class="card-grid showcase-grid">
+                <div class="card-grid gear-grid">
                     <article class="card showcase-card">
                         <div class="showcase-photo" role="img" aria-label="Photo space for a repair">Repair photo goes here</div>
                         <div class="showcase-details">
                             <h4>Repair</h4>
                             <p>Documentation of repair</p>
+                        </div>
+                    </article>
+                    <article class="card showcase-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Squire J Bass" data-gallery-id="jBass" data-gallery-title="Squire J Bass">
+                            <img src="assets/images/j-bass-before.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="showcase-details">
+                            <h4>Squire J Bass</h4>
+                            <h5>Repaired: 09/26</h5>
+                            <p>Documentation of project</p>
+                        </div>
+                    </article>
+                    <article class="card showcase-card">
+                        <div class="showcase-photo" role="img" aria-label="View photos of Fender Rumble 10">Project photo goes here</div>
+                        <div class="showcase-details">
+                            <h4>Fender Rumble 10</h4>
+                            <h5>Repaired: 10/26</h5>
+                            <p>Documentation of project</p>
+                        </div>
+                    </article>
+                    <article class="card showcase-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Fender Rumble 350" data-gallery-id="rumble350" data-gallery-title="Fender Rumble 350">
+                            <img src="assets/images/rumble350-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="showcase-details">
+                            <h4>Fender Rumble 350</h4>
+                            <h5>Repaired: 11/26</h5>   
+                            <p>This was by far my easiest repair, requiring nothing but rubbing alcohol and a Q-tip to clean its oxidized jacks. Although more effort was put into tranporting than actually repairing the amp, this still counts as a repair in my book, as Long & McQuade was unable to solve the issue.</p>
                         </div>
                     </article>
                     <article class="card showcase-card">
@@ -1707,7 +1741,7 @@
                 <h3 class="subsection-title">Instruments</h3>
                 <div class="card-grid gear-grid">
                     <article class="card instrument-card">
-                        <button class="instrument-photo photo-gallery-trigger" type="button" aria-label="View photos of Epiphone Les Paul Classic (2021)" data-gallery-id="lesPaul" data-gallery-title="Epiphone Les Paul Classic (2021)">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Epiphone Les Paul Classic (2021)" data-gallery-id="lesPaul" data-gallery-title="Epiphone Les Paul Classic (2021)">
                             <img src="assets/images/les-paul-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 3 photos</span>
                         </button>
@@ -1724,7 +1758,7 @@
                         </div>
                     </article>
                     <article class="card instrument-card">
-                        <button class="instrument-photo photo-gallery-trigger" type="button" aria-label="View photos of Fender Lite Ash Telecaster (2007)" data-gallery-id="telecaster" data-gallery-title="Fender Lite Ash Telecaster (2007)">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Fender Lite Ash Telecaster (2007)" data-gallery-id="telecaster" data-gallery-title="Fender Lite Ash Telecaster (2007)">
                             <img src="assets/images/telecaster-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 3 photos</span>
                         </button>
@@ -1743,7 +1777,7 @@
                 <h3 class="subsection-title subsection-spaced">Amps</h3>
                 <div class="card-grid gear-grid">
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Marshall MG30FX amplifier">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="View photos of Marshall MG30FX amplifier">Photo goes here</div>
                         <div class="instrument-details">
                             <h4>Marshall MG30FX</h4>
                             <p class="instrument-description">Info about the MG30FX</p>
@@ -1754,7 +1788,7 @@
                         </div>
                     </article>
                     <article class="card instrument-card">
-                        <button class="instrument-photo photo-gallery-trigger" type="button" aria-label="View photos of Marshall JCM800 Studio Classic" data-gallery-id="jcm800" data-gallery-title="Marshall JCM800 Studio Classic">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Marshall JCM800 Studio Classic" data-gallery-id="jcm800" data-gallery-title="Marshall JCM800 Studio Classic">
                             <img src="assets/images/marshall-jcm800.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View photo</span>
                         </button>
@@ -1772,7 +1806,7 @@
                 <h3 class="subsection-title subsection-spaced">Pedals</h3>
                 <div class="card-grid gear-grid">
                     <article class="card instrument-card">
-                        <button class="instrument-photo photo-gallery-trigger" type="button" aria-label="View photos of Dunlop Cry Baby Wah" data-gallery-id="cryBaby" data-gallery-title="Dunlop Cry Baby Wah">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Dunlop Cry Baby Wah" data-gallery-id="cryBaby" data-gallery-title="Dunlop Cry Baby Wah">
                             <img src="assets/images/cry-baby-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
@@ -1789,7 +1823,7 @@
                         </div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Ibanez TS-9 Tube Screamer">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="View photos of Ibanez TS-9 Tube Screamer">Photo goes here</div>
                         <div class="instrument-details">
                             <h4>Ibanez TS-9 Tube Screamer (1996)</h4>
                             <p class="instrument-description">Info about the Tube Screamer</p>
@@ -1801,7 +1835,7 @@
                         </div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Wampler Ratsbane pedal">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="View photos of Wampler Ratsbane pedal">Photo goes here</div>
                         <div class="instrument-details">
                             <h4>Wampler Ratsbane (2021)</h4>
                             <p class="instrument-description">Info about the Ratsbane</p>
@@ -1812,7 +1846,7 @@
                         </div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Boss DS-2 Turbo Distortion pedal">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="View photos of Boss DS-2 Turbo Distortion pedal">Photo goes here</div>
                         <div class="instrument-details">
                             <h4>Boss DS-2 Turbo Distortion (2024)</h4>
                             <p class="instrument-description">Info about the DS-2 Turbo Distortion</p>
@@ -1823,9 +1857,13 @@
                         </div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Boss BF-2 Flanger pedal">Photo goes here</div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Boss BF-2" data-gallery-id="bf2" data-gallery-title="Boss BF-2">
+                            <img src="assets/images/bf2-full.jpeg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
+                        </button>
                         <div class="instrument-details">
                             <h4>Boss BF-2 Flanger (1986)</h4>
+                            <h5>Acquired: 05/2026</h5>
                             <p class="instrument-description">Info about the BF-2 Flanger</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
@@ -1834,9 +1872,13 @@
                         </div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Boss DD-3 Digital Delay pedal">Photo goes here</div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Boss DD-3" data-gallery-id="dd3" data-gallery-title="Boss DD-3">
+                            <img src="assets/images/dd3-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
+                        </button>
                         <div class="instrument-details">
                             <h4>Boss DD-3 Digital Delay (2000)</h4>
+                            <h5>Acquired: 05/2026</h5>
                             <p class="instrument-description">Info about the DD-3 Digital Delay</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
@@ -1851,64 +1893,64 @@
                 <div class="panel-header">
                     <div>
                         <h2>Retro Gaming</h2>
-                        <p>My ever-growing collection of retro consoles, handhelds, and lots more games.</p>
+                        <p>A look at my collection of retro consoles, handhelds, and games.</p>
                     </div>
                 </div>
-                <h3 class="subsection-title subsection-spaced">Consoles</h3>
+                <h3 class="subsection-title">Consoles</h3>
                 <div class="card-grid">
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Nintendo Entertainment System">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Nintendo Entertainment System">Photo goes here</div>
                         <div class="instrument-details"><h4>Nintendo Entertainment System (1986)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Super Nintendo Entertainment System">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Super Nintendo Entertainment System">Photo goes here</div>
                         <div class="instrument-details"><h4>Super Nintendo Entertainment System (1991)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Sony PlayStation">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Sony PlayStation">Photo goes here</div>
                         <div class="instrument-details"><h4>Sony PlayStation (1995)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Nintendo 64">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Nintendo 64">Photo goes here</div>
                         <div class="instrument-details"><h4>Nintendo 64 (1996)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Sony PlayStation 2">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Sony PlayStation 2">Photo goes here</div>
                         <div class="instrument-details"><h4>Sony PlayStation 2 (2000)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Nintendo GameCube">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Nintendo GameCube">Photo goes here</div>
                         <div class="instrument-details"><h4>Nintendo GameCube (2001)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Sony PlayStation 3 Slim">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Sony PlayStation 3 Slim">Photo goes here</div>
                         <div class="instrument-details"><h4>Sony PlayStation 3 Slim (2009)</h4></div>
                     </article>
                 </div>
                 <h3 class="subsection-title subsection-spaced">Handhelds</h3>
                 <div class="card-grid">
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Sega Game Gear">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Sega Game Gear">Photo goes here</div>
                         <div class="instrument-details"><h4>Sega Game Gear (1991)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Nintendo Game Boy Color">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Nintendo Game Boy Color">Photo goes here</div>
                         <div class="instrument-details"><h4>Nintendo Game Boy Color (1998)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Nintendo Game Boy Advance">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Nintendo Game Boy Advance">Photo goes here</div>
                         <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Nintendo Game Boy Advance">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Nintendo Game Boy Advance">Photo goes here</div>
                         <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Sony PSP 1000">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Sony PSP 1000">Photo goes here</div>
                         <div class="instrument-details"><h4>Sony PSP 1000 (2005)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="instrument-photo" role="img" aria-label="Photo space for Sony PSP 3000">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Sony PSP 3000">Photo goes here</div>
                         <div class="instrument-details"><h4>Sony PSP 3000 (2008)</h4></div>
                     </article>
                 </div>
@@ -1922,29 +1964,49 @@
                     </div>
                 </div>
                 <h3 class="subsection-title">Computers</h3>
-                <div class="card-grid showcase-grid">
+                <div class="card-grid gear-grid">
                     <article class="card showcase-card">
                         <div class="showcase-photo" role="img" aria-label="Photo space for a computer">Computer photo goes here</div>
                         <div class="showcase-details">
-                            <h4>Computer</h4>
-                            <p>Info about computer</p>
+                            <h4>Apple eMac 1.0 GHz ATI (PowerPC G4) (2004)</h4>
+                            <h5>Acquired: 09/2025</h5>
+                            <p>All-in one computer</p>
                         </div>
                     </article>
                     <article class="card showcase-card">
-                        <div class="showcase-photo" role="img" aria-label="Photo space for a computer accessory">Accessory photo goes here</div>
+                        <div class="showcase-photo" role="img" aria-label="Photo space for a computer">Computer photo goes here</div>
                         <div class="showcase-details">
-                            <h4>Computer accessory</h4>
-                            <p>Hardware separate from the computer itself</p>
+                            <h4>Apple iMac (Intel) (2006)</h4>
+                            <h5>Acquired: 08/2026</h5>
+                            <p>All-in-one computer</p>
                         </div>
                     </article>
                 </div>
-                <h3 class="subsection-title subsection-spaced">Other Devices</h3>
-                <div class="card-grid showcase-grid">
+                <h3 class="subsection-title">Accessories</h3>
+                <div class="card-grid gear-grid">
                     <article class="card showcase-card">
-                        <div class="showcase-photo" role="img" aria-label="Photo space for another device">Device photo goes here</div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Dell UltraScan 800HS" data-gallery-id="d825ht" data-gallery-title="Dell UltraScan 800HS">
+                            <img src="assets/images/d825ht-sample.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
                         <div class="showcase-details">
-                            <h4>Other device</h4>
-                            <p>Info about device</p>
+                            <h4>Dell UltraScan 800HS (D825HT) (1997)</h4>
+                            <h5>Acquired: 07/2026</h5>
+                            <p>CRT Monitor.</p>
+                        </div>
+                    </article>
+                </div>
+                <h3 class="subsection-title">Other Devices</h3>
+                <div class="card-grid gear-grid">
+                    <article class="card showcase-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Canon EOS 30D" data-gallery-id="eos30d" data-gallery-title="Canon EOS 30D">
+                            <img src="assets/images/eos30d-accessories.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="showcase-details">
+                            <h4>Canon EOS 30D (2006)</h4>
+                            <h5>Acquired: 08/2026</h5>
+                            <p>DSLR Camera</p>
                         </div>
                     </article>
                 </div>
@@ -2031,6 +2093,16 @@
         const closePhotoDialogButton = document.getElementById('closePhotoDialog');
         const mobileNavigation = window.matchMedia('(max-width: 760px)');
         const photoGalleries = {
+            tmb100: [
+                { src: 'assets/images/tmb100-before.jpg', caption: 'Ibanez TMB100 before repair' },
+                { src: 'assets/images/tmb100-wiring.jpg', caption: 'Ibanez TMB100 custom J Bass style wiring' }
+            ],
+            rumble350: [
+                { src: 'assets/images/rumble350-full.jpg', caption: 'Full view of repaired amp' },
+            ],
+            jBass: [
+                { src: 'assets/images/j-bass-before.jpg', caption: 'Squire J Bass before repair' },
+            ],
             lesPaul: [
                 { src: 'assets/images/les-paul-full.jpg', caption: 'Full view of guitar' },
                 { src: 'assets/images/les-paul-neck.jpg', caption: 'Mahogany SlimTaper neck and Alnico Classic Pro pickup' },
@@ -2047,9 +2119,23 @@
             cryBaby: [
                 { src: 'assets/images/cry-baby-full.jpg', caption: 'Full view of pedal' },
                 { src: 'assets/images/cry-baby-label.jpg', caption: 'Pedal\'s bottom label' }
+            ],
+            bf2: [
+                { src: 'assets/images/bf2-full.jpeg', caption: 'Full view of pedal' },
+                { src: 'assets/images/bf2-label.jpg', caption: 'Pedal\'s bottom label' }
+            ],
+            dd3: [
+                { src: 'assets/images/dd3-full.jpg', caption: 'Full view of pedal' },
+                { src: 'assets/images/dd3-label.jpg', caption: 'Pedal\'s bottom label' }
+            ],
+            d825ht: [
+                { src: 'assets/images/d825ht-sample.jpg', caption: 'Gameplay sample of MegaMan X4'}
+            ],
+            eos30d: [
+                { src: 'assets/images/eos30d-accessories.jpg', caption: 'Camera accessories'}
             ]
         };
-        document.querySelectorAll('.instrument-photo[role="img"], .showcase-photo[role="img"]').forEach((placeholder, index) => {
+        document.querySelectorAll('.photo[role="img"], .showcase-photo[role="img"]').forEach((placeholder, index) => {
             const card = placeholder.closest('.instrument-card, .showcase-card');
             const title = card.querySelector('h4')?.textContent.trim();
             if (!title) {

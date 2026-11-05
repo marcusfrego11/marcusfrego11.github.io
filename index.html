@@ -401,7 +401,7 @@
         .gear-grid .instrument-card {
             display: grid;
             min-height: 330px;
-            grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
         .gear-grid .photo {
@@ -466,7 +466,7 @@
         .showcase-card {
             display: grid;
             min-height: 340px;
-            grid-template-columns: minmax(280px, 0.8fr) minmax(0, 1.2fr);
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             padding: 0;
             overflow: hidden;
         }
@@ -1766,8 +1766,8 @@
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Ibanez TMB100" data-gallery-id="tmb100" data-gallery-title="Ibanez TMB100">
-                            <img src="assets/images/tmb100-wiring.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <img src="assets/images/tmb100-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 4 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Ibanez TMB100</h4>
@@ -1775,27 +1775,13 @@
                             <p>Documentation of project</p>
                         </div>
                     </article>
-                    <article class="card showcase-card">
-                        <div class="showcase-photo" role="img" aria-label="View photos of another project">Project photo goes here</div>
-                        <div class="showcase-details">
-                            <h4>More projects</h4>
-                            <p>Other projects</p>
-                        </div>
-                    </article>
                 </div>
                 <h3 class="subsection-title subsection-spaced">Repairs</h3>
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
-                        <div class="showcase-photo" role="img" aria-label="Photo space for a repair">Repair photo goes here</div>
-                        <div class="showcase-details">
-                            <h4>Repair</h4>
-                            <p>Documentation of repair</p>
-                        </div>
-                    </article>
-                    <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Squire J Bass" data-gallery-id="jBass" data-gallery-title="Squire J Bass">
-                            <img src="assets/images/j-bass-before.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <img src="assets/images/j-bass-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 3 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Squire J Bass</h4>
@@ -1804,9 +1790,12 @@
                         </div>
                     </article>
                     <article class="card showcase-card">
-                        <div class="showcase-photo" role="img" aria-label="View photos of Fender Rumble 10">Project photo goes here</div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Fender Rumble 15" data-gallery-id="rumble15" data-gallery-title="Fender Rumble 15">
+                            <img src="assets/images/rumble15-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
+                        </button>
                         <div class="showcase-details">
-                            <h4>Fender Rumble 10</h4>
+                            <h4>Fender Rumble 15 (2011)</h4>
                             <h5>Repaired: 10/26</h5>
                             <p>Documentation of project</p>
                         </div>
@@ -1817,16 +1806,9 @@
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="showcase-details">
-                            <h4>Fender Rumble 350</h4>
+                            <h4>Fender Rumble 350 (2010)</h4>
                             <h5>Repaired: 11/26</h5>   
                             <p>This was by far my easiest repair, requiring nothing but rubbing alcohol and a Q-tip to clean its oxidized jacks. Although more effort was put into tranporting than actually repairing the amp, this still counts as a repair in my book, as Long & McQuade was unable to solve the issue.</p>
-                        </div>
-                    </article>
-                    <article class="card showcase-card">
-                        <div class="showcase-photo" role="img" aria-label="Photo space for another repair">Repair photo goes here</div>
-                        <div class="showcase-details">
-                            <h4>More repairs</h4>
-                            <p>Other repairs</p>
                         </div>
                     </article>
                 </div>
@@ -1874,13 +1856,27 @@
                             </section>
                         </div>
                     </article>
+                    <article class="card instrument-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Yamaha P-105" data-gallery-id="p105" data-gallery-title="Yamaha P-105">
+                            <img src="assets/images/p105-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 3 photos</span>
+                        </button>
+                        <div class="instrument-details">
+                            <h4>Yamaha P-105 Electric Piano (2014)</h4>
+                            <h5>Acquired: 10/2026</h5>
+                            <p class="instrument-description">Piano</p>
+                        </div>
+                    </article>
                 </div>
                 <h3 class="subsection-title subsection-spaced">Amps</h3>
                 <div class="card-grid gear-grid">
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="View photos of Marshall MG30FX amplifier">Photo goes here</div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Marshall MG30FX amplifier" data-gallery-id="mg30fx" data-gallery-title="Marshall MG30FX">
+                            <img src="assets/images/mg30fx-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
                         <div class="instrument-details">
-                            <h4>Marshall MG30FX</h4>
+                            <h4>Marshall MG30FX (2020)</h4>
                             <h5>Acquired: ???</h5>
                             <p class="instrument-description">Info about the MG30FX</p>
                             <section class="modification-section">
@@ -1891,11 +1887,11 @@
                     </article>
                     <article class="card instrument-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Marshall JCM800 Studio Classic" data-gallery-id="jcm800" data-gallery-title="Marshall JCM800 Studio Classic">
-                            <img src="assets/images/marshall-jcm800.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View photo</span>
+                            <img src="assets/images/jcm800-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="instrument-details">
-                            <h4>Marshall JCM800 Studio Classic</h4>
+                            <h4>Marshall JCM800 Studio Classic (2018)</h4>
                             <h5>Acquired: 04/2026</h5>
                             <p class="instrument-description">The classic 80s Marshall monster in a small but mighty package. Despite having only 20 watts and a 10-inch speaker, this thing gets LOUD. Modern features such as an effects loop and digital interface output make this a highly versatile and powerful amplifier.</p>
                             <section class="modification-section">
@@ -1915,33 +1911,41 @@
                         <div class="instrument-details">
                             <h4>Dunlop GCB-95 Cry Baby Wah (1988)</h4>
                             <h5>Acquired: 05/2026</h5>
-                            <p class="instrument-description">Info about the Cry Baby Wah</p>
+                            <p class="instrument-description">A classic wah pedal with a few tasteful mods.</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
-                                <p>By far my most overhauled pedal. While it began life as a late-80s unit, it took less than an hour in my possesion to recieve significant modifications.</p>
+                                <p>While it began life as a bone-stock late-80s unit, this pedal took less than an hour in my possesion to recieve significant modifications.</p>
                                 <p>05/2026: Upgraded its inductor to a Jim Dunlop Red Fasel and changed capacitor and resistor values to mirror vintage Vox units.</p>
                                 <p>09/2026: Removed stock rubber stoppers for greater physical sweep of the pedal and a more smooth motion.</p>
                             </section>
                         </div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="View photos of Ibanez TS-9 Tube Screamer">Photo goes here</div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Ibanez TS-9 Tube Screamer" data-gallery-id="ts9" data-gallery-title="Ibanez TS-9 Tube Screamer">
+                            <img src="assets/images/ts9-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
+                        </button>
                         <div class="instrument-details">
                             <h4>Ibanez TS-9 Tube Screamer (1996)</h4>
-                            <p class="instrument-description">Info about the Tube Screamer</p>
+                            <p class="instrument-description">A classic overdrive pedal.</p>
                             <h5>Acquired: 04/2026</h5>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
                                 <p>More info</p>
+                                <p>04/2026: Upgraded resistors and capacitors to mirror the values of older (and more expensive) TS-808 pedals.</p>
+                                <p>10/2026: Replaced its TL072 op-amp with a socket connector and installed a JRC4558D for more accuracy to early TS-808 units.</p>
                             </section>
                         </div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="View photos of Wampler Ratsbane pedal">Photo goes here</div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Wampler Ratsbane" data-gallery-id="ratsbane" data-gallery-title="Wampler Ratsbane">
+                            <img src="assets/images/ratsbane-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
                         <div class="instrument-details">
                             <h4>Wampler Ratsbane (2021)</h4>
-                            <h5>Acquired: 06/2026</h5>
-                            <p class="instrument-description">Info about the Ratsbane</p>
+                            <h5>Acquired: 07/2026</h5>
+                            <p class="instrument-description">A small-but-mighty Proco Rat clone. Additions such as a clipping and voice toggle make this a highly versatile distortion effect.</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
                                 <p>No modifications have been made to this pedal (yet).</p>
@@ -1949,11 +1953,14 @@
                         </div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="View photos of Boss DS-2 Turbo Distortion pedal">Photo goes here</div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Boss DS-2" data-gallery-id="ds2" data-gallery-title="Boss DS-2">
+                            <img src="assets/images/ds2-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
+                        </button>
                         <div class="instrument-details">
                             <h4>Boss DS-2 Turbo Distortion (2024)</h4>
                             <h5>Acquired: 08/2025</h5>
-                            <p class="instrument-description">Info about the DS-2 Turbo Distortion</p>
+                            <p class="instrument-description">A powerful and versatile distortion pedal with a wide range of tones.</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
                                 <p>No modifications have been made to this pedal (yet).</p>
@@ -1968,10 +1975,11 @@
                         <div class="instrument-details">
                             <h4>Boss BF-2 Flanger (1986)</h4>
                             <h5>Acquired: 05/2026</h5>
-                            <p class="instrument-description">Info about the BF-2 Flanger</p>
+                            <p class="instrument-description">A super underrated and great-sounding pedal. The BF-2 offers a rich, swirling flange effect that is more suitable than one may assume for many rock and jazz applications.</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
-                                <p>More info</p>
+                                <p>Another highly modified pedal of mine. </p>
+                                <p>05/2026:</p>
                             </section>
                         </div>
                     </article>
@@ -1983,11 +1991,27 @@
                         <div class="instrument-details">
                             <h4>Boss DD-3 Digital Delay (2000)</h4>
                             <h5>Acquired: 05/2026</h5>
-                            <p class="instrument-description">Info about the DD-3 Digital Delay</p>
+                            <p class="instrument-description">A reliable and versatile digital delay pedal with a wide range of delay times and effects. Despite its age and lack of features compared to modern Boss releases such as the DD-3T and DD-8, I still find it to be a valuable addition to my setup.</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
-                                <p>More info</p>
+                                <p>Being an older unit, its through-hole design allows for easier modifications that modern SMD designs do not.</p>
+                                <p>05/2026: Soldered a 0.22μF capacitor to pins 1 and 3 of the feedback potentiometer to roll off harsh high-end and produce a more "analog-like" sound.</p>
                             </section>
+                        </div>
+                    </article>
+                </div>
+                <h3 class="subsection-title">Other Gear</h3>
+                <div class="card-grid gear-grid">
+                    
+                    <article class="card instrument-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sennheiser HD600" data-gallery-id="hd600" data-gallery-title="Sennheiser HD600">
+                            <img src="assets/images/hd600-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
+                        </button>
+                        <div class="instrument-details">
+                            <h4>Sennheiser HD600</h4>
+                            <h5>Acquired: 12/2025</h5>
+                            <p class="instrument-description">Excellent pair of studio-grade headphones.</p>
                         </div>
                     </article>
                 </div>
@@ -2070,7 +2094,10 @@
                 <h3 class="subsection-title">Computers</h3>
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
-                        <div class="showcase-photo" role="img" aria-label="Photo space for a computer">Computer photo goes here</div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Apple eMac" data-gallery-id="emac" data-gallery-title="Apple eMac">
+                            <img src="assets/images/eMac-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
                         <div class="showcase-details">
                             <h4>Apple eMac 1.0 GHz ATI (PowerPC G4) (2004)</h4>
                             <h5>Acquired: 09/2025</h5>
@@ -2078,7 +2105,10 @@
                         </div>
                     </article>
                     <article class="card showcase-card">
-                        <div class="showcase-photo" role="img" aria-label="Photo space for a computer">Computer photo goes here</div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Apple iMac" data-gallery-id="imac" data-gallery-title="Apple iMac">
+                            <img src="assets/images/iMac-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
                         <div class="showcase-details">
                             <h4>Apple iMac (Intel) (2006)</h4>
                             <h5>Acquired: 08/2026</h5>
@@ -2086,7 +2116,7 @@
                         </div>
                     </article>
                 </div>
-                <h3 class="subsection-title">Accessories</h3>
+                <h3 class="subsection-title">Other Devices</h3>
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Dell UltraScan 800HS" data-gallery-id="d825ht" data-gallery-title="Dell UltraScan 800HS">
@@ -2099,9 +2129,17 @@
                             <p>CRT Monitor.</p>
                         </div>
                     </article>
-                </div>
-                <h3 class="subsection-title">Other Devices</h3>
-                <div class="card-grid gear-grid">
+                    <article class="card showcase-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Bell & Howell 252" data-gallery-id="252" data-gallery-title="Bell & Howell 252">
+                            <img src="assets/images/252-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 4 photos</span>
+                        </button>
+                        <div class="showcase-details">
+                            <h4>Bell & Howell 252-B Monterey Deluxe (1954)</h4>
+                            <h5>Acquired: 04/2025</h5>
+                            <p>Vintage 8mm film camera</p>
+                        </div>
+                    </article>
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Canon EOS 30D" data-gallery-id="eos30d" data-gallery-title="Canon EOS 30D">
                             <img src="assets/images/eos30d-accessories.jpg" alt="">
@@ -2110,7 +2148,7 @@
                         <div class="showcase-details">
                             <h4>Canon EOS 30D (2006)</h4>
                             <h5>Acquired: 08/2026</h5>
-                            <p>DSLR Camera</p>
+                            <p>DSLR camera</p>
                         </div>
                     </article>
                 </div>
@@ -2198,16 +2236,26 @@
         const closePhotoDialogButton = document.getElementById('closePhotoDialog');
         const mobileNavigation = window.matchMedia('(max-width: 760px)');
         const photoGalleries = {
+            //Projects & Repairs
             tmb100: [
                 { src: 'assets/images/tmb100-before.jpg', caption: 'Ibanez TMB100 before repair. Its dual-concentric knob shafts are broken off and the neck is missing tuners.' },
-                { src: 'assets/images/tmb100-wiring.jpg', caption: 'Ibanez TMB100 custom J Bass style wiring. This layout ditches the active-preamp for a more traditional wiring with Alpha potentiometers.' }
+                { src: 'assets/images/tmb100-wiring.jpg', caption: 'Custom J Bass style wiring. This layout ditches the active-preamp for a more traditional wiring with Alpha potentiometers.' },
+                { src: 'assets/images/tmb100-full.jpg', caption: 'Ibanez TMB100 after repair. Its dual-concentric knobs have been replaced with standard knobs and the neck has been fitted with new tuners.' },
+                { src: 'assets/images/tmb100-controls.jpg', caption: 'Control layout after repair. The new wiring harness allows for a more traditional tone control and volume controls per pickup.' }
+            ],
+            rumble15: [
+                { src: 'assets/images/rumble15-full.jpg', caption: 'Full view of functioning amp.' },
+                { src: 'assets/images/rumble15-back.jpg', caption: 'Back view of amp.' }
             ],
             rumble350: [
-                { src: 'assets/images/rumble350-full.jpg', caption: 'Full view of functioning amp. Oxidized jacks are a fairly common for amps of its age and use.' },
+                { src: 'assets/images/rumble350-full.jpg', caption: 'Full view of functioning amp. Boy is it large!' },
             ],
             jBass: [
-                { src: 'assets/images/j-bass-before.jpg', caption: 'Squire J Bass before repair. Its oversized, mis-matching, and cross-threaded screws are not a pretty sight.' },
+                { src: 'assets/images/j-bass-before.jpg', caption: 'Squire J Bass before repair. It is missing tuners and its mis-matching, cross-threaded screws are not a pretty sight.' },
+                { src: 'assets/images/j-bass-full.jpg', caption: 'J Bass after repair. Its screws have been replaced with proper-sized, matching screws and has been given new tuners.' },
+                { src: 'assets/images/j-bass-headstock.jpg', caption: 'Headstock after repair.' }
             ],
+            //Instruments
             lesPaul: [
                 { src: 'assets/images/les-paul-full.jpg', caption: 'Full view of guitar.' },
                 { src: 'assets/images/les-paul-neck.jpg', caption: 'Its mahogany SlimTaper neck is great-feeling and its Alnico Classic Pro pickup holds up amazingly for an Epiphone.' },
@@ -2218,12 +2266,34 @@
                 { src: 'assets/images/telecaster-bridge.jpg', caption: 'Traditional "ashtray" style bridge with a Seymour Duncan Alnico II Pro pickup.' },
                 { src: 'assets/images/telecaster-neck.jpg', caption: 'Pearl neck inlays in its maple fretboard and the natural finish on its ash body look even better in person.' }
             ],
-            jcm800: [
-                { src: 'assets/images/marshall-jcm800.jpg', caption: 'Front view of Marshall JCM800. Its current settings are my go-to for many different rock tones.' }
+            p105: [
+                { src: 'assets/images/p105-full.jpg', caption: 'Full view of piano. It is in good condition and functions well.' },
+                { src: 'assets/images/p105-keys.jpg', caption: 'Close-up of piano keys. They are weighted and have a nice feel to them.' },
+                { src: 'assets/images/p105-pedal.jpg', caption: 'Close-up of Yorkville AFP7 pedal. It is in good condition and functions well.' }
             ],
+            //Amps
+            mg30fx: [
+                { src: 'assets/images/mg30fx-full.jpg', caption: 'Full view of amp.' },           
+            ],
+            jcm800: [
+                { src: 'assets/images/jcm800-full.jpg', caption: 'Front view of Marshall JCM800. Its current settings are my go-to for many different rock tones.' },
+                { src: 'assets/images/jcm800-back.jpg', caption: 'Back view of Marshall JCM800.' }
+            ],
+            //Pedals
             cryBaby: [
                 { src: 'assets/images/cry-baby-full.jpg', caption: 'Full view of pedal. While it has certainly seen better days, it still functions perfectly and much better than it did stock with modifications.' },
                 { src: 'assets/images/cry-baby-label.jpg', caption: 'Pedal\'s bottom label. Late 80s units share this label design, though not all show this level of use.' }
+            ],
+            ts9: [
+                { src: 'assets/images/ts9-full.jpg', caption: 'Full view of pedal. It is by far my most utilized and favorite pedal in my collection.' },
+                { src: 'assets/images/ts9-label.jpg', caption: 'Pedal\'s bottom label. Ibanez re-releases have kept a similar design to this day, but the serial number can help identify this one as a 90s first-generation re-release.' }
+            ],
+            ratsbane: [
+                { src: 'assets/images/ratsbane-full.jpg', caption: 'Full view of pedal. It is in great condition, as it is my newest addition to the collection.' },
+            ],
+            ds2: [
+                { src: 'assets/images/ds2-full.jpg', caption: 'Full view of pedal. It is in decent condition, living at school most of the time.' },
+                { src: 'assets/images/ds2-label.jpg', caption: 'Pedal\'s bottom label. The black label confirms it as a recent model.' }
             ],
             bf2: [
                 { src: 'assets/images/bf2-full.jpeg', caption: 'Full view of pedal. It is in good condition for an early MIJ model.' },
@@ -2233,8 +2303,27 @@
                 { src: 'assets/images/dd3-full.jpg', caption: 'Full view of pedal.' },
                 { src: 'assets/images/dd3-label.jpg', caption: 'Pedal\'s bottom label. This black label represents the first few models made in Taiwan as opposed to Japan. ' }
             ],
+            //Other Gear
+            hd600: [
+                { src: 'assets/images/hd600-full.jpg', caption: 'Full view of headphones. Very premium in design and sound quality. Good thing I got them on discount!' },
+                { src: 'assets/images/hd600-driver.jpg', caption: 'Close-up of headphone driver. These headphones are my only pair of open-back headphones and sound amazing.' }
+            ],
+            //Computers
+            emac: [
+                { src: 'assets/images/emac-full.jpg', caption: 'Full view of computer. It is in good condition and functions well.' }
+            ],
+            imac: [
+                { src: 'assets/images/iMac-full.jpg', caption: 'Full view of computer. It is in good condition and functions well.' }
+            ],
+            //More Tech
             d825ht: [
                 { src: 'assets/images/d825ht-sample.jpg', caption: 'Video sample using gameplay of MegaMan X4 for Windows.'}
+            ],
+            252: [
+                { src: 'assets/images/252-full.jpg', caption: 'Full view of camera.' },
+                { src: 'assets/images/252-front.jpg', caption: 'Front view of camera.' },
+                { src: 'assets/images/252-manual-cover.jpg', caption: 'Close-up of camera manual cover.' },
+                { src: 'assets/images/252-manual-inside.jpg', caption: 'Close-up of manual inside page.' }
             ],
             eos30d: [
                 { src: 'assets/images/eos30d-accessories.jpg', caption: 'Camera accessories. '}

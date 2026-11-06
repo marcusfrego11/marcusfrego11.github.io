@@ -226,6 +226,18 @@
             margin-top: 26px;
         }
 
+        .section-nav-group {
+            margin-top: 20px;
+        }
+
+        .section-nav-label {
+            margin: 0 0 6px;
+        }
+
+        .section-nav {
+            margin-top: 0;
+        }
+
         .home-link {
             padding: 10px 14px;
             border: 1px solid var(--line);
@@ -952,7 +964,7 @@
         .wallpaper-heading {
             margin: 0 0 6px;
             color: #404040;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 700;
         }
 
@@ -986,7 +998,7 @@
         .social-heading {
             margin: 10px 0 6px;
             color: #404040;
-            font-size: 12px;
+            font-size: 14px;
             font-weight: 700;
         }
 
@@ -996,18 +1008,40 @@
             gap: 4px;
         }
 
-        .social-placeholder {
+        .social-item {
+            display: flex;
+            min-width: 0;
+            align-items: center;
+            gap: 5px;
             padding: 4px;
             border: 1px solid #808080;
             background: #d4d0c8;
             color: #404040;
-            font-size: 10px;
-            text-align: center;
+            font-size: 12px;
+            text-decoration: none;
+        }
+
+        .social-item:hover {
+            background: #ffffff;
+            color: #000080;
+        }
+
+        .social-item:focus-visible {
+            outline: 1px dotted #111111;
+            outline-offset: 1px;
+        }
+
+        .social-icon {
+            display: block;
+            width: 24px;
+            height: 24px;
+            flex: 0 0 auto;
+            object-fit: contain;
         }
 
         .wallpaper-preview {
             width: 20px;
-            height: 22px;
+            height: 20px;
             flex: 0 0 auto;
             border: 1px solid #404040;
             background-position: center;
@@ -1712,12 +1746,19 @@
             </section>
             <p class="sidebar-bottom">2026 Marcus Fregonese.</p>
             <section aria-labelledby="socialHeading">
-                <h2 id="socialHeading" class="social-heading">Socials</h2>
+                <h2 id="socialHeading" class="social-heading">My Socials</h2>
                 <div class="social-links">
-                    <span class="social-placeholder">Instagram</span>
-                    <span class="social-placeholder">TikTok</span>
-                    <span class="social-placeholder">Discord</span>
-                    <span class="social-placeholder">Email</span>
+                    <a class="social-item" href="https://www.instagram.com/marcusfrego11/" target="_blank" rel="noopener noreferrer"><img class="social-icon" src="assets/images/instagram.png" alt="">Instagram</a>
+                    <a class="social-item" href="https://www.tiktok.com/@marcusfrego11" target="_blank" rel="noopener noreferrer"><img class="social-icon" src="assets/images/tiktok.png" alt="">TikTok</a>
+                    <a class="social-item" href="https://discord.com/users/708343522713010186" target="_blank" rel="noopener noreferrer"><img class="social-icon" src="assets/images/discord.png" alt="">Discord</a>
+                    <a class="social-item" href="mailto:marcusfrego11@gmail.com"><img class="social-icon" src="https://win98icons.alexmeub.com/icons/png/outlook_express-0.png" alt="">Email</a>
+                </div>
+            </section>
+            <section aria-labelledby="bandHeading">
+                <h2 id="bandHeading" class="social-heading">My Band</h2>
+                <div class="social-links">
+                    <a class="social-item" href="https://open.spotify.com/artist/6eyYYV3rgQrBjgycfo28r3?si=yrPSbUDZR7S770JnlPSCNQ" target="_blank" rel="noopener noreferrer"><img class="social-icon" src="assets/images/spotify.png" alt="">Spotify</a>
+                    <a class="social-item" href="https://www.instagram.com/officialgeronimo" target="_blank" rel="noopener noreferrer"><img class="social-icon" src="assets/images/instagram.png" alt="">Instagram</a>
                 </div>
             </section>
         </aside>
@@ -1781,7 +1822,7 @@
                     <button class="card home-card" type="button" data-tab-target="tab-cameras">
                         <span class="card-mark" aria-hidden="true"></span>
                         <span class="home-card-title">Cameras</span>
-                        <span class="home-card-copy">Cameras.</span>
+                        <span class="home-card-copy">My collection of film and digital cameras.</span>
                     </button>
                     <button class="card home-card" type="button" data-tab-target="tab-computers">
                         <span class="card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" shape-rendering="crispEdges"><rect x="2" y="3" width="16" height="13" fill="#404040"/><rect x="3" y="4" width="14" height="10" fill="#c0c0c0"/><rect x="5" y="6" width="10" height="6" fill="#000080"/><rect x="6" y="7" width="8" height="4" fill="#1084d0"/><rect x="9" y="16" width="3" height="4" fill="#808080"/><rect x="6" y="20" width="9" height="2" fill="#404040"/><rect x="19" y="6" width="3" height="15" fill="#808080"/><rect x="20" y="8" width="1" height="3" fill="#008000"/></svg></span>
@@ -1803,6 +1844,14 @@
                         <p>A closer look at the projects I've made and the repairs I've done.</p>
                     </div>
                 </div>
+                <div class="section-nav-group">
+                    <h4 class="section-nav-label">Jump to a section:</h4>
+                    <nav class="home-links section-nav" aria-label="Jump to a section">
+                        <button class="home-link" type="button" data-section-target="repairs-projects">Projects</button>
+                        <button class="home-link" type="button" data-section-target="repairs-repairs">Repairs</button>
+                    </nav>
+                </div>
+                <h3 class="subsection-title" id="repairs-projects">Projects</h3>
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Ibanez TMB100" data-gallery-id="tmb100" data-gallery-title="Ibanez TMB100">
@@ -1815,6 +1864,9 @@
                             <p>Documentation of project</p>
                         </div>
                     </article>
+                </div>
+                <h3 class="subsection-title subsection-spaced" id="repairs-repairs">Repairs</h3>
+                <div class="card-grid gear-grid">
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Squire J Bass" data-gallery-id="jBass" data-gallery-title="Squire J Bass">
                             <img src="assets/images/j-bass-full.jpg" alt="">
@@ -1858,7 +1910,16 @@
                         <p>A look at my music gear, including my guitars, amps, effects pedals, and other Instruments.</p>
                     </div>
                 </div>
-                <h3 class="subsection-title">Instruments</h3>
+                <div class="section-nav-group">
+                    <h4 class="section-nav-label">Jump to a section:</h4>
+                    <nav class="home-links section-nav" aria-label="Jump to a section">
+                        <button class="home-link" type="button" data-section-target="gear-instruments">Instruments</button>
+                        <button class="home-link" type="button" data-section-target="gear-amps">Amps</button>
+                        <button class="home-link" type="button" data-section-target="gear-pedals">Pedals</button>
+                        <button class="home-link" type="button" data-section-target="gear-other">Other Gear</button>
+                    </nav>
+                </div>
+                <h3 class="subsection-title" id="gear-instruments">Instruments</h3>
                 <div class="card-grid gear-grid">
                     <article class="card instrument-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Epiphone Les Paul Classic (2021)" data-gallery-id="lesPaul" data-gallery-title="Epiphone Les Paul Classic (2021)">
@@ -1905,7 +1966,7 @@
                         </div>
                     </article>
                 </div>
-                <h3 class="subsection-title subsection-spaced">Amps</h3>
+                <h3 class="subsection-title subsection-spaced" id="gear-amps">Amps</h3>
                 <div class="card-grid gear-grid">
                     <article class="card instrument-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Marshall MG30FX amplifier" data-gallery-id="mg30fx" data-gallery-title="Marshall MG30FX">
@@ -1938,7 +1999,7 @@
                         </div>
                     </article>
                 </div>
-                <h3 class="subsection-title subsection-spaced">Pedals</h3>
+                <h3 class="subsection-title subsection-spaced" id="gear-pedals">Pedals</h3>
                 <div class="card-grid gear-grid">
                     <article class="card instrument-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Dunlop Cry Baby Wah" data-gallery-id="cryBaby" data-gallery-title="Dunlop Cry Baby Wah">
@@ -2037,7 +2098,7 @@
                         </div>
                     </article>
                 </div>
-                <h3 class="subsection-title">Other Gear</h3>
+                <h3 class="subsection-title" id="gear-other">Other Gear</h3>
                 <div class="card-grid gear-grid">
                     <article class="card instrument-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony STR-K7000" data-gallery-id="k7000" data-gallery-title="Sony STR-K7000">
@@ -2071,61 +2132,71 @@
                         <p>A look at my collection of retro consoles, handhelds, and games.</p>
                     </div>
                 </div>
-                <h3 class="subsection-title">Consoles</h3>
+                <div class="section-nav-group">
+                    <h4 class="section-nav-label">Jump to a section:</h4>
+                    <nav class="home-links section-nav" aria-label="Jump to a section">
+                        <button class="home-link" type="button" data-section-target="retro-consoles">Consoles</button>
+                        <button class="home-link" type="button" data-section-target="retro-handhelds">Handhelds</button>
+                    </nav>
+                </div>
+                <h3 class="subsection-title" id="retro-consoles">Consoles</h3>
                 <div class="card-grid">
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Nintendo Entertainment System">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Nintendo Entertainment System"><img src="assets/images/nes-full.jpg" alt="Nintendo Entertainment System"></div>
                         <div class="instrument-details"><h4>Nintendo Entertainment System (1986)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Super Nintendo Entertainment System">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Super Nintendo Entertainment System"><img src="assets/images/snes-full.jpg" alt="Super Nintendo Entertainment System"></div>
                         <div class="instrument-details"><h4>Super Nintendo Entertainment System (1991)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Sony PlayStation">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Sony PlayStation"><img src="assets/images/ps1-full.jpg" alt="Sony PlayStation"></div>
                         <div class="instrument-details"><h4>Sony PlayStation (1995)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Nintendo 64">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Nintendo 64"><img src="assets/images/n64-full.jpg" alt="Nintendo 64"></div>
                         <div class="instrument-details"><h4>Nintendo 64 (1996)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Sony PlayStation 2">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Sony PlayStation 2"><img src="assets/images/ps2-full.jpg" alt="Sony PlayStation 2"></div>
                         <div class="instrument-details"><h4>Sony PlayStation 2 (2000)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Nintendo GameCube">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Nintendo GameCube"><img src="assets/images/gamecube-full.jpg" alt="Nintendo GameCube"></div>
                         <div class="instrument-details"><h4>Nintendo GameCube (2001)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Sony PlayStation 3 Slim">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Sony PlayStation 3 Slim"><img src="assets/images/ps3-full.jpg" alt="Sony PlayStation 3 Slim"></div>
                         <div class="instrument-details"><h4>Sony PlayStation 3 Slim (2009)</h4></div>
                     </article>
                 </div>
-                <h3 class="subsection-title subsection-spaced">Handhelds</h3>
+                <h3 class="subsection-title subsection-spaced" id="retro-handhelds">Handhelds</h3>
                 <div class="card-grid">
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Sega Game Gear">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Sega Game Gear"><img src="assets/images/gamegear-full.jpg" alt="Sega Game Gear"></div>
                         <div class="instrument-details"><h4>Sega Game Gear (1991)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Nintendo Game Boy Color">Photo goes here</div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony STR-K7000" data-gallery-id="k7000" data-gallery-title="Sony STR-K7000">
+                            <img src="assets/images/gbc-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
                         <div class="instrument-details"><h4>Nintendo Game Boy Color (1998)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Nintendo Game Boy Advance">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Nintendo Game Boy Advance"><img src="assets/images/gba-full.jpg" alt="Nintendo Game Boy Advance"></div>
                         <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Nintendo Game Boy Advance">Photo goes here</div>
-                        <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001)</h4></div>
+                        <div class="photo" role="img" aria-label="Photo space for Nintendo Game Boy Advance"><img src="assets/images/gbamod-full.jpg" alt="Nintendo Game Boy Advance"></div>
+                        <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001) (Modded)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Sony PSP 1000">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Sony PSP 1000"><img src="assets/images/psp1000-full.jpg" alt="Sony PSP 1000"></div>
                         <div class="instrument-details"><h4>Sony PSP 1000 (2005)</h4></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Sony PSP 3000">Photo goes here</div>
+                        <div class="photo" role="img" aria-label="Photo space for Sony PSP 3000"><img src="assets/images/psp3000-full.jpg" alt="Sony PSP 3000"></div>
                         <div class="instrument-details"><h4>Sony PSP 3000 (2008)</h4></div>
                     </article>
                 </div>
@@ -2138,7 +2209,15 @@
                         <p>My collection of older film cameras, digital cameras, and accessories.</p>
                     </div>
                 </div>
-                <h3 class="subsection-title">Cameras</h3>
+                <div class="section-nav-group">
+                    <h4 class="section-nav-label">Jump to a section:</h4>
+                    <nav class="home-links section-nav" aria-label="Jump to a section">
+                        <button class="home-link" type="button" data-section-target="camera-cameras">Cameras</button>
+                        <button class="home-link" type="button" data-section-target="camera-lenses">Lenses</button>
+                        <button class="home-link" type="button" data-section-target="camera-accessories">Accessories</button>
+                    </nav>
+                </div>
+                <h3 class="subsection-title" id="camera-cameras">Cameras</h3>
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Bell & Howell 252" data-gallery-id="252" data-gallery-title="Bell & Howell 252">
@@ -2218,7 +2297,7 @@
                         </div>
                     </article>
                 </div>
-                <h3 class="subsection-title">Lenses</h3>
+                <h3 class="subsection-title" id="camera-lenses">Lenses</h3>
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Canon EF 28-80mm" data-gallery-id="28-80mm" data-gallery-title="Canon EF 28-80mm">
@@ -2243,7 +2322,7 @@
                         </div>
                     </article>
                 </div>
-                <h3 class="subsection-title">Accessories</h3>
+                <h3 class="subsection-title" id="camera-accessories">Accessories</h3>
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Hoya Skylight 1B" data-gallery-id="sky-1b" data-gallery-title="Hoya Skylight 1B">
@@ -2288,7 +2367,14 @@
                         <p>Retro computers, electronics, and other interesting tech I have accumulated over time.</p>
                     </div>
                 </div>
-                <h3 class="subsection-title">Computers</h3>
+                <div class="section-nav-group">
+                    <h4 class="section-nav-label">Jump to a section:</h4>
+                    <nav class="home-links section-nav" aria-label="Jump to a section">
+                        <button class="home-link" type="button" data-section-target="computers-computers">Computers</button>
+                        <button class="home-link" type="button" data-section-target="computers-other">Other Devices</button>
+                    </nav>
+                </div>
+                <h3 class="subsection-title" id="computers-computers">Computers</h3>
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Apple eMac" data-gallery-id="emac" data-gallery-title="Apple eMac">
@@ -2313,11 +2399,11 @@
                         </div>
                     </article>
                 </div>
-                <h3 class="subsection-title">Other Devices</h3>
+                <h3 class="subsection-title" id="computers-other">Other Devices</h3>
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Dell UltraScan 800HS" data-gallery-id="d825ht" data-gallery-title="Dell UltraScan 800HS">
-                            <img src="assets/images/d825ht-sample.jpg" alt="">
+                            <img src="assets/images/d825ht-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="showcase-details">
@@ -2336,9 +2422,12 @@
                         <p>Notes and walkthroughs for modifying instruments, equipment, and hardware.</p>
                     </div>
                 </div>
-                <nav class="home-links guide-list" aria-label="Jump to a guide">
-                    <button class="home-link" type="button" data-guide-target="guide-cry-baby-mod">Dunlop Cry Baby Mod</button>
-                </nav>
+                <div class="section-nav-group">
+                    <h4 class="section-nav-label">Jump to a section:</h4>
+                    <nav class="home-links section-nav guide-list" aria-label="Jump to a section">
+                        <button class="home-link" type="button" data-section-target="guide-cry-baby-mod">Dunlop Cry Baby Mod</button>
+                    </nav>
+                </div>
                 <article class="card guide-card" id="guide-cry-baby-mod">
                     <div>
                         <h4>Dunlop Cry Baby Mod</h4>
@@ -2485,14 +2574,17 @@
             ],
             //Computers
             emac: [
-                { src: 'assets/images/emac-full.jpg', caption: 'Full view of computer. It is in good condition and functions well.' }
+                { src: 'assets/images/emac-full.jpg', caption: 'Full view of computer.' }
             ],
             imac: [
-                { src: 'assets/images/iMac-full.jpg', caption: 'Full view of computer. It is in good condition and functions well.' }
+                { src: 'assets/images/iMac-full.jpg', caption: 'Full view of computer.' }
             ],
             //More Tech
             d825ht: [
+                { src: 'assets/images/d825ht-full.jpg', caption: 'Full view of monitor.' },
+                { src: 'assets/images/d825ht-controls.jpg', caption: 'Close-up of monitor controls.' },
                 { src: 'assets/images/d825ht-sample.jpg', caption: 'Video sample using gameplay of MegaMan X4 for Windows.'}
+
             ],
             252: [
                 { src: 'assets/images/252-full.jpg', caption: 'Full view of camera.' },
@@ -2853,9 +2945,9 @@
             });
         });
 
-        document.querySelectorAll('[data-guide-target]').forEach(button => {
+        document.querySelectorAll('[data-section-target]').forEach(button => {
             button.addEventListener('click', () => {
-                document.getElementById(button.dataset.guideTarget).scrollIntoView({
+                document.getElementById(button.dataset.sectionTarget).scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });

@@ -292,6 +292,7 @@
             color: #dce7fb;
             font-size: 1.05rem;
             font-weight: 650;
+            scroll-margin-top: 16px;
         }
 
         .subsection-spaced {
@@ -1021,17 +1022,23 @@
             align-items: center;
             gap: 5px;
             padding: 4px;
-            border: 1px solid #808080;
+            border: 2px solid;
+            border-color: #ffffff #808080 #808080 #ffffff;
             background: #d4d0c8;
             color: #404040;
             font-size: 12px;
             text-decoration: none;
+            box-shadow: 1px 1px 0 #404040, inset 1px 1px #ffffff;
         }
 
-        .social-item:hover,
-        .social-item:focus-visible {
-            background: #000080;
-            color: #ffffff;
+        .social-item:hover {
+            border-color: #808080 #ffffff #ffffff #808080;
+            box-shadow: inset 1px 1px #808080;
+        }
+
+        .social-item:active {
+            border-color: #404040 #ffffff #ffffff #404040;
+            box-shadow: inset 1px 1px #808080;
         }
 
         .social-item:focus-visible {
@@ -1502,8 +1509,9 @@
         }
 
         .home-link:hover {
-            border-color: #404040 #ffffff #ffffff #404040;
+            border-color: #808080 #ffffff #ffffff #808080;
             color: #000080;
+            box-shadow: inset 1px 1px #808080;
         }
 
         .card {
@@ -1937,7 +1945,7 @@
                         <div class="instrument-details">
                             <h4>Epiphone Les Paul Classic (2021)</h4>
                             <h3>Honeyburst</h3>
-                            <h5>Acquired: ???</h5>
+                            <h5>Acquired: ??</h5>
                             <p class="instrument-description">My very first guitar. Despite its abuse (note the nickel-sized chip in the body), it remains a favourite guitar of mine. It is a versatile instrument that has served me well playing in Jazz Band as well as providing authentic tones for the 70s-90s rock I often find myself playing.</p>
                             <section class="modification-section" aria-labelledby="les-paul-modifications">
                                 <h5 id="les-paul-modifications">Modifications & Specifications</h5>
@@ -1983,7 +1991,7 @@
                         </button>
                         <div class="instrument-details">
                             <h4>Marshall MG30FX (2020)</h4>
-                            <h5>Acquired: ???</h5>
+                            <h5>Acquired: ??</h5>
                             <p class="instrument-description">Info about the MG30FX</p>
                             <section class="modification-section">
                                 <h5>Modifications &amp; Setup</h5>
@@ -2109,14 +2117,36 @@
                 <h3 class="subsection-title" id="gear-other">Other Gear</h3>
                 <div class="card-grid gear-grid">
                     <article class="card instrument-card">
-                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony STR-K7000" data-gallery-id="k7000" data-gallery-title="Sony STR-K7000">
-                            <img src="assets/images/k7000-full.jpg" alt="">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sylvania DVL100CC" data-gallery-id="dvl100" data-gallery-title="Sylvania DVL100CC">
+                            <img src="assets/images/dvl100-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="instrument-details">
-                            <h4>Sony STR-K7000 (2006)</h4>
-                            <h5>Acquired: ???</h5>
+                            <h4>Sylvania DVL100CC (2002)</h4>
+                            <h5>Acquired: ??</h5>
+                            <p class="instrument-description"></p>
+                        </div>
+                    </article>
+                    <article class="card instrument-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony STR-K990" data-gallery-id="k990" data-gallery-title="Sony STR-K990">
+                            <img src="assets/images/k990-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="instrument-details">
+                            <h4>Sony STR-K990 Multi Channel AV Reciever (2007)</h4>
+                            <h5>Acquired: ??</h5>
                             <p class="instrument-description">My go-to stereo for playing CDs, Tapes, and for PC audio..</p>
+                        </div>
+                    </article>
+                    <article class="card instrument-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony TC-W32" data-gallery-id="tcw32" data-gallery-title="Sony TC-W32">
+                            <img src="assets/images/tcw32-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="instrument-details">
+                            <h4>Sony TC-W32 Stereo Cassette Deck (1992)</h4>
+                            <h5>Acquired: ??/2024</h5>
+                            <p class="instrument-description"></p>
                         </div>
                     </article>
                     <article class="card instrument-card">
@@ -2150,59 +2180,106 @@
                 <h3 class="subsection-title" id="retro-consoles">Consoles</h3>
                 <div class="card-grid">
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Nintendo Entertainment System"><img src="assets/images/nes-full.jpg" alt="Nintendo Entertainment System"></div>
-                        <div class="instrument-details"><h4>Nintendo Entertainment System (1986)</h4></div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Nintendo Entertainment System" data-gallery-id="nes" data-gallery-title="Nintendo Entertainment System">
+                            <img src="assets/images/nes-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 5 photos</span>
+                        </button>
+                        <div class="instrument-details"><h4>Nintendo Entertainment System (1985)</h4><h5>Acquired: 01/2024</h5></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Super Nintendo Entertainment System"><img src="assets/images/snes-full.jpg" alt="Super Nintendo Entertainment System"></div>
-                        <div class="instrument-details"><h4>Super Nintendo Entertainment System (1991)</h4></div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Super Nintendo Entertainment System" data-gallery-id="snes" data-gallery-title="Super Nintendo Entertainment System">
+                            <img src="assets/images/snes-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 3 photos</span>
+                        </button>
+                        <div class="instrument-details"><h4>Super Nintendo Entertainment System (1991)</h4><h5>Acquired: 01/2024</h5></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Sony PlayStation"><img src="assets/images/ps1-full.jpg" alt="Sony PlayStation"></div>
-                        <div class="instrument-details"><h4>Sony PlayStation (1995)</h4></div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony PlayStation" data-gallery-id="ps1" data-gallery-title="Sony PlayStation">
+                            <img src="assets/images/ps1-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 4 photos</span>
+                        </button>
+                        <div class="instrument-details"><h4>Sony PlayStation (1994)</h4><h5>Acquired: 07/2024</h5></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Nintendo 64"><img src="assets/images/n64-full.jpg" alt="Nintendo 64"></div>
-                        <div class="instrument-details"><h4>Nintendo 64 (1996)</h4></div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Nintendo 64" data-gallery-id="n64" data-gallery-title="Nintendo 64">
+                            <img src="assets/images/n64-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 4 photos</span>
+                        </button>
+                        <div class="instrument-details"><h4>Nintendo 64 (1996)</h4><h5>Acquired: 04/2024</h5></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Sony PlayStation 2"><img src="assets/images/ps2-full.jpg" alt="Sony PlayStation 2"></div>
-                        <div class="instrument-details"><h4>Sony PlayStation 2 (2000)</h4></div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony Playstation 2" data-gallery-id="ps2" data-gallery-title="Sony Playstation 2">
+                            <img src="assets/images/ps2-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 4 photos</span>
+                        </button>
+                        <div class="instrument-details"><h4>Sony PlayStation 2 (2000)</h4><h5>Acquired: ??</h5></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Nintendo GameCube"><img src="assets/images/gamecube-full.jpg" alt="Nintendo GameCube"></div>
-                        <div class="instrument-details"><h4>Nintendo GameCube (2001)</h4></div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Nintendo GameCube" data-gallery-id="gc" data-gallery-title="Nintendo GameCube">
+                            <img src="assets/images/gc-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 3 photos</span>
+                        </button>
+                        <div class="instrument-details"><h4>Nintendo GameCube (2001)</h4><h5>Acquired: ??</h5></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Sony PlayStation 3 Slim"><img src="assets/images/ps3-full.jpg" alt="Sony PlayStation 3 Slim"></div>
-                        <div class="instrument-details"><h4>Sony PlayStation 3 Slim (2009)</h4></div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Nintendo Wii" data-gallery-id="wii" data-gallery-title="Nintendo Wii">
+                            <img src="assets/images/wii-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 3 photos</span>
+                        </button>
+                        <div class="instrument-details"><h4>Nintendo Wii (2006)</h4><h5>Acquired: ??</h5></div>
+                    </article>
+                    <article class="card instrument-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony PlayStation 3" data-gallery-id="ps3" data-gallery-title="Sony PlayStation 3">
+                            <img src="assets/images/ps3-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 3 photos</span>
+                        </button>
+                        <div class="instrument-details"><h4>Sony PlayStation 3 Slim (2009)</h4><h5>Acquired: ??/2010</h5></div>
                     </article>
                 </div>
                 <h3 class="subsection-title subsection-spaced" id="retro-handhelds">Handhelds</h3>
                 <div class="card-grid">
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Sega Game Gear"><img src="assets/images/gamegear-full.jpg" alt="Sega Game Gear"></div>
-                        <div class="instrument-details"><h4>Sega Game Gear (1991)</h4></div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sega Game Gear" data-gallery-id="gamegear" data-gallery-title="Sega Game Gear">
+                            <img src="assets/images/gamegear-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="instrument-details"><h4>Sega Game Gear (1991)</h4><h5>Acquired: 01/2026</h5></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Nintendo Game Boy Color"><img src="assets/images/gbc-full.jpg" alt="Nintendo Game Boy Color"></div>
-                        <div class="instrument-details"><h4>Nintendo Game Boy Color (1998)</h4></div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Nintendo Game Boy Color" data-gallery-id="gbc" data-gallery-title="Nintendo Game Boy Color">
+                            <img src="assets/images/gbc-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="instrument-details"><h4>Nintendo Game Boy Color (1998)</h4><h5>Acquired: 04/2024</h5></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Nintendo Game Boy Advance"><img src="assets/images/gba-full.jpg" alt="Nintendo Game Boy Advance"></div>
-                        <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001)</h4></div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Nintendo Game Boy Advance" data-gallery-id="gba" data-gallery-title="Nintendo Game Boy Advance">
+                            <img src="assets/images/gba-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <h4>Nintendo Game Boy Advance (2001)</h4>
+                        <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001)</h4><h5>Acquired: ??</h5></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Nintendo Game Boy Advance"><img src="assets/images/gbamod-full.jpg" alt="Nintendo Game Boy Advance"></div>
-                        <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001) (Modded)</h4></div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Nintendo Game Boy Advance (Modded)" data-gallery-id="gbamod" data-gallery-title="Nintendo Game Boy Advance (Modded)">
+                            <img src="assets/images/gbamod-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001) (Modded)</h4><h5>Acquired: ??</h5></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Sony PSP 1000"><img src="assets/images/psp1000-full.jpg" alt="Sony PSP 1000"></div>
-                        <div class="instrument-details"><h4>Sony PSP 1000 (2005)</h4></div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony PSP 1000" data-gallery-id="psp1000" data-gallery-title="Sony PSP 1000">
+                            <img src="assets/images/psp1000-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="instrument-details"><h4>Sony PSP 1000 (2005)</h4><h5>Acquired: 08/2025</h5></div>
                     </article>
                     <article class="card instrument-card">
-                        <div class="photo" role="img" aria-label="Photo space for Sony PSP 3000"><img src="assets/images/psp3000-full.jpg" alt="Sony PSP 3000"></div>
-                        <div class="instrument-details"><h4>Sony PSP 3000 (2008)</h4></div>
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony PSP 3000" data-gallery-id="psp3000" data-gallery-title="Sony PSP 3000">
+                            <img src="assets/images/psp3000-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="instrument-details"><h4>Sony PSP 3000 (2008)</h4><h5>Acquired: ??</h5></div>
                     </article>
                 </div>
             </section>
@@ -2244,7 +2321,7 @@
                         </button>
                         <div class="showcase-details">
                             <h4>Kodak Colorburst 50 (1979)</h4>
-                            <h5>Acquired: ???</h5>
+                            <h5>Acquired: ??/2024</h5>
                             <p>Instant camera</p>
                         </div>
                     </article>
@@ -2255,7 +2332,7 @@
                         </button>
                         <div class="showcase-details">
                             <h4>Ricoh AF-5 (1982)</h4>
-                            <h5>Acquired: ???</h5>
+                            <h5>Acquired: ??/2024</h5>
                             <p>80s film camera</p>
                         </div>
                     </article>
@@ -2269,13 +2346,13 @@
                         </button>
                         <div class="showcase-details">
                             <h4>Olympus FE-120 (2005)</h4>
-                            <h5>Acquired: ???</h5>
+                            <h5>Acquired: ??/2018</h5>
                             <p>Digital Camera</p>
                         </div>
                     </article>
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Canon EOS 30D" data-gallery-id="eos30d" data-gallery-title="Canon EOS 30D">
-                            <img src="assets/images/eos30d-accessories.jpg" alt="">
+                            <img src="assets/images/eos30d-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="showcase-details">
@@ -2291,7 +2368,7 @@
                         </button>
                         <div class="showcase-details">
                             <h4>Fujifilm Finepix F80EXR (2010)</h4>
-                            <h5>Acquired: ???</h5>
+                            <h5>Acquired: ??</h5>
                             <p>Digital Camera</p>
                         </div>
                     </article>
@@ -2327,7 +2404,7 @@
                         </button>
                         <div class="showcase-details">
                             <h4>Hitachi VM-E545LA (1998)</h4>
-                            <h5>Acquired: ???</h5>
+                            <h5>Acquired: ??/2024</h5>
                             <p>Video-8 camcorder</p>
                         </div>
                     </article>
@@ -2338,7 +2415,7 @@
                         </button>
                         <div class="showcase-details">
                             <h4>JVC Everio GZ-HD300 (2009)</h4>
-                            <h5>Acquired: ???</h5>
+                            <h5>Acquired: ??</h5>
                             <p>Video-8 camcorder</p>
                         </div>
                     </article>
@@ -2346,72 +2423,83 @@
                 <h3 class="subsection-title" id="camera-lenses">Lenses</h3>
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
-                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Canon EF 28-80mm" data-gallery-id="28-80mm" data-gallery-title="Canon EF 28-80mm">
-                            <img src="28-80mm-full-jpg" alt="">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Canon EF 24-85mm" data-gallery-id="2485" data-gallery-title="Canon EF 24-85mm">
+                            <img src="assets/images/24-85mm-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="showcase-details">
-                            <h4>Canon EF 28-80mm</h4>
+                            <h4>Canon EF 24-85mm</h4>
                             <h5>Acquired:08/2026</h5>
-                            <p>???</p>
+                            <p>??</p>
                         </div>
                     </article>
                     <article class="card showcase-card">
-                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Canon EF-S 18-55mm" data-gallery-id="18-55mm" data-gallery-title="Canon EF-S 18-55mm">
-                            <img src="18-55mm-full.jpg" alt="">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Canon EF-S 18-55mm" data-gallery-id="1855" data-gallery-title="Canon EF-S 18-55mm">
+                            <img src="assets/images/18-55mm-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Canon EF-S 18-55mm</h4>
                             <h5>Acquired: 07/2025</h5>
-                            <p>???</p>
+                            <p>??</p>
                         </div>
                     </article>
                 </div>
                 <h3 class="subsection-title" id="camera-accessories">Accessories</h3>
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
-                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Hoya Skylight 1B" data-gallery-id="sky-1b" data-gallery-title="Hoya Skylight 1B">
-                            <img src="sky-1b-full.jpg" alt="">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Tiffen Sky 1A" data-gallery-id="sky1a" data-gallery-title="Tiffen Sky 1A">
+                            <img src="assets/images/sky-1a-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="showcase-details">
-                            <h4>HOYA Skylight 1B</h4>
+                            <h4>Tiffen Sky 1A</h4>
                             <h5>Acquired:08/2026</h5>
-                            <p>???</p>
+                            <p></p>
                         </div>
                     </article>
                     <article class="card showcase-card">
-                        <button class="photo photo-gallery-trigger" type="button" aria-label="Canon Speedlite 580EX II" data-gallery-id="580ex" data-gallery-title="Canon Speedlite 580EX II">
-                            <img src="580ex-full.jpg" alt="">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Hoya Skylight 1B" data-gallery-id="sky1b" data-gallery-title="Hoya Skylight 1B">
+                            <img src="assets/images/sky-1b-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="showcase-details">
+                            <h4>Hoya Skylight 1B</h4>
+                            <h5>Acquired:08/2026</h5>
+                            <p></p>
+                        </div>
+                    </article>
+                    <article class="card showcase-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="Canon Speedlite 580EX II" data-gallery-id="580" data-gallery-title="Canon Speedlite 580EX II">
+                            <img src="assets/images/580ex-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Canon Speedlite 580EX II</h4>
                             <h5>Acquired: 08/2026</h5>
-                            <p>???</p>
+                            <p></p>
                         </div>
                     </article>
                     <article class="card showcase-card">
-                        <button class="photo photo-gallery-trigger" type="button" aria-label="Canon Speedlite 380EX" data-gallery-id="380ex" data-gallery-title="Canon Speedlite 380EX">
-                            <img src="320ex-full.jpg" alt="">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="Canon Speedlite 320EX" data-gallery-id="320" data-gallery-title="Canon Speedlite 320EX">
+                            <img src="assets/images/320ex-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Canon Speedlite 320EX</h4>
                             <h5>Acquired: 09/2026</h5>
-                            <p>???</p>
+                            <p></p>
                         </div>
                     </article>
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="Canon Speedlite Transmitter" data-gallery-id="transmitter" data-gallery-title="Canon Speedlite Transmitter">
-                            <img src="transmitter-full.jpg" alt="">
+                            <img src="assets/images/transmitter-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Canon Speedlite Transmitter</h4>
                             <h5>Acquired: 09/2026</h5>
-                            <p>???</p>
+                            <p></p>
                         </div>
                     </article>
                 </div>
@@ -2484,7 +2572,7 @@
                         </button>
                         <div class="showcase-details">
                             <h4>HP Pavilion a6000n (AMD) (2007)</h4>
-                            <h5>Acquired: ???</h5>
+                            <h5>Acquired: ??</h5>
                             <p></p>
                         </div>
                     </article>
@@ -2497,9 +2585,31 @@
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="showcase-details">
-                            <h4>Dell UltraScan 800HS (D825HT) (1997)</h4>
+                            <h4>Dell UltraScan 800HS CRT Monitor (D825HT) (1997)</h4>
                             <h5>Acquired: 07/2026</h5>
-                            <p>CRT Monitor.</p>
+                            <p>15" CRT Monitor.</p>
+                        </div>
+                    </article>
+                    <article class="card showcase-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Toshiba CF32E50" data-gallery-id="cf32" data-gallery-title="Toshiba CF32E50">
+                            <img src="assets/images/cf32.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="showcase-details">
+                            <h4>Toshiba CF32E50 CRT TV (1997)</h4>
+                            <h5>Acquired: 01/2024</h5>
+                            <p>32" CRT TV.</p>
+                        </div>
+                    </article>
+                    <article class="card showcase-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Philips 20DV693R" data-gallery-id="20dv" data-gallery-title="Philips 20DV693R">
+                            <img src="assets/images/20dv.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="showcase-details">
+                            <h4>Philips 20DV693R CRT TV (2003)</h4>
+                            <h5>Acquired: 01/2026</h5>
+                            <p>20" CRT TV.</p>
                         </div>
                     </article>
                 </div>
@@ -2609,6 +2719,7 @@
                 { src: 'assets/images/j-bass-full.jpg', caption: 'J Bass after repair. Its screws have been replaced with proper-sized, matching screws and has been given new tuners.' },
                 { src: 'assets/images/j-bass-headstock.jpg', caption: 'Headstock after repair.' }
             ],
+            
             //Instruments
             lesPaul: [
                 { src: 'assets/images/les-paul-full.jpg', caption: 'Full view of guitar.' },
@@ -2625,6 +2736,7 @@
                 { src: 'assets/images/p105-keys.jpg', caption: 'Close-up of piano keys. They are weighted and have a nice feel to them.' },
                 { src: 'assets/images/p105-pedal.jpg', caption: 'Close-up of Yorkville AFP7 pedal. It is in good condition and functions well.' }
             ],
+
             //Amps
             mg30fx: [
                 { src: 'assets/images/mg30fx-full.jpg', caption: 'Full view of amp.' },           
@@ -2633,6 +2745,7 @@
                 { src: 'assets/images/jcm800-full.jpg', caption: 'Front view of Marshall JCM800. Its current settings are my go-to for many different rock tones.' },
                 { src: 'assets/images/jcm800-back.jpg', caption: 'Back view of Marshall JCM800.' }
             ],
+
             //Pedals
             cryBaby: [
                 { src: 'assets/images/cry-baby-full.jpg', caption: 'Full view of pedal. While it has certainly seen better days, it still functions perfectly and much better than it did stock with modifications.' },
@@ -2657,11 +2770,79 @@
                 { src: 'assets/images/dd3-full.jpg', caption: 'Full view of pedal.' },
                 { src: 'assets/images/dd3-label.jpg', caption: 'Pedal\'s bottom label. This black label represents the first few models made in Taiwan as opposed to Japan. ' }
             ],
+
             //Other Gear
             hd600: [
                 { src: 'assets/images/hd600-full.jpg', caption: 'Full view of headphones. Very premium in design and sound quality. Good thing I got them on discount!' },
                 { src: 'assets/images/hd600-driver.jpg', caption: 'Close-up of headphone driver. These headphones are my only pair of open-back headphones and sound amazing.' }
             ],
+
+            //Consoles
+            nes: [
+                { src: 'assets/images/nes-full.jpg', caption: 'Full view of console.' },
+                { src: 'assets/images/nes-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/nes-out.jpg', caption: 'Close-up of console output ports.' },
+                { src: 'assets/images/nes-controller.jpg', caption: 'NES controller.' },
+                { src: 'assets/images/nes-zapper.jpg', caption: 'NES Zapper light gun.' }
+            ],
+            snes: [
+                { src: 'assets/images/snes-full.jpg', caption: 'Full view of console.' },
+                { src: 'assets/images/snes-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/snes-controller.jpg', caption: 'SNES controller.'}
+            ],
+            ps1: [
+                { src: 'assets/images/ps1-full.jpg', caption: 'Full view of console.' },
+                { src: 'assets/images/ps1-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/ps1-controller.jpg', caption: 'PS1 controller.' },
+                { src: 'assets/images/ps1-card.jpg', caption: 'PS1 memory card.' }
+            ],
+            n64: [
+                { src: 'assets/images/n64-full.jpg', caption: 'Full view of console.' },
+                { src: 'assets/images/n64-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/n64-controller.jpg', caption: 'N64 controller.' },
+                { src: 'assets/images/n64-pak.jpg', caption: 'N64 Expansion Pak.' }
+            ],
+            ps2: [
+                { src: 'assets/images/ps2-full.jpg', caption: 'Full view of console.' },
+                { src: 'assets/images/ps2-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/ps2-controller.jpg', caption: 'PS2 controller.' },
+                { src: 'assets/images/ps2-card.jpg', caption: 'PS2 memory card.' }
+            ],
+            gc: [
+                { src: 'assets/images/gc-full.jpg', caption: 'Full view of console.' },
+                { src: 'assets/images/gc-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/gc-controller.jpg', caption: 'GameCube controller.' }
+            ],
+            wii: [
+                { src: 'assets/images/wii-full.jpg', caption: 'Full view of console.' },
+                { src: 'assets/images/wii-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/wii-controller.jpg', caption: 'Wii controller and nunchuck' },
+            ],
+            ps3: [
+                { src: 'assets/images/ps3-full.jpg', caption: 'Full view of console.' },
+                { src: 'assets/images/ps3-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/ps3-controller.jpg', caption: 'PS3 controller.' }
+            ],
+            //Handhelds
+            gamegear: [
+                { src: 'assets/images/gamegear-full.jpg', caption: 'Full view of Game Gear.' },
+            ],
+            gbc: [
+                { src: 'assets/images/gbc-full.jpg', caption: 'Full view of Game Boy Color.' },
+            ],
+            gba: [
+                { src: 'assets/images/gba-full.jpg', caption: 'Full view of Game Boy Advance.' },
+            ],
+            gbamod : [
+                { src: 'assets/images/gbamod-full.jpg', caption: 'Full view of IPS modded Game Boy Advance.' },
+            ],
+            psp1000: [
+                { src: 'assets/images/psp1000-full.jpg', caption: 'Full view of PSP 1000.' },
+            ],
+            psp3000: [
+                { src: 'assets/images/psp3000-full.jpg', caption: 'Full view of PSP 3000.' },
+            ],
+
             //Computers
             emac: [
                 { src: 'assets/images/emac-full.jpg', caption: 'Full view of computer.' }
@@ -2669,6 +2850,7 @@
             imac: [
                 { src: 'assets/images/iMac-full.jpg', caption: 'Full view of computer.' }
             ],
+
             //More Tech
             d825ht: [
                 { src: 'assets/images/d825ht-full.jpg', caption: 'Full view of monitor.' },
@@ -2676,6 +2858,7 @@
                 { src: 'assets/images/d825ht-sample.jpg', caption: 'Video sample using gameplay of MegaMan X4 for Windows.'}
 
             ],
+
             //Film Cameras
             252: [
                 { src: 'assets/images/252-full.jpg', caption: 'Full view of camera.' },
@@ -2691,9 +2874,11 @@
                 { src: "assets/images/af5-full.jpg", caption: 'Full view of camera.' },
                 { src: "assets/images/af5-inside.jpg", caption: 'Camera inside film door.' }
             ],
+
             //Digital Cameras
             eos30d: [
-                { src: 'assets/images/eos30d-accessories.jpg', caption: 'Camera accessories. '}
+                { src: 'assets/images/eos30d-full.jpg', caption: 'Full view of camera.' },
+                { src: 'assets/images/eos30d-controls.jpg', caption: 'Camera controls.' },
             ],
             fe120: [
                 { src: "assets/images/fe120-full.jpg", caption: 'Full view of camera.' },
@@ -2707,6 +2892,7 @@
                 { src: "assets/images/f550-full.jpg", caption: 'Full view of camera.' },
                 { src: "assets/images/f550-controls.jpg", caption: 'Camera controls.' }
             ],
+
             //Camcorders
             v8af: [
                 { src: "assets/images/v8af-full.jpg", caption: 'Full view of camcorder.' },
@@ -2723,7 +2909,36 @@
             hd300: [
                 { src: "assets/images/hd300-full.jpg", caption: 'Full view of camcorder.' },
                 { src: "assets/images/hd300-controls.jpg", caption: 'Camcorder controls.' }
-            ]
+            ],
+
+            //Lenses
+            1855: [
+                { src: "assets/images/18-55mm-full.jpg", caption: 'Full view of lens.' },
+                { src: "assets/images/18-55mm-top.jpg", caption: 'Top view of lens.' }
+            ],
+            2485: [
+                { src: "assets/images/24-85mm-full.jpg", caption: 'Full view of lens.' },
+                { src: "assets/images/24-85mm-top.jpg", caption: 'Top view of lens.' }
+            ],
+
+            //Accessories
+            sky1a: [
+                { src: "assets/images/sky-1a-full.jpg", caption: 'Full view of filter.' },
+            ],
+            sky1b: [
+                { src: "assets/images/sky-1b-full.jpg", caption: 'Full view of filter.' },
+            ],
+            320: [
+                { src: "assets/images/320ex-full.jpg", caption: 'Full view of flash.' },
+                { src: "assets/images/320ex-controls.jpg", caption: 'Flash controls.' }
+            ],
+            580: [
+                { src: "assets/images/580ex-full.jpg", caption: 'Full view of flash.' },
+                { src: "assets/images/580ex-controls.jpg", caption: 'Flash controls.' }
+            ],
+            transmitter: [
+                { src: "assets/images/transmitter-full.jpg", caption: 'Full view of Speedlite transmitter.' },
+            ],
         };
         
         document.querySelectorAll('.photo[role="img"], .showcase-photo[role="img"]').forEach((placeholder, index) => {
@@ -3046,6 +3261,7 @@
 
         tabs.forEach((tab, index) => {
             tab.addEventListener('click', () => {
+                window.scrollTo(0, 0);
                 activateTab(tab);
                 if (mobileNavigation.matches) setSidebarCollapsed(true);
             });

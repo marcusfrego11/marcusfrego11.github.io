@@ -469,7 +469,7 @@
         }
 
         .modification-section h5 {
-            margin: 0 0 13px;
+            margin: 0 0 14px;
             color: #dce7fb;
             font-size: 0.9rem;
             font-weight: 650;
@@ -1260,7 +1260,7 @@
             color: #111111;
             box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.4);
             font-family: "Pixelated MS Sans Serif", "MS Sans Serif", sans-serif;
-            font-size: 13px;
+            font-size: 14px;
             transition: opacity 180ms ease, transform 180ms ease;
         }
 
@@ -1615,6 +1615,15 @@
             }
         }
 
+        #panel-retro .photo-gallery-trigger img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center center;
+        }
+
         .photo-gallery-hint {
             position: absolute;
             inset: auto 8px 8px;
@@ -1863,11 +1872,10 @@
                 <div class="section-nav-group">
                     <h4 class="section-nav-label">Jump to a section:</h4>
                     <nav class="home-links section-nav" aria-label="Jump to a section">
-                        <button class="home-link" type="button" data-section-target="repairs-projects">Projects</button>
-                        <button class="home-link" type="button" data-section-target="repairs-repairs">Repairs</button>
+                        <button class="home-link" type="button" data-section-target="repairs-projects">Projects & Repairs</button>
                     </nav>
                 </div>
-                <h3 class="subsection-title" id="repairs-projects">Projects</h3>
+                <h3 class="subsection-title" id="repairs-projects">Projects & Repairs</h3>
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Ibanez TMB100" data-gallery-id="tmb100" data-gallery-title="Ibanez TMB100">
@@ -1877,12 +1885,12 @@
                         <div class="showcase-details">
                             <h4>Ibanez TMB100</h4>
                             <h5>Completed: 08/26</h5>
-                            <p>Documentation of project</p>
+                            <p>When the bass first came to me, two of its tuners were damaged, its neck was dried out with a stripped truss rod nut, and its dual-concentric potentiometers were broken off and not functioning properly.</p>
+                            <p>- I was able to replace the tuners with a brand-new set of four Fender-style tuners, flipping those that pointed right instead of the Fender-usual left.</p>
+                            <p>- I re-humidified the neck through intensive moisture treatment for over 48 hours before installing a brand-new truss rod nut (thankfully this style of nut is replacable. I then filed and polished its frets, as per usual with guitars and basses I repair.)</p>
+                            <p>- After discovering that OEM replacement parts for this guitar were extremely expensive, I decided to ditch its original wiring and active pre-amp for a more traditional J Bass style wiring. I drilled a third hole in its pickguard, installed brand-new Alpha pots, and wired it up following regular J Bass wiring.</p>
                         </div>
                     </article>
-                </div>
-                <h3 class="subsection-title subsection-spaced" id="repairs-repairs">Repairs</h3>
-                <div class="card-grid gear-grid">
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Squire J Bass" data-gallery-id="jBass" data-gallery-title="Squire J Bass">
                             <img src="assets/images/j-bass-full.jpg" alt="">
@@ -1890,8 +1898,10 @@
                         </button>
                         <div class="showcase-details">
                             <h4>Squire J Bass</h4>
-                            <h5>Repaired: 09/26</h5>
-                            <p></p>
+                            <h5>Completed: 09/26</h5>
+                            <p>This bass was missing a pickguard, three tuners, and its potentiometers were wired incorrectly, rendering the instrument non-functional.</p>
+                            <p>- I was able to replace the missing tuners with brand-new Fender tuners.</p>
+                            <p>- I rewired its potentiometers and installed a brand-new pickguard.</p>
                         </div>
                     </article>
                     <article class="card showcase-card">
@@ -1901,8 +1911,9 @@
                         </button>
                         <div class="showcase-details">
                             <h4>Fender Rumble 15 (2011)</h4>
-                            <h5>Repaired: 10/26</h5>
-                            <p>Documentation of project</p>
+                            <h5>Completed: 10/26</h5>
+                            <p>This amp's power LED turned on but did not output any sound or produce any noise.</p>
+                            <p>- I was able to replace a faulty resistor on the amp that fixed all aforementioned issues.</p>
                         </div>
                     </article>
                     <article class="card showcase-card">
@@ -1912,8 +1923,10 @@
                         </button>
                         <div class="showcase-details">
                             <h4>Fender Rumble 350 (2010)</h4>
-                            <h5>Repaired: 11/26</h5>   
-                            <p>This was by far my easiest repair, requiring nothing but rubbing alcohol and a Q-tip to clean its oxidized jacks. Although more effort was put into tranporting than actually repairing the amp, this still counts as a repair in my book, as Long & McQuade was unable to solve the issue.</p>
+                            <h5>Completed: 11/26</h5>   
+                            <p>This amp turned on and produced noise but provided no signal when an instrument was plugged in. Its vinyl wrapping was also peeling at the back and its castor wheels missing all of their bearings.</p>
+                            <p>- After simply cleaning the contacts of its input and effects loop jacks, the amp functioned properly.</p>
+                            <p>- I replaced the amp's castor wheels with brand-new locking ones and glued the amp's wrapping back together with wood glue.</p>
                         </div>
                     </article>
                 </div>
@@ -2117,6 +2130,17 @@
                 <h3 class="subsection-title" id="gear-other">Other Gear</h3>
                 <div class="card-grid gear-grid">
                     <article class="card instrument-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony TC-W32" data-gallery-id="tcw32" data-gallery-title="Sony TC-W32">
+                            <img src="assets/images/tcw32-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="instrument-details">
+                            <h4>Sony TC-W32 Stereo Cassette Deck (1992)</h4>
+                            <h5>Acquired: ??/2024</h5>
+                            <p class="instrument-description"></p>
+                        </div>
+                    </article>
+                    <article class="card instrument-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sylvania DVL100CC" data-gallery-id="dvl100" data-gallery-title="Sylvania DVL100CC">
                             <img src="assets/images/dvl100-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
@@ -2139,13 +2163,35 @@
                         </div>
                     </article>
                     <article class="card instrument-card">
-                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony TC-W32" data-gallery-id="tcw32" data-gallery-title="Sony TC-W32">
-                            <img src="assets/images/tcw32-full.jpg" alt="">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony STR-KS2300" data-gallery-id="ks2300" data-gallery-title="STR-KS2300">
+                            <img src="assets/images/ks2300-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="instrument-details">
-                            <h4>Sony TC-W32 Stereo Cassette Deck (1992)</h4>
+                            <h4>Sony STR-KS2300 Multi Channel AV Reciever (2007)</h4>
                             <h5>Acquired: ??/2024</h5>
+                            <p class="instrument-description"></p>
+                        </div>
+                    </article>
+                    <article class="card instrument-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony BDP-S360" data-gallery-id="s360" data-gallery-title="BDP-S360">
+                            <img src="assets/images/s360-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="instrument-details">
+                            <h4>Sony BDP-S360 Blu-ray Player (2009)</h4>
+                            <h5>Acquired: ??/2024</h5>
+                            <p class="instrument-description"></p>
+                        </div>
+                    </article>
+                    <article class="card instrument-card">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Audio-Technica AT-LP70X" data-gallery-id="lp70" data-gallery-title="Audio-Technica AT-LP70X">
+                            <img src="assets/images/lp70-full.jpg" alt="">
+                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                        </button>
+                        <div class="instrument-details">
+                            <h4>Audio-Technica AT-LP70X Turntable (2025)</h4>
+                            <h5>Acquired: 12/2025</h5>
                             <p class="instrument-description"></p>
                         </div>
                     </article>
@@ -2212,21 +2258,21 @@
                             <img src="assets/images/ps2-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 4 photos</span>
                         </button>
-                        <div class="instrument-details"><h4>Sony PlayStation 2 (2000)</h4><h5>Acquired: ??</h5></div>
+                        <div class="instrument-details"><h4>Sony PlayStation 2 (2000)</h4><h5>Acquired: 07/2025</h5></div>
                     </article>
                     <article class="card instrument-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Nintendo GameCube" data-gallery-id="gc" data-gallery-title="Nintendo GameCube">
                             <img src="assets/images/gc-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 3 photos</span>
                         </button>
-                        <div class="instrument-details"><h4>Nintendo GameCube (2001)</h4><h5>Acquired: ??</h5></div>
+                        <div class="instrument-details"><h4>Nintendo GameCube (2001)</h4><h5>Acquired: ??/2018</h5></div>
                     </article>
                     <article class="card instrument-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Nintendo Wii" data-gallery-id="wii" data-gallery-title="Nintendo Wii">
                             <img src="assets/images/wii-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 3 photos</span>
                         </button>
-                        <div class="instrument-details"><h4>Nintendo Wii (2006)</h4><h5>Acquired: ??</h5></div>
+                        <div class="instrument-details"><h4>Nintendo Wii (2006)</h4><h5>Acquired: ??/2018</h5></div>
                     </article>
                     <article class="card instrument-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony PlayStation 3" data-gallery-id="ps3" data-gallery-title="Sony PlayStation 3">
@@ -2257,15 +2303,14 @@
                             <img src="assets/images/gba-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
-                        <h4>Nintendo Game Boy Advance (2001)</h4>
-                        <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001)</h4><h5>Acquired: ??</h5></div>
+                        <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001)</h4><h5>Acquired: 06/2025</h5></div>
                     </article>
                     <article class="card instrument-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Nintendo Game Boy Advance (Modded)" data-gallery-id="gbamod" data-gallery-title="Nintendo Game Boy Advance (Modded)">
                             <img src="assets/images/gbamod-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
-                        <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001) (Modded)</h4><h5>Acquired: ??</h5></div>
+                        <div class="instrument-details"><h4>Nintendo Game Boy Advance (2001) (Modded)</h4><h5>Acquired: 10/2024</h5></div>
                     </article>
                     <article class="card instrument-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony PSP 1000" data-gallery-id="psp1000" data-gallery-title="Sony PSP 1000">
@@ -2279,7 +2324,7 @@
                             <img src="assets/images/psp3000-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
-                        <div class="instrument-details"><h4>Sony PSP 3000 (2008)</h4><h5>Acquired: ??</h5></div>
+                        <div class="instrument-details"><h4>Sony PSP 3000 (2008)</h4><h5>Acquired: 04/2024</h5></div>
                     </article>
                 </div>
             </section>
@@ -2317,7 +2362,7 @@
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Kodak Colorburst 50" data-gallery-id="cb50" data-gallery-title="Kodak Colorburst 50">
                             <img src="assets/images/cb50-full.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Kodak Colorburst 50 (1979)</h4>
@@ -2328,7 +2373,7 @@
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Ricoh AF-5" data-gallery-id="af5" data-gallery-title="Ricoh AF-5">
                             <img src="assets/images/af5-full.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Ricoh AF-5 (1982)</h4>
@@ -2342,7 +2387,7 @@
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Olympus FE-120" data-gallery-id="fe120" data-gallery-title="Olympus FE-120">
                             <img src="assets/images/fe120-full.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Olympus FE-120 (2005)</h4>
@@ -2353,7 +2398,7 @@
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Canon EOS 30D" data-gallery-id="eos30d" data-gallery-title="Canon EOS 30D">
                             <img src="assets/images/eos30d-full.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Canon EOS 30D (2006)</h4>
@@ -2364,7 +2409,7 @@
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Fujifilm Finepix F80EXR" data-gallery-id="f80" data-gallery-title="Fujifilm Finepix F80EXR">
                             <img src="assets/images/f80-full.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Fujifilm Finepix F80EXR (2010)</h4>
@@ -2375,7 +2420,7 @@
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Fujifilm Finepix F550EXR" data-gallery-id="f550" data-gallery-title="Fujifilm Finepix F550EXR">
                             <img src="assets/images/f550-full.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Fujifilm Finepix F550EXR (2011)</h4>
@@ -2389,7 +2434,7 @@
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sony CCD-V8AF" data-gallery-id="v8af" data-gallery-title="Sony CCD-V8AF">
                             <img src="assets/images/v8af-full.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <span class="photo-gallery-hint" aria-hidden="true">View 6 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Sony CCD-V8AF (1985)</h4>
@@ -2400,7 +2445,7 @@
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Hitachi VM-E545LA" data-gallery-id="e545" data-gallery-title="Hitachi VM-E545LA">
                             <img src="assets/images/e545-full.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Hitachi VM-E545LA (1998)</h4>
@@ -2411,7 +2456,7 @@
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of JVC Everio GZ-HD300" data-gallery-id="hd300" data-gallery-title="JVC Everio GZ-HD300">
                             <img src="assets/images/hd300-full.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>JVC Everio GZ-HD300 (2009)</h4>
@@ -2425,7 +2470,7 @@
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Canon EF 24-85mm" data-gallery-id="2485" data-gallery-title="Canon EF 24-85mm">
                             <img src="assets/images/24-85mm-full.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Canon EF 24-85mm</h4>
@@ -2436,7 +2481,7 @@
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Canon EF-S 18-55mm" data-gallery-id="1855" data-gallery-title="Canon EF-S 18-55mm">
                             <img src="assets/images/18-55mm-full.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Canon EF-S 18-55mm</h4>
@@ -2472,7 +2517,7 @@
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="Canon Speedlite 580EX II" data-gallery-id="580" data-gallery-title="Canon Speedlite 580EX II">
                             <img src="assets/images/580ex-full.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Canon Speedlite 580EX II</h4>
@@ -2483,7 +2528,7 @@
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="Canon Speedlite 320EX" data-gallery-id="320" data-gallery-title="Canon Speedlite 320EX">
                             <img src="assets/images/320ex-full.jpg" alt="">
-                            <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
+                            <span class="photo-gallery-hint" aria-hidden="true">View 2 photos</span>
                         </button>
                         <div class="showcase-details">
                             <h4>Canon Speedlite 320EX</h4>
@@ -2592,7 +2637,7 @@
                     </article>
                     <article class="card showcase-card">
                         <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Toshiba CF32E50" data-gallery-id="cf32" data-gallery-title="Toshiba CF32E50">
-                            <img src="assets/images/cf32.jpg" alt="">
+                            <img src="assets/images/cf32-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="showcase-details">
@@ -2602,8 +2647,8 @@
                         </div>
                     </article>
                     <article class="card showcase-card">
-                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Philips 20DV693R" data-gallery-id="20dv" data-gallery-title="Philips 20DV693R">
-                            <img src="assets/images/20dv.jpg" alt="">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Philips 20DV693R" data-gallery-id="ph20" data-gallery-title="Philips 20DV693R">
+                            <img src="assets/images/20dv-full.jpg" alt="">
                             <span class="photo-gallery-hint" aria-hidden="true">View 1 photo</span>
                         </button>
                         <div class="showcase-details">
@@ -2712,11 +2757,11 @@
                 { src: 'assets/images/rumble15-back.jpg', caption: 'Back view of amp.' }
             ],
             rumble350: [
-                { src: 'assets/images/rumble350-full.jpg', caption: 'Full view of functioning amp. Boy is it large!' },
+                { src: 'assets/images/rumble350-full.jpg', caption: 'Full view of functioning amp.' },
             ],
             jBass: [
-                { src: 'assets/images/j-bass-before.jpg', caption: 'Squire J Bass before repair. It is missing tuners and its mis-matching, cross-threaded screws are not a pretty sight.' },
-                { src: 'assets/images/j-bass-full.jpg', caption: 'J Bass after repair. Its screws have been replaced with proper-sized, matching screws and has been given new tuners.' },
+                { src: 'assets/images/j-bass-before.jpg', caption: 'Squire J Bass before repair. It is missing tuners and its mis-matching, cross-threaded screws are not a pretty sight. Its potentiometers are also wired incorrectly.' },
+                { src: 'assets/images/j-bass-full.jpg', caption: 'J Bass after repair. Its screws have been replaced with proper-sized, matching screws, new tuners, and a new wiring harness.' },
                 { src: 'assets/images/j-bass-headstock.jpg', caption: 'Headstock after repair.' }
             ],
             
@@ -2772,55 +2817,80 @@
             ],
 
             //Other Gear
+            tcw32: [
+                { src: 'assets/images/tcw32-full.jpg', caption: 'Full view of cassette deck.' },
+                { src: 'assets/images/tcw32-back.jpg', caption: 'Back view of cassette deck.'}
+            ],
+            dvl100: [
+                { src: 'assets/images/dvl100-full.jpg', caption: 'Full view of CD/DVD player.' },
+                { src: 'assets/images/dvl100-back.jpg', caption: 'Back view of CD/DVD player.'}
+            ],
+            k990: [
+                { src: 'assets/images/k990-full.jpg', caption: 'Full view of stereo receiver.' },
+                { src: 'assets/images/k990-back.jpg', caption: 'Back view of stereo receiver.' }
+            ],
+            ks2300: [
+                { src: 'assets/images/ks2300-full.jpg', caption: 'Full view of stereo receiver.' },
+                { src: 'assets/images/ks2300-back.jpg', caption: 'Back view of stereo receiver.' }
+            ],
+            s360: [
+                { src: 'assets/images/s360-full.jpg', caption: 'Full view of Blu-ray player.' },
+                { src: 'assets/images/s360-back.jpg', caption: 'Back view of Blu-ray player.' }
+            ],
+            lp70: [
+                { src: 'assets/images/lp70-full.jpg', caption: 'Full view of turntable.' }
+            ],
             hd600: [
-                { src: 'assets/images/hd600-full.jpg', caption: 'Full view of headphones. Very premium in design and sound quality. Good thing I got them on discount!' },
-                { src: 'assets/images/hd600-driver.jpg', caption: 'Close-up of headphone driver. These headphones are my only pair of open-back headphones and sound amazing.' }
+                { src: 'assets/images/hd600-full.jpg', caption: 'Full view of headphones. Very premium in design and sound quality.' },
+                { src: 'assets/images/hd600-driver.jpg', caption: 'Close-up of headphone driver. These are my only pair of open-back headphones and sound amazing.' }
             ],
 
             //Consoles
             nes: [
-                { src: 'assets/images/nes-full.jpg', caption: 'Full view of console.' },
-                { src: 'assets/images/nes-back.jpg', caption: 'Back view of console.' },
-                { src: 'assets/images/nes-out.jpg', caption: 'Close-up of console output ports.' },
+                { src: 'assets/images/nes-full.jpg', caption: 'Full view of NES.' },
+                { src: 'assets/images/nes-back.jpg', caption: 'Back view of NES.' },
+                { src: 'assets/images/nes-out.jpg', caption: 'Close-up of console A/V ports. This output is preferred to the RF out, as it provides greater image quality and reduces the hassle of tuning to channel 3/4.' },
                 { src: 'assets/images/nes-controller.jpg', caption: 'NES controller.' },
-                { src: 'assets/images/nes-zapper.jpg', caption: 'NES Zapper light gun.' }
+                { src: 'assets/images/nes-zapper.jpg', caption: 'NES Zapper light gun. Nintendo was later forced to change its colour to orange in 1989 due to updated toy safety changes. ' }
             ],
             snes: [
-                { src: 'assets/images/snes-full.jpg', caption: 'Full view of console.' },
-                { src: 'assets/images/snes-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/snes-full.jpg', caption: 'Full view of SNES.' },
+                { src: 'assets/images/snes-back.jpg', caption: 'Back view of SNES. The customer service number still works today!' },
                 { src: 'assets/images/snes-controller.jpg', caption: 'SNES controller.'}
             ],
             ps1: [
-                { src: 'assets/images/ps1-full.jpg', caption: 'Full view of console.' },
-                { src: 'assets/images/ps1-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/ps1-full.jpg', caption: 'Full view of PS1.' },
+                { src: 'assets/images/ps1-back.jpg', caption: 'Back view of PS1.' },
                 { src: 'assets/images/ps1-controller.jpg', caption: 'PS1 controller.' },
-                { src: 'assets/images/ps1-card.jpg', caption: 'PS1 memory card.' }
+                { src: 'assets/images/ps1-card.jpg', caption: 'PS1 memory card. It can hold up to 128KB of save data.' }
             ],
             n64: [
-                { src: 'assets/images/n64-full.jpg', caption: 'Full view of console.' },
-                { src: 'assets/images/n64-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/n64-full.jpg', caption: 'Full view of N64.' },
+                { src: 'assets/images/n64-back.jpg', caption: 'Back view of N64. It has a detachable, (technically) internal power supply, being the only Nintendo home console to do so.' },
                 { src: 'assets/images/n64-controller.jpg', caption: 'N64 controller.' },
-                { src: 'assets/images/n64-pak.jpg', caption: 'N64 Expansion Pak.' }
+                { src: 'assets/images/n64-pak.jpg', caption: 'N64 Expansion Pak. It doubles the console\'s internal memory from 4MB to 8MB of RAM.' }
             ],
             ps2: [
-                { src: 'assets/images/ps2-full.jpg', caption: 'Full view of console.' },
-                { src: 'assets/images/ps2-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/ps2-full.jpg', caption: 'Full view of PS2' },
+                { src: 'assets/images/ps2-back.jpg', caption: 'Back view of PS2. The console is great pedestal for my cat, Reggie.' },
                 { src: 'assets/images/ps2-controller.jpg', caption: 'PS2 controller.' },
-                { src: 'assets/images/ps2-card.jpg', caption: 'PS2 memory card.' }
+                { src: 'assets/images/ps2-card.jpg', caption: 'PS2 memory card. It can hold up to 8MB of save data.' },
+                { src: 'assets/images/ps2-hdd-front.jpg', caption: 'PS2 Network Adapter front. It allowed for online play and is useful for loading games off of a hard drive.' },
+                { src: 'assets/images/ps2-hdd-back.jpg', caption: 'PS2 Network Adapter back. The IDE port has been replaced with a SATA port for use with modern hard drives.' }
             ],
             gc: [
-                { src: 'assets/images/gc-full.jpg', caption: 'Full view of console.' },
-                { src: 'assets/images/gc-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/gc-full.jpg', caption: 'Full view of GameCube.' },
+                { src: 'assets/images/gc-back.jpg', caption: 'Back view of GameCube. It is a DOL-101 model since it is missing the digital out port. This is a non-issue for my setup as I use it with my CRT.' },
                 { src: 'assets/images/gc-controller.jpg', caption: 'GameCube controller.' }
             ],
             wii: [
-                { src: 'assets/images/wii-full.jpg', caption: 'Full view of console.' },
-                { src: 'assets/images/wii-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/wii-full.jpg', caption: 'Full view of Wii.' },
+                { src: 'assets/images/wii-back.jpg', caption: 'Back view of Wii.' },
                 { src: 'assets/images/wii-controller.jpg', caption: 'Wii controller and nunchuck' },
             ],
             ps3: [
-                { src: 'assets/images/ps3-full.jpg', caption: 'Full view of console.' },
-                { src: 'assets/images/ps3-back.jpg', caption: 'Back view of console.' },
+                { src: 'assets/images/ps3-full.jpg', caption: 'Full view of PS3.' },
+                { src: 'assets/images/ps3-back.jpg', caption: 'Back view of PS3.' },
                 { src: 'assets/images/ps3-controller.jpg', caption: 'PS3 controller.' }
             ],
             //Handhelds
@@ -2845,51 +2915,58 @@
 
             //Computers
             emac: [
-                { src: 'assets/images/emac-full.jpg', caption: 'Full view of computer.' }
+                { src: 'assets/images/emac-full.jpg', caption: 'Full view of eMac.' }
             ],
             imac: [
-                { src: 'assets/images/iMac-full.jpg', caption: 'Full view of computer.' }
+                { src: 'assets/images/iMac-full.jpg', caption: 'Full view of iMac.' }
             ],
 
             //More Tech
             d825ht: [
-                { src: 'assets/images/d825ht-full.jpg', caption: 'Full view of monitor.' },
+                { src: 'assets/images/d825ht-full.jpg', caption: 'Full view of CRT monitor.' },
                 { src: 'assets/images/d825ht-controls.jpg', caption: 'Close-up of monitor controls.' },
                 { src: 'assets/images/d825ht-sample.jpg', caption: 'Video sample using gameplay of MegaMan X4 for Windows.'}
 
             ],
+            cf32: [
+                { src: 'assets/images/cf32-full.jpg', caption: 'Full view of 32" CRT TV.' },
+                { src: 'assets/images/cf32-setup.jpg', caption: 'Retro gaming setup with Toshiba CRT.' }
+            ],
+            ph20: [
+                { src: 'assets/images/20dv-full.jpg', caption: 'Full view of 20" CRT TV.' },
+            ],
 
             //Film Cameras
             252: [
-                { src: 'assets/images/252-full.jpg', caption: 'Full view of camera.' },
-                { src: 'assets/images/252-front.jpg', caption: 'Front view of camera.' },
+                { src: 'assets/images/252-full.jpg', caption: 'Full view of 8mm film camera.' },
+                { src: 'assets/images/252-front.jpg', caption: 'Front view of 8mm film camera.' },
                 { src: 'assets/images/252-manual-cover.jpg', caption: 'Close-up of camera manual cover.' },
                 { src: 'assets/images/252-manual-inside.jpg', caption: 'Close-up of manual inside page.' }
             ],
             cb50: [
-                { src: "assets/images/cb50-full.jpg", caption: 'Full view of camera.' },
+                { src: "assets/images/cb50-full.jpg", caption: 'Full view of instant camera.' },
                 { src: "assets/images/cb50-controls.jpg", caption: 'Camera controls.' }
             ],
             af5: [
-                { src: "assets/images/af5-full.jpg", caption: 'Full view of camera.' },
+                { src: "assets/images/af5-full.jpg", caption: 'Full view of film camera.' },
                 { src: "assets/images/af5-inside.jpg", caption: 'Camera inside film door.' }
             ],
 
             //Digital Cameras
             eos30d: [
-                { src: 'assets/images/eos30d-full.jpg', caption: 'Full view of camera.' },
+                { src: 'assets/images/eos30d-full.jpg', caption: 'Full view of DSLR.' },
                 { src: 'assets/images/eos30d-controls.jpg', caption: 'Camera controls.' },
             ],
             fe120: [
-                { src: "assets/images/fe120-full.jpg", caption: 'Full view of camera.' },
+                { src: "assets/images/fe120-full.jpg", caption: 'Full view of digital camera.' },
                 { src: "assets/images/fe120-controls.jpg", caption: 'Camera controls.' }
             ],
             f80: [
-                { src: "assets/images/f80-full.jpg", caption: 'Full view of camera.' },
+                { src: "assets/images/f80-full.jpg", caption: 'Full view of digital camera.' },
                 { src: "assets/images/f80-controls.jpg", caption: 'Camera controls.' }
             ],
             f550: [
-                { src: "assets/images/f550-full.jpg", caption: 'Full view of camera.' },
+                { src: "assets/images/f550-full.jpg", caption: 'Full view of digital camera.' },
                 { src: "assets/images/f550-controls.jpg", caption: 'Camera controls.' }
             ],
 
@@ -3291,12 +3368,69 @@
             });
         });
 
+        let sectionScrollAnimation;
+        const sectionScrollDuration = 180;
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        function bezierCoordinate(progress, startControl, endControl) {
+            const inverse = 1 - progress;
+            return 3 * inverse * inverse * progress * startControl
+                + 3 * inverse * progress * progress * endControl
+                + progress * progress * progress;
+        }
+
+        function easeProgress(progress) {
+            let lower = 0;
+            let upper = 1;
+            for (let i = 0; i < 12; i++) {
+                const midpoint = (lower + upper) / 2;
+                if (bezierCoordinate(midpoint, 0.25, 0.25) < progress) {
+                    lower = midpoint;
+                } else {
+                    upper = midpoint;
+                }
+            }
+
+            return bezierCoordinate((lower + upper) / 2, 0.1, 1);
+        }
+
+        function scrollToSection(target) {
+            if (sectionScrollAnimation) {
+                cancelAnimationFrame(sectionScrollAnimation);
+            }
+
+            const startY = window.scrollY;
+            const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollMarginTop = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+            const endY = Math.max(0, Math.min(
+                startY + target.getBoundingClientRect().top - scrollMarginTop,
+                maxScrollY
+            ));
+
+            if (prefersReducedMotion.matches || startY === endY) {
+                window.scrollTo(0, endY);
+                sectionScrollAnimation = undefined;
+                return;
+            }
+
+            const startTime = performance.now();
+            function animateScroll(currentTime) {
+                const progress = Math.min((currentTime - startTime) / sectionScrollDuration, 1);
+                window.scrollTo(0, startY + (endY - startY) * easeProgress(progress));
+
+                if (progress < 1) {
+                    sectionScrollAnimation = requestAnimationFrame(animateScroll);
+                } else {
+                    sectionScrollAnimation = undefined;
+                }
+            }
+
+            sectionScrollAnimation = requestAnimationFrame(animateScroll);
+        }
+
         document.querySelectorAll('[data-section-target]').forEach(button => {
             button.addEventListener('click', () => {
-                document.getElementById(button.dataset.sectionTarget).scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                scrollToSection(document.getElementById(button.dataset.sectionTarget));
             });
         });
     </script>

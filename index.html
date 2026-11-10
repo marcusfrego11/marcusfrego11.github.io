@@ -1938,13 +1938,13 @@
                 <h3 class="subsection-title" id="repairs-projects">Projects & Repairs</h3>
                 <div class="card-grid gear-grid">
                     <article class="card showcase-card">
-                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Guitar Hero Les Paul" data-gallery-id="guitarhero" data-gallery-title="Guitar Hero Les Paul">
-                            <img src="assets/images/guitarhero-full.jpg" alt="">
+                        <button class="photo photo-gallery-trigger" type="button" aria-label="View photos of Sanni Cart Reader" data-gallery-id="sanni" data-gallery-title="Sanni Cart Reader">
+                            <img src="assets/images/sanni-full.jpg" alt="Sanni Cart Reader">
                             <span class="photo-gallery-hint" aria-hidden="true">View 4 photos</span>
                         </button>
                         <div class="showcase-details">
-                            <h4>PS3 Guitar Hero Les Paul</h4>
-                            <h5>Completed: 11/2025</h5>
+                            <h4>Sanni Cart Reader</h4>
+                            <h5>Completed: ??/2024</h5>
                             <p></p>
                         </div>
                     </article>
@@ -2845,6 +2845,17 @@
         const mobileNavigation = window.matchMedia('(max-width: 760px)');
         const photoGalleries = {
             //Projects & Repairs
+            sanni: [
+                { src: 'assets/images/sanni-full.jpg', caption: 'Full view of Sanni Cart Reader.'},
+                { src: 'assets/images/sanni-top.jpg', caption: 'Top view of Sanni Cart Reader.'}
+            ],
+            guitarhero: [
+                { src: 'assets/images/guitarhero-full.jpg', caption: 'Full view of Guitar Hero controller.'},
+                { src: 'assets/images/guitarhero-inside.jpg', caption: 'Inside view of Guitar Hero controller.'},
+                { src: 'assets/images/guitarhero-inside-port.jpg', caption: 'Close-up of Guitar Hero controller body port. It has been replaced with an RS-232 serial port.' },
+                { src: 'assets/images/guitarhero-neck-port.jpg', caption: 'Close-up of Guitar Hero controller neck port. It has been replaced with an RS-232 serial port.' },
+                { src: 'assets/images/guitarhero-usb.jpg', caption: 'Close-up of Guitar Hero controller USB port. This was installed in place of its original unused RJ11 port. Its mount is 3d-printed.' }
+            ],
             tmb100: [
                 { src: 'assets/images/tmb100-before.jpg', caption: 'Ibanez TMB100 before repair. Its dual-concentric knob shafts are broken off and the neck is missing tuners.' },
                 { src: 'assets/images/tmb100-wiring.jpg', caption: 'Custom J Bass style wiring. This layout ditches the active-preamp for a more traditional wiring with Alpha potentiometers.' },
@@ -2857,6 +2868,8 @@
             ],
             rumble350: [
                 { src: 'assets/images/rumble350-full.jpg', caption: 'Full view of functioning amp.' },
+                { src: 'assets/images/rumble350-back.jpg', caption: 'Back view of amp. Its vinyl covering has been meticulously reglued.' },
+                { src: 'assets/images/rumble350-castors.jpg', caption: 'Close-up of new castors. These ones are more durable than the originals and can lock.' }
             ],
             jBass: [
                 { src: 'assets/images/j-bass-before.jpg', caption: 'Squire J Bass before repair. It is missing tuners and its mis-matching, cross-threaded screws are not a pretty sight. Its potentiometers are also wired incorrectly.' },
